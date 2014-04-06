@@ -36,9 +36,9 @@
         </div>
 
         <div class="col-md-4">
-            <h2>Getting Started</h2>
+            <h2>Become a Tagging Guru</h2>
             <p>
-                Become a tagging guru.
+                Learn how to assign tags what will provide more efficient power to the crowdtag engine.
             </p>
             <p>
                 <a class="btn btn-default" href="~/About">Tagging School &raquo;</a>

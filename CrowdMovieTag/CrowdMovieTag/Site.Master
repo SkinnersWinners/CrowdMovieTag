@@ -52,7 +52,7 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/User_Profile">   Profile   </a></li>
                         <li><a runat="server" href="~/Add_Movie">   Add Movie   </a></li>
-                        <li><a runat="server" href="~/About">   Tagging School   </a></li>
+                        <li><a runat="server" href="~/About">   Tagging   </a></li>
                         <li><a runat="server" href="~/Rewards_Points">   Rewards   </a></li>
                         <li><a runat="server" href="~/Advanced_Search">   Advanced Search   </a></li>
                         

@@ -36,6 +36,16 @@
                     CssClass="text-danger" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
             </div>
         </div>
+
+         <div class="form-group">
+              <div class="col-md-offset-2 col-md-10">
+                  <div class="checkbox">
+                        <asp:CheckBox runat="server" ID="TermsofService" />
+                        <asp:Label runat="server" AssociatedControlID="TermsofService">By marking this box, you hereby agree to follow the <a runat="server" href="~/TermsandConditions">Terms & Conditions</a> as detailed herein. </asp:Label>
+                  </div>
+              </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <asp:Button runat="server" OnClick="CreateUser_Click" Text="Register" CssClass="btn btn-default" />
