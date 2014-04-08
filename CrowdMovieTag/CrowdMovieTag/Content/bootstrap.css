@@ -1738,6 +1738,9 @@ input[type="date"] {
 }
 .form-group {
   margin-bottom: 15px;
+    top: 310px;
+    left: 32px;
+    width: 561px;
 }
 .radio,
 .checkbox {
@@ -2082,6 +2085,8 @@ fieldset[disabled] .btn-default.active {
   color: #ffffff;
   background-color: #7a8288;
   border-color: #7a8288;
+    top: 168px;
+    left: 8px;
 }
 .btn-primary:hover,
 .btn-primary:focus,

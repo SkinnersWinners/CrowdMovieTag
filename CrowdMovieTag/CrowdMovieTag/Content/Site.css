@@ -17,6 +17,8 @@ input[type="password"] {
     max-width: 280px;
     width: 100%;
     margin-left: 0;
+    top: 167px;
+    left: -2px;
 }
 
 /* Responsive: Portrait tablets and up */

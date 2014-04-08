@@ -1,24 +1,22 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CrowdMovieTag._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+    <br />
+    <br />
+    <br />
 
-    <div class="jumbotron">
-        <h1></h1>
-        <p class="lead">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp THIS CONTAINER IS GOING TO BE AN IMAGE OF OUR TRADEMARK/SYMBOL</p>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+    <div style="background-image: url('http://localhost:1583/Movie%20theater%20Graphic.tif'); background-size:100%; height: 650px; width: 975px; margin:0; background-repeat: no-repeat;">
 
-        <div class="form-group">
-                <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
+        <div class="form-group" style="position:relative; top: 370px; left: 40px;">
+            <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
                 <button type="button" class="btn btn-primary">Search</button>        
         </div>
-    </div>
     
+    </div>
+    <br />
     <br />
     <blockquote>
+        
         <p>“Alone we can do so little; together we can do so much"</p>
         <small>Helen Keller</small>
     </blockquote>
