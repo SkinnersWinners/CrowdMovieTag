@@ -161,7 +161,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="individual_Movie.aspx" />
-    <Content Include="Movie theater Graphic.tif" />
+    <Content Include="MovietheaterGraphic.tif" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

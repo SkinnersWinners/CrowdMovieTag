@@ -5,7 +5,7 @@
     <br />
     <br />
 
-    <div style="background-image: url('http://localhost:1583/Movie%20theater%20Graphic.tif'); background-size:100%; height: 650px; width: 975px; margin:0; background-repeat: no-repeat;">
+    <div style="background-image: url('MovietheaterGraphic.tif'); background-size:100%; height: 650px; width: 975px; margin:0; background-repeat: no-repeat;">
 
         <div class="form-group" style="position:relative; top: 370px; left: 40px;">
             <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
