@@ -768,6 +768,9 @@ pre code {
   min-height: 1px;
   padding-left: 15px;
   padding-right: 15px;
+    top: 43px;
+    left: 7px;
+    width: 221px;
 }
 .col-xs-1, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9, .col-xs-10, .col-xs-11, .col-xs-12 {
   float: left;
@@ -1689,7 +1692,7 @@ output {
 }
 .form-control {
   display: block;
-  width: 100%;
+  width: 40%;
   height: 38px;
   padding: 8px 12px;
   font-size: 14px;
@@ -1738,8 +1741,8 @@ input[type="date"] {
 }
 .form-group {
   margin-bottom: 15px;
-    top: 310px;
-    left: 32px;
+    top: -69px;
+    left: 241px;
     width: 561px;
 }
 .radio,
