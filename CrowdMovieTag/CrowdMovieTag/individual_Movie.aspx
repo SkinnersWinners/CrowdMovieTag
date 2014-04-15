@@ -1,62 +1,83 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="individual_Movie.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <h2>Update Movie Information</h2>
-    <br />
 
-<div>
- 
-      <label class="col-lg-1 control-label">Title:</label>
-      <div class="col-lg-10">
-        <label class="col-lg-2 control-label" id="displayTitle">//Show Title Here</label>
-        <br />
-      </div>
- 
+    <h1>This is where the title goes + (Year in parenthesis)</h1>
+    <hr style="margin-top:10px">
 
- 
-      <label class="col-lg-1 control-label">Year Released:</label>
-      <div class="col-lg-10">
-        <label class="col-lg-2 control-label" id="displayYear">//Show Year Here</label>
-        <br />
-      </div>
-
-
-      <label class="col-lg-1 control-label">Description:</label>
-      <div class="col-lg-10">
-        <label class="col-lg-2 control-label" id="displayDescription">//Show Description Here</label>
-        <br />
-      </div>
-
-<div>
- <div class="form-group" style="margin-left:145px; margin-top:-35px">
-       <div class="col-lg-1">
-       <select class="form-control" id="newTagType" style="width:175px">
-          <option>Select One...</option>
-          <option>Genre</option>
-          <option>Time Period</option>
-          <option>Actor/Actress</option>
-          <option>Producer</option>
-          <option>Thematic Elements</option>
-          <option>Movie Title</option>
-       </select>
-       </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Movie Description:</div>
+    <div class="panel-body">
+        <label class="control-label" style="width:100%" id="displayDescription">Insert the movie description in this space</label>
     </div>
+</div>
+<hr style="margin-top:10px" />
 
-    <div class="form-group" style="margin-top:-53px; margin-left:350px">
-        <div class="col-lg-10">
-            <input type="text" class="form-control" id="NewTag" placeholder="Enter new tag...">
-        </div>
+<div class="panel panel-default">
+    <div class="panel-heading">Tags:</div>
+    <div class="panel-body">
+    <table class="table table-striped table-hover ">
+  <thead>
+    <tr>
+      <th>Score:</th>
+      <th>Type:</th>
+      <th>Tag:</th>
+      <th>Vote:</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>11</td>
+      <td>Genre</td>
+      <td>Baseball</td>
+      <td>
+          <button type="submit" class="btn btn-primary btn-xs btn-success">  +1  </button>
+          <button type="submit" class="btn btn-primary btn-xs btn-danger">  -1  </button>
+      </td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>Element</td>
+      <td>Action</td>
+      <td><button type="submit" class="btn btn-primary btn-xs btn-success">  +1  </button>
+          <button type="submit" class="btn btn-primary btn-xs btn-danger">  -1  </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+
+
+<div class="panel panel-default">
+    <div class="panel-heading">Add a New Tag:</div>
+    <div class="panel-body" style="height:150px">
+        <div class="form-group" style="margin-left:0px; margin-top:0px">
+            <select class="form-control" id="newTagType" style="width:175px">
+                <option>Select One...</option>
+                <option>Genre</option>
+                <option>Time Period</option>
+                <option>Actor/Actress</option>
+                <option>Producer</option>
+                <option>Thematic Elements</option>
+                <option>Movie Title</option>
+            </select>
+         </div>
+
+    <div class="form-group" style="margin-top:-54px; margin-left:200px">
+         <input type="text" class="form-control" id="NewTag" placeholder="Enter new tag...">
     </div>
 
     <div class="form-group">
-      <div class="col-lg-10 col-lg-offset-2">
         <button class="btn btn-default">Cancel</button>
         <button type="submit" class="btn btn-primary">Submit</button>
       </div>
-    </div>
-</div>
-    
 
 </div>
+</div>
+  
+<br />
+<br />      
 
 </asp:Content>

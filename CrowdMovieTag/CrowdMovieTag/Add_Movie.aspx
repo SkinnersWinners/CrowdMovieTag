@@ -8,23 +8,23 @@
  
 <div style="margin-top:-50px">
     <div class="form-group">
-        <label for="inputTitle" class="col-lg-2 control-label" style="width:300px">Title (Required)</label>
-        <div class="col-lg-10">
+        <label for="inputTitle" class="col-lg-2 control-label" style="width:60%">Title (Required)</label>
+        <div class="col-lg-1">
             <input type="text" required class="form-control" id="inputTitle" placeholder="Title">
         </div>
     </div>
     
     <div class="form-group">
-        <label for="inputYear" class="col-lg-2 control-label" style="width:300px">Year Released (Required)</label>
-        <div class="col-lg-10">
+        <label for="inputYear" class="col-lg-2 control-label" style="width:60%">Year Released (Required)</label>
+        <div class="col-lg-1">
             <input type="text" required class="form-control" id="inputYear" placeholder="Enter Year...">
         </div>
     </div>
  
     <div class="form-group">
-        <label for="textDescription" class="col-lg-2 control-label">Description</label>
-        <div class="col-lg-10">
-            <textarea class="form-control" rows="4" id="textDescription" style="width:600px" placeholder="Add the movie description here..."></textarea>
+        <label for="textDescription" class="col-lg-2 control-label">Description (Required)</label>
+        <div class="col-lg-1" >
+            <textarea class="form-control" rows="4" required id="textDescription" style="width:600px" placeholder="Add the movie description here..."></textarea>
             <br />
         </div>
     </div>
