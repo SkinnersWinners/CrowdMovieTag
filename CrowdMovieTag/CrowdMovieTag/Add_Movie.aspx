@@ -3,39 +3,38 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
     <h2>Power the Engine:</h2>
-    <h5>Add A Movie</h5>
     <br />
+
  
-<div style="margin-top:-50px">
-    <div class="form-group">
-        <label for="inputTitle" class="col-lg-2 control-label" style="width:60%">Title (Required)</label>
-        <div class="col-lg-1">
-            <input type="text" required class="form-control" id="inputTitle" placeholder="Title">
-        </div>
-    </div>
-    
-    <div class="form-group">
-        <label for="inputYear" class="col-lg-2 control-label" style="width:60%">Year Released (Required)</label>
-        <div class="col-lg-1">
-            <input type="text" required class="form-control" id="inputYear" placeholder="Enter Year...">
-        </div>
+<!-----------------------Panel----------------------------->
+<div class="panel panel-default">
+    <div class="panel-heading" style="margin-top:-0px">Add A Movie:</div>
+    <div class="panel-body">
+
+
+<!-----------------------Enter Title----------------------------->
+    <div class="form-group">    
+        <input type="text" required class="form-control" id="inputTitle" style="width:300px" placeholder="Enter Title...">
     </div>
  
+<!-----------------------Enter Year-----------------------------> 
     <div class="form-group">
-        <label for="textDescription" class="col-lg-2 control-label">Description (Required)</label>
-        <div class="col-lg-1" >
-            <textarea class="form-control" rows="4" required id="textDescription" style="width:600px" placeholder="Add the movie description here..."></textarea>
-            <br />
-        </div>
+        <input type="text" required class="form-control" id="inputYear" style="width:300px" placeholder="Enter Year Released...">
     </div>
 
+<!-----------------------Enter Description-----------------------------> 
     <div class="form-group">
-        <div class="col-lg-10 col-lg-offset-2">
+        <textarea class="form-control" rows="6" required id="textDescription" style="width:600px" placeholder="Enter Movie's Description..."></textarea>
+    </div>
+
+<!-----------------------Buttons----------------------------->
+    <div class="form-group">
             <button class="btn btn-default">Cancel</button>
             <button type="submit" class="btn btn-primary">Submit</button>
-        </div>
+            <br />
     </div>
-
+  
+    </div>
 </div>
 
 <br />

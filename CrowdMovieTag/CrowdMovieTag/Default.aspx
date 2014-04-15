@@ -5,10 +5,7 @@
     <br />
     <br />
 
-<!-------------------------------------------------------->
 <!------------- BACKGROUND GRAPHIC ----------------------->
-<!-------------------------------------------------------->
-
     <div style="background-image: url('CrowdTagMovieTheater.png'); background-size:100%; height: 650px; width: 975px; margin:0; background-repeat: no-repeat;">
         <div class="form-group" style="position:relative; top: 370px; left: 40px;">
             <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
@@ -19,19 +16,13 @@
 <br />
 <br />
 
-<!-------------------------------------------------------->
 <!-------------------- QUOTE ----------------------------->
-<!-------------------------------------------------------->
-
      <blockquote>
         <p>“Alone we can do so little; together we can do so much"</p>
         <small>Helen Keller</small>
      </blockquote>
 
-<!-------------------------------------------------------->
 <!------------ ELEMENTS START HERE ----------------------->
-<!-------------------------------------------------------->
-
     <div class="row">
         <div class="col-md-4">
             <h2>Earn Rewards Points</h2>

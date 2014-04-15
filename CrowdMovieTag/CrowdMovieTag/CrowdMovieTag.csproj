@@ -160,8 +160,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="CrowdTagMovieTheater.png" />
+    <Content Include="Director.png" />
+    <Content Include="Extra.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="HollywoodStar.png" />
     <Content Include="individual_Movie.aspx" />
+    <Content Include="Oscar.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -203,6 +207,7 @@
     <Content Include="Global.asax" />
     <Content Include="Search_Results.aspx" />
     <Content Include="Site.Master" />
+    <Content Include="SupportingActor.png" />
     <Content Include="TermsandConditions.aspx" />
     <Content Include="User_Profile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
