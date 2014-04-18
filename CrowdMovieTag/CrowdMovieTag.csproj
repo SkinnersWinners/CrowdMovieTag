@@ -317,6 +317,9 @@
       <DependentUpon>individual_Movie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieContext.cs" />
+    <Compile Include="Models\Tag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rewards_Points.aspx.cs">
       <DependentUpon>Rewards_Points.aspx</DependentUpon>

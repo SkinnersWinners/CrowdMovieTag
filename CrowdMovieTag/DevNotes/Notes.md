@@ -1,9 +1,10 @@
-﻿Sam's todo list for this branch
+﻿Sam's todo list for the Controller Branch
 
 Branch TODO:
 
 - Add Error Handling
 - Add Model binding --> I should do this with steve
+- Add database context
 	- Movie
 	- Tags
 	- Users
