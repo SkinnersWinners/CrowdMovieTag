@@ -153,6 +153,14 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Add_Movie.aspx" />
     <Content Include="Advanced_Search.aspx" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddUser.sql" />
+    <Content Include="App_Data\appdb.mdf" />
+    <Content Include="App_Data\appdb_log.ldf">
+      <DependentUpon>appdb.mdf</DependentUpon>
+    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-original.css" />
     <Content Include="Content\bootstrap-original.min.css" />
@@ -171,7 +179,6 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
-    <Content Include="App_Data\keepme.gitkeep" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Rewards_Points.aspx" />
     <Content Include="Scripts\bootstrap.js" />
