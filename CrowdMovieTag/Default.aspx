@@ -27,19 +27,19 @@
         <div class="col-md-4">
             <h2>Earn Rewards Points</h2>
             <p>Add Movies, upgrade and/or downgrade tags, complete your profile, to earn CrowdTag Points and one of many prizes!</p>
-            <p><a class="btn btn-default" href="~/Rewards_Points">Rewards &raquo;</a></p>
+            <p><a class="btn btn-default" runat="server" href="~/Rewards_Points">Rewards &raquo;</a></p>
         </div>
 
         <div class="col-md-4">
             <h2>Become a Tagging Guru</h2>
             <p>Learn how to assign tags what will provide more efficient power to the crowdtag engine.</p>
-            <p><a class="btn btn-default" href="~/About">Tagging School &raquo;</a></p>
+            <p><a class="btn btn-default" runat="server" href="~/About">Tagging School &raquo;</a></p>
         </div>
         
         <div class="col-md-4">
             <h2>Advanced Searching</h2>
             <p>Search for multiple tags to obtain improved results!</p>
-            <p><a class="btn btn-default" href="~/Advanced_Search">Advanced Search &raquo;</a></p>
+			<p><a class="btn btn-default" runat="server" href="~/Advanced_Search" style="bottom:0px">Advanced Search &raquo;</a></p>
         </div>
     </div>
 
