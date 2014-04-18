@@ -6,11 +6,11 @@ namespace CrowdMovieTag.Models
 	public class Movie
 	{
 		[ScaffoldColumn(false)]
-		public int MovieID { get; set; }
+		public int movie_id { get; set; }
 
 		[Required, StringLength(100), Display(Name = "Title")]
-		public string Title { get; set; }
-
+		public string title { get; set; }
+/*
 		[Required, Range(1000,10000), Display(Name = "Year")]
 		public int Year { get; set; }
 
@@ -18,6 +18,6 @@ namespace CrowdMovieTag.Models
 		public string Description { get; set; }
 
 		[DisplayName("Movie Poster URL"), StringLength(1024)]
-		public string MoviePosterURL { get; set; }
+		public string MoviePosterURL { get; set; } */
 	}
 }

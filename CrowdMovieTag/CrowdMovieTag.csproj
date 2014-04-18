@@ -151,7 +151,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="Add_Movie.aspx" />
+    <Content Include="PowerTheEngine\AddMovie.aspx" />
     <Content Include="Advanced_Search.aspx" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
@@ -180,6 +180,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="PowerTheEngine\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Rewards_Points.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -268,12 +269,12 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Add_Movie.aspx.cs">
-      <DependentUpon>Add_Movie.aspx</DependentUpon>
+    <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Add_Movie.aspx.designer.cs">
-      <DependentUpon>Add_Movie.aspx</DependentUpon>
+    <Compile Include="PowerTheEngine\AddMovie.aspx.designer.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Advanced_Search.aspx.cs">
       <DependentUpon>Advanced_Search.aspx</DependentUpon>
