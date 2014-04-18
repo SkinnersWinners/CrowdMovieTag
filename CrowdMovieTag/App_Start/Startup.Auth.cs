@@ -33,7 +33,7 @@ namespace CrowdMovieTag
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication();
+            app.UseGoogleAuthentication();
         }
     }
 }
