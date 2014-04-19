@@ -2,27 +2,41 @@
 
 Branch TODO:
 
-- Add Error Handling
-- Implement search
-	- Access stored procedures
-- Implement Admin
-+ Profile page --> Work with Trent
-	+ Bind user data
-	+ Retrieve user data
+- Movie Details page
+	- Bind Movie
+	- Query for tags for that movie
+		- May need a custom select method, probably not though
+	- Add a tag for the movie
+		- Authenticate!
+
 - Movie Adding
 	- Authentication
 	- Validation
 	- Model Binding
 	- Tag Selection
-- Movie Details page
 
-+ Add Model binding --> I should do this with steve
+? Implement Admin 
+	? What tasks does an admin perform?
+
+- Add Error Handling
+- Implement search
+	- Access stored procedures
+
+
+- Profile page 
+	- Get Most recent tags/User activity	--> Need Steve for Tag Relationships Table
+	+ Bind user data
+	+ Retrieve user data
+
+- Add Full Model binding					--> Need Steve for updated model
+	- UserTags Table
+
 + Add database context
 	+ Movie
 	+ Tags
-- Implement User Management
++ Implement User Management
 	+ Login -> ASP.net
 	+ Registration -> ASP.Net
-		- Create a profile entry from a registration
+		+ Create a profile entry from a registration
 	+ Figure out what table to use for the users -> ASP.net
 
