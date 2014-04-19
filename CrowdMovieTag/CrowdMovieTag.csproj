@@ -269,6 +269,8 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\MovieDatabaseInitializer.cs" />
+    <Compile Include="Models\Profile.cs" />
     <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
