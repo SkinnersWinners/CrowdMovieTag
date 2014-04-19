@@ -6,9 +6,9 @@ Branch TODO:
 - Implement search
 	- Access stored procedures
 - Implement Admin
-- Profile page --> Work with Trent
-	- Bind user data
-	- Retrieve user data
++ Profile page --> Work with Trent
+	+ Bind user data
+	+ Retrieve user data
 - Movie Adding
 	- Authentication
 	- Validation
@@ -20,8 +20,9 @@ Branch TODO:
 + Add database context
 	+ Movie
 	+ Tags
-+ Implement User Management
-	- Login -> ASP.net
-	- Registration -> ASP.Net
-	- Figure out what table to use for the users -> ASP.net
+- Implement User Management
+	+ Login -> ASP.net
+	+ Registration -> ASP.Net
+		- Create a profile entry from a registration
+	+ Figure out what table to use for the users -> ASP.net
 
