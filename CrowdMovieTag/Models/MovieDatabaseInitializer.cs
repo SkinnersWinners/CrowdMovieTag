@@ -11,6 +11,7 @@ namespace CrowdMovieTag.Models
 			GetProfiles().ForEach(p => context.Profiles.Add(p));
 			GetMovies().ForEach(m => context.Movies.Add(m));
 			GetTags().ForEach(t => context.Tags.Add(t));
+			GetTagMaps().ForEach(tm => context.TagMaps.Add(tm));
 		}
 
 		private static List<Movie> GetMovies()
@@ -18,8 +19,10 @@ namespace CrowdMovieTag.Models
 			var movies = new List<Movie> {
 				new Movie
 				{
-					MovieID = 0,
-					Title = "Shawshank Redemption"
+					MovieID = 1,
+					Title = "The Shawshank Redemption",
+					Year = 1994,
+					Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
 				}
 			};
 			return movies;
@@ -30,7 +33,7 @@ namespace CrowdMovieTag.Models
 			var tags = new List<Tag> {
 				new Tag
 				{
-					TagID = 0,
+					TagID = 1,
 					TagTypeEnumID = 0,
 					ApprovalStatusEnumID = 0,
 					ApproverID = null,
@@ -69,5 +72,17 @@ namespace CrowdMovieTag.Models
 			return profiles;
 		}
 
+		private static List<TagMap> GetTagMaps()
+		{
+			var tagMaps = new List<TagMap> {
+				new TagMap
+				{
+					ID = 1,
+					TagID = 1,
+					MovieID = 1 
+				}
+			};
+			return tagMaps;
+		}
 	}
 }
