@@ -151,7 +151,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="Add_Movie.aspx" />
+    <Content Include="PowerTheEngine\AddMovie.aspx" />
     <Content Include="Advanced_Search.aspx" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
@@ -180,6 +180,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="PowerTheEngine\EditProfile.aspx" />
+    <Content Include="PowerTheEngine\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Rewards_Points.aspx" />
     <Content Include="Scripts\bootstrap.js" />
@@ -268,12 +270,14 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Add_Movie.aspx.cs">
-      <DependentUpon>Add_Movie.aspx</DependentUpon>
+    <Compile Include="Models\MovieDatabaseInitializer.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Add_Movie.aspx.designer.cs">
-      <DependentUpon>Add_Movie.aspx</DependentUpon>
+    <Compile Include="PowerTheEngine\AddMovie.aspx.designer.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Advanced_Search.aspx.cs">
       <DependentUpon>Advanced_Search.aspx</DependentUpon>
@@ -317,6 +321,16 @@
       <DependentUpon>individual_Movie.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Movie.cs" />
+    <Compile Include="Models\MovieContext.cs" />
+    <Compile Include="Models\Tag.cs" />
+    <Compile Include="PowerTheEngine\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PowerTheEngine\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rewards_Points.aspx.cs">
       <DependentUpon>Rewards_Points.aspx</DependentUpon>

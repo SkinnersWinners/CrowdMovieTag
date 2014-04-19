@@ -7,27 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace CrowdMovieTag {
+namespace CrowdMovieTag.PowerTheEngine {
     
     
-    public partial class User_Profile {
+    public partial class EditProfile {
         
         /// <summary>
-        /// ProfileViewForm control.
+        /// EditProfileForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.FormView ProfileViewForm;
+        protected global::System.Web.UI.WebControls.FormView EditProfileForm;
         
         /// <summary>
-        /// EditProfileBtn control.
+        /// LabelUpdateProfileStatus control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button EditProfileBtn;
+        protected global::System.Web.UI.WebControls.Label LabelUpdateProfileStatus;
     }
 }
