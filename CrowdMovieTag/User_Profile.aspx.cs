@@ -26,6 +26,13 @@ namespace CrowdMovieTag
 					Response.Redirect("ErrorPage");
 				}
 			}
+			else
+			{
+				if (username == HttpContext.Current.User.Identity.Name)
+				{
+					ProfileViewForm.FindControl("EditProfileBtn").Visible = true;
+				}
+			}
         }
 
 		public IQueryable<Profile> GetProfile([QueryString("username")] string username)

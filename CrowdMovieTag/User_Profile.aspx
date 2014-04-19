@@ -4,7 +4,7 @@
 	<br />
 
 	<div style ="margin-left:1.7in">
-		<asp:FormView ID="FormView1" runat="server" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile">
+		<asp:FormView ID="ProfileViewForm" runat="server" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile">
 			<EmptyDataTemplate>
 				<h2>User not found</h2>
 				<p>Did you type the username properly?</p>
@@ -17,11 +17,12 @@
 				<br />
 
 				<h2>Oscar Winner: <%#: Item.FirstName + " " + Item.LastName %></h2>
+				<h4>Username: <label id="userName"><%#: Item.Username %></label></h4>
 				<h4>Member since: <label id="userRegDate"><%#: Item.DateJoined.Year %></label></h4>
-				<h4>Email Address: <label id="userEmail"><%#: Item.Username %></label></h4>
+				
 				<h4>Profile Rank: <label id="userProfileRank"> 1 of 145 </label></h4>
 				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Edit Profile / Change Password</button>
+					<asp:Button runat="server" ID="EditProfileBtn" OnClientClick="window.location.href='PowerTheEngine/EditProfile'; return false;" Visible="false" Text="Edit Profile" />
 				</div>
 				<br />
 			</ItemTemplate>

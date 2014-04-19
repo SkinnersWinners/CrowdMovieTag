@@ -180,6 +180,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Account\Web.config" />
+    <Content Include="PowerTheEngine\EditProfile.aspx" />
     <Content Include="PowerTheEngine\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Rewards_Points.aspx" />
@@ -323,6 +324,13 @@
     <Compile Include="Models\Movie.cs" />
     <Compile Include="Models\MovieContext.cs" />
     <Compile Include="Models\Tag.cs" />
+    <Compile Include="PowerTheEngine\EditProfile.aspx.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PowerTheEngine\EditProfile.aspx.designer.cs">
+      <DependentUpon>EditProfile.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rewards_Points.aspx.cs">
       <DependentUpon>Rewards_Points.aspx</DependentUpon>

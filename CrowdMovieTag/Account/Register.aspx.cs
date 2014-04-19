@@ -19,6 +19,23 @@ namespace CrowdMovieTag.Account
             if (result.Succeeded)
             {
                 IdentityHelper.SignIn(manager, user, isPersistent: false);
+				// showes Added: Create an entry in the Profiles table for this user
+				var newProfile = new Profile()
+				{
+					ProfileID = user.Id,
+					Username = user.UserName,
+					AvatarID = 0,
+					FirstName = null,
+					LastName = null,
+					Email = null,
+					DateJoined = DateTime.Now
+				};
+				using (MovieContext _db = new MovieContext())
+				{
+					_db.Profiles.Add(newProfile);
+					_db.SaveChanges();
+				}
+
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
             }
             else 
