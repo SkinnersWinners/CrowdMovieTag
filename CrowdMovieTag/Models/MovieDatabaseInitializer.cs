@@ -9,6 +9,37 @@ namespace CrowdMovieTag.Models
 		protected override void Seed(MovieContext context)
 		{
 			GetProfiles().ForEach(p => context.Profiles.Add(p));
+			GetMovies().ForEach(m => context.Movies.Add(m));
+			GetTags().ForEach(t => context.Tags.Add(t));
+		}
+
+		private static List<Movie> GetMovies()
+		{
+			var movies = new List<Movie> {
+				new Movie
+				{
+					MovieID = 0,
+					Title = "Shawshank Redemption"
+				}
+			};
+			return movies;
+		}
+
+		private static List<Tag> GetTags()
+		{
+			var tags = new List<Tag> {
+				new Tag
+				{
+					TagID = 0,
+					TagTypeEnumID = 0,
+					ApprovalStatusEnumID = 0,
+					ApproverID = null,
+					CreatedDateTime = DateTime.Now,
+					SubmitterID = 10,
+					Label = "Awesome"
+				}
+			};
+			return tags;
 		}
 
 		private static List<Profile> GetProfiles()

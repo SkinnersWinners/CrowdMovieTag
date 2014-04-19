@@ -7,24 +7,24 @@ namespace CrowdMovieTag.Models
 	public class Tag
 	{
 		[ScaffoldColumn(false), Range(0, Int64.MaxValue)]
-		public int tag_id { get; set; }
+		public int TagID { get; set; }
 
-		public int tag_type_enum_id { get; set; }
+		public int TagTypeEnumID { get; set; }
 
 		[Required, StringLength(50), Display(Name = "Tag Name")]
-		public string label { get; set; }
+		public string Label { get; set; }
 
 		[Required]
-		public DateTime created_datetime { get; set; }
+		public DateTime CreatedDateTime { get; set; }
 
 		[Required, Range(0, Int32.MaxValue)]
-		public int submitter_id { get; set; }
+		public int SubmitterID { get; set; }
 
 		[Range(0, Int32.MaxValue)]
-		public int? approver_id { get; set; }
+		public int? ApproverID { get; set; }
 
 		[Required, Range(0, Int16.MaxValue)]
-		public int approval_status_enum_id { get; set; }
+		public int ApprovalStatusEnumID { get; set; }
 
 	}
 }
