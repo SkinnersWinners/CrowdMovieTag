@@ -23,14 +23,15 @@ namespace CrowdMovieTag
 				}
 				else
 				{
-					Response.Redirect("ErrorPage");
+					Response.Redirect("Account/Login");
 				}
 			}
 			else
 			{
 				if (username == HttpContext.Current.User.Identity.Name)
 				{
-					ProfileViewForm.FindControl("EditProfileBtn").Visible = true;
+					//ProfileViewForm.FindControl("EditProfileBtn").Visible = true;
+					EditProfileBtn.Visible = true;
 				}
 			}
         }

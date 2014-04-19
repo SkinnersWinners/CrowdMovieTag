@@ -6,10 +6,10 @@ namespace CrowdMovieTag.Models
 	public class Movie
 	{
 		[ScaffoldColumn(false)]
-		public int movie_id { get; set; }
+		public int MovieID { get; set; }
 
 		[Required, StringLength(100), Display(Name = "Title")]
-		public string title { get; set; }
+		public string Title { get; set; }
 /*
 		[Required, Range(1000,10000), Display(Name = "Year")]
 		public int Year { get; set; }

@@ -10,8 +10,8 @@ namespace CrowdMovieTag.Models
 		
 		}
 
-		//public DbSet<Movie> Movies { get; set; }
-		//public DbSet<Tag> Tags { get; set; }
+		public DbSet<Movie> Movies { get; set; }
+		public DbSet<Tag> Tags { get; set; }
 		public DbSet<Profile> Profiles { get; set; }
 
 	}

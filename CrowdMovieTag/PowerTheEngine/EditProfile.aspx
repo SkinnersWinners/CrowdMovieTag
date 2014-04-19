@@ -42,9 +42,10 @@
 					</td>
 				</tr>
 			</table>
+			<asp:Button ID="UpdateProfileBtn" runat="server" OnClick="UpdateProfile_Click" CausesValidation="true" Text="Update" />
 		</ItemTemplate>
 	</asp:FormView>
-	<asp:Button ID="UpdateProfileBtn" runat="server" OnClick="UpdateProfile_Click" CausesValidation="true" Text="Update" />
+	
 	<asp:Label ID="LabelUpdateProfileStatus" runat="server" Text=""></asp:Label>
 
 </asp:Content>

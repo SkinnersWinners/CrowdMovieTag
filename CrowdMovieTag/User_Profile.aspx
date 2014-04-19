@@ -21,12 +21,13 @@
 				<h4>Member since: <label id="userRegDate"><%#: Item.DateJoined.Year %></label></h4>
 				
 				<h4>Profile Rank: <label id="userProfileRank"> 1 of 145 </label></h4>
-				<div class="form-group">
-					<asp:Button runat="server" ID="EditProfileBtn" OnClientClick="window.location.href='PowerTheEngine/EditProfile'; return false;" Visible="false" Text="Edit Profile" />
-				</div>
-				<br />
+				
 			</ItemTemplate>
 		</asp:FormView> 
+		<div class="form-group">
+			<asp:Button runat="server" ID="EditProfileBtn" OnClientClick="window.location.href='PowerTheEngine/EditProfile'; return false;" Visible="false" Text="Edit Profile" />
+		</div>
+		<br />
 		<!-----------------------Panel Begins----------------------------->
 		<div class="panel panel-default panel-danger">
 			<div class="panel-heading">Last 5 Movies Added:</div>
