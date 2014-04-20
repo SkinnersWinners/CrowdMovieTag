@@ -159,10 +159,6 @@
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddUser.sql" />
-    <Content Include="App_Data\appdb.mdf" />
-    <Content Include="App_Data\appdb_log.ldf">
-      <DependentUpon>appdb.mdf</DependentUpon>
-    </Content>
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-original.css" />
     <Content Include="Content\bootstrap-original.min.css" />
@@ -272,15 +268,6 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\MovieDatabaseInitializer.cs" />
-    <Compile Include="Models\Profile.cs" />
-    <Compile Include="Models\TagMap.cs" />
-    <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
-      <DependentUpon>AddMovie.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="PowerTheEngine\AddMovie.aspx.designer.cs">
-      <DependentUpon>AddMovie.aspx</DependentUpon>
     <Compile Include="ShowAllMovies.aspx.cs">
       <DependentUpon>ShowAllMovies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -402,7 +389,9 @@
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
