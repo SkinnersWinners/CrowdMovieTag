@@ -30,3 +30,8 @@ input[type="password"] {
         padding: 0;
     }
 }
+
+
+.validator {
+	color: red;
+}

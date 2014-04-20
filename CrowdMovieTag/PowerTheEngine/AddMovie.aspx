@@ -7,37 +7,80 @@
     <br />
 
  
-<!-----------------------Panel----------------------------->
-<div class="panel panel-default panel-info">
-    <div class="panel-heading" style="margin-top:-0px">Add A Movie:</div>
-    <div class="panel-body">
+	<!-----------------------Panel----------------------------->
+	<div class="panel panel-default panel-info">
+		<div class="panel-heading" style="margin-top:-0px">
+			<h3>Add A Movie:</h3>
+		</div>
+		<div class="panel-body">
 
-
-<!-----------------------Enter Title----------------------------->
-    <div class="form-group">    
-        <input type="text" required class="form-control" id="inputTitle" style="width:300px" placeholder="Enter Title...">
-    </div>
+			<!-----------------------Enter Title----------------------------->
+			<div class="form-group">    
+				<label>Title:</label>
+				<br />
+				<asp:TextBox ID="NewMovieTitleTextBox" runat="server"
+					placeholder="Enter Title..."
+					CssClass="form-control"
+					Width="300"></asp:TextBox>
+				<asp:RequiredFieldValidator runat="server"
+					ControlToValidate="NewMovieTitleTextBox"
+					ErrorMessage="You must enter a title"
+					CssClass="validator"
+					Display="Dynamic"></asp:RequiredFieldValidator>
+			</div>
  
-<!-----------------------Enter Year-----------------------------> 
-    <div class="form-group">
-        <input type="text" required class="form-control" id="inputYear" style="width:300px" placeholder="Enter Year Released...">
-    </div>
+			<!-----------------------Enter Year-----------------------------> 
+			<div class="form-group">
+				<label>Year Released:</label>
+				<br />
+				<asp:TextBox ID="NewMovieYearTextBox" runat="server"
+					placeholder="Enter Year Released..."
+					CssClass="form-control"
+					Width="300"></asp:TextBox>
+				<asp:RequiredFieldValidator runat="server"
+					ControlToValidate="NewMovieYearTextBox"
+					ErrorMessage="You must enter a Year"
+					CssClass="validator"
+					Display="Dynamic"></asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator runat="server"
+					ControlToValidate="NewMovieYearTextBox"
+					ErrorMessage="Year must be in the format: YYYY"
+					ValidationExpression="[0-9]{4}"
+					CssClass="validator"
+					Display="Dynamic"></asp:RegularExpressionValidator>
+			</div>
 
-<!-----------------------Enter Description-----------------------------> 
-    <div class="form-group">
-        <textarea class="form-control" rows="6" required id="textDescription" style="width:600px" placeholder="Enter Movie's Description..."></textarea>
-    </div>
+			<!------------------Enter Description------------------------> 
+			<div class="form-group">
+				<label>Description:</label>
+				<br />
+				<asp:TextBox ID="NewMovieDescriptionTextBox" runat="server"
+					TextMode="MultiLine"
+					placeholder="Enter Movie's Description..."
+					CssClass="form-control"
+					Width="600px"
+					Rows="6"></asp:TextBox>
+				<asp:RequiredFieldValidator runat="server"
+					ControlToValidate="NewMovieDescriptionTextBox"
+					ErrorMessage="You must enter a Description"
+					CssClass="validator"
+					Display="Dynamic"
+					></asp:RequiredFieldValidator>
+			</div>
 
-<!-----------------------Buttons----------------------------->
-    <div class="form-group">
-            <button class="btn btn-default">Cancel</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
-            <br />
-    </div>
+			<!-----------------------Buttons----------------------------->
+			<div class="form-group">
+				<button class="btn btn-default">Reset</button>
+				<asp:Button CssClass="btn btn-primary" CausesValidation="true" Text="Submit" runat="server" />
+				<asp:ValidationSummary runat="server" 
+					 DisplayMode="BulletList"
+					 CssClass="validator"
+					 HeaderText="Form is not complete:" />
+			</div>
   
-    </div>
-</div>
+		</div>
+	</div>
 
-<br />
-<br />
+	<br />
+	<br />
 </asp:Content>
