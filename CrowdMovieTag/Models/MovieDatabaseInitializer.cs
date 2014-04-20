@@ -85,11 +85,7 @@ namespace CrowdMovieTag.Models
 					AvatarID = 1,
 					FirstName = "Trent",
 					LastName = "Merrell",
-<<<<<<< HEAD
 					Email = "trent.merrell@gmail.com",
-=======
-					Email = "tmerrell@gmail.com",
->>>>>>> controller_backup
 					DateJoined = DateTime.Now
 				}
 			};
@@ -104,9 +100,6 @@ namespace CrowdMovieTag.Models
 				{
 					ID = 1,
 					TagID = 1,
-<<<<<<< HEAD
-					MovieID = 1 
-=======
 					MovieID = 1,
 					Score = 10
 				},
@@ -123,7 +116,6 @@ namespace CrowdMovieTag.Models
 					TagID = 3,
 					MovieID = 1,
  					Score = 22
->>>>>>> controller_backup
 				}
 			};
 			return tagMaps;
