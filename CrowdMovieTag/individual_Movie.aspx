@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="individual_Movie.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
+﻿<%@ Page Title="Movie Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="individual_Movie.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<br />
 	<asp:FormView ID="FormView1" ItemType="CrowdMovieTag.Models.Movie" SelectMethod="GetMovie" runat="server">
@@ -6,7 +6,7 @@
 			<h1>Movie Not Found</h1>
 			<p>Did you type the name correctly?</p>		
 		</EmptyDataTemplate>
-		<ItemTemplate>
+		<ItemTemplate> 
 			<h1><%#:Item.Title %> (<%#:Item.Year %>)</h1>
 
 			<hr style="margin-top:10px">

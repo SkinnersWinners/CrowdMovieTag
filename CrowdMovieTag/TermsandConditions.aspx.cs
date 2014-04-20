@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace CrowdMovieTag
 {
-    public partial class TermsandConditions : System.Web.UI.Page
+    public partial class TermsAndConditions : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {

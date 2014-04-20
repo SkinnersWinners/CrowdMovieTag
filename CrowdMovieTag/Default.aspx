@@ -1,12 +1,12 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CrowdMovieTag._Default" %>
 
-<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
+<asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" >
     <br />
     <br />
     <br />
 
 <!------------- BACKGROUND GRAPHIC ----------------------->
-    <div style="background-image: url('CrowdTagMovieTheater.png'); background-size:100%; height: 650px; width: 975px; margin:0; background-repeat: no-repeat;">
+    <div style="background-image: url('/Images/CrowdTagMovieTheater.png'); background-size:100%; height: 650px; width: 975px; margin-top:0px; background-repeat: no-repeat;">
         <div class="form-group" style="position:relative; top: 370px; left: 40px;">
             <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
             <button type="button" class="btn btn-primary">Search</button>        

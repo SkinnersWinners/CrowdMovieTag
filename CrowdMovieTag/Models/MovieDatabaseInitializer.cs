@@ -60,11 +60,11 @@ namespace CrowdMovieTag.Models
 				},
 				new Profile	{
 					ProfileID = Guid.NewGuid().ToString(),
-					Username = "tmerrel",
+					Username = "tmerrell",
 					AvatarID = 1,
 					FirstName = "Trent",
-					LastName = "Merrel",
-					Email = "tmerrel@gmail.com",
+					LastName = "Merrell",
+					Email = "trent.merrell@gmail.com",
 					DateJoined = DateTime.Now
 				}
 			};

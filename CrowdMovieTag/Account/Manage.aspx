@@ -127,11 +127,16 @@
                         </tr>
                     </ItemTemplate>
                 </asp:ListView>
-
-                <uc:OpenAuthProviders runat="server" ReturnUrl="~/Account/Manage" />
+                <br />
+                <br />
+                <br />
+                <uc:OpenAuthProviders runat="server" ReturnUrl="~/Account/Manage" /> 
             </section>
 
         </div>
     </div>
-
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>
