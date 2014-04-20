@@ -123,15 +123,15 @@ namespace CrowdMovieTag
 
 			var _db = new CrowdMovieTag.Models.MovieContext();
 			IQueryable<TagFromQuery> tags = from tag in _db.Tags
-											from tagMap in _db.TagMaps
-											where (tagMap.MovieID == movieID) && (tag.TagID == tagMap.TagID)
-											orderby tagMap.Score descending
+											from vote in _db.Votes
+											where (vote.MovieID == movieID) && (tag.TagID == vote.TagID)
+											orderby vote.Score descending
 											select new TagFromQuery 
 											{
 												 TagID = tag.TagID,
 												 TagTypeEnumID = tag.TagTypeEnumID,
 												 Label = tag.Label,
-												 Score = tagMap.Score
+												 Score = vote.Score
 											 };
 			return tags;
 		}

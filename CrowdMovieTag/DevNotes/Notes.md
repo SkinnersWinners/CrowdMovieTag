@@ -2,18 +2,17 @@
 
 Branch TODO:
 
-- Movie Adding
-	- Authentication
-	- Validation
-	- Model Binding
-	- Tag Selection
-
 ? Implement Admin 
 	? What tasks does an admin perform?
 
+---> Redo Database Initialization to actually map Votes to users
+- Switch tagMap to Vote
+
 - Add Error Handling
+
 - Implement search
 	- Access stored procedures
+
 
 
 - Profile page 
@@ -21,9 +20,10 @@ Branch TODO:
 	+ Bind user data
 	+ Retrieve user data
 
-- Add Full Model binding					--> Need Steve for updated model
-	- UserTags Table
-
++ Movie Adding
+	+ Authentication
+	+ Validation
+	+ Model Binding
 
 + Movie Details page
 	+ Bind Movie

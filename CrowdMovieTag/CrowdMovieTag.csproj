@@ -277,7 +277,7 @@
     </Compile>
     <Compile Include="Models\MovieDatabaseInitializer.cs" />
     <Compile Include="Models\Profile.cs" />
-    <Compile Include="Models\TagMap.cs" />
+    <Compile Include="Models\Vote.cs" />
     <Compile Include="Logic\MovieActions.cs" />
     <Compile Include="Models\TagFromQuery.cs" />
     <Compile Include="PowerTheEngine\AddMovie.aspx.cs">

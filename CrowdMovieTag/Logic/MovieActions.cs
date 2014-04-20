@@ -32,16 +32,16 @@ namespace CrowdMovieTag.Logic
 		{
 			try
 			{
-				var tagMap = _db.TagMaps.Where(tm => tm.TagID == tagID).FirstOrDefault();
-				if (tagMap == null) return;
+				var vote = _db.Votes.Where(tm => tm.TagID == tagID).FirstOrDefault();
+				if (vote == null) return;
 				
 				if (isUpvote)
 				{
-					tagMap.Score += 1;
+					vote.Score += 1;
 				}
 				else
 				{
-					tagMap.Score -= 1;
+					vote.Score -= 1;
 				}
 				// Commit the changes to the database
 				_db.SaveChanges();
@@ -71,10 +71,10 @@ namespace CrowdMovieTag.Logic
 				_db.SaveChanges();
 			}
 
-			var tagMap = _db.TagMaps.SingleOrDefault(tm => (tm.MovieID == movieID) && (tm.TagID == userTag.TagID));
-			if (tagMap == null)
+			var vote = _db.Votes.SingleOrDefault(tm => (tm.MovieID == movieID) && (tm.TagID == userTag.TagID));
+			if (vote == null)
 			{
-				var newTagMap = new TagMap
+				var newVote = new Vote
 				{
 					MovieID = movieID,
 					Movie = _db.Movies.SingleOrDefault(m => m.MovieID == movieID),
@@ -83,7 +83,7 @@ namespace CrowdMovieTag.Logic
 					Score = 0
 				};
 
-				_db.TagMaps.Add(newTagMap);
+				_db.Votes.Add(newVote);
 				_db.SaveChanges();
 			}
 		}

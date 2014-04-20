@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CrowdMovieTag.Models
 {
-	public class TagMap
+	public class Vote
 	{
 		[ScaffoldColumn(false)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

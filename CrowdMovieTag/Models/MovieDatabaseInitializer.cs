@@ -11,7 +11,7 @@ namespace CrowdMovieTag.Models
 			GetProfiles().ForEach(p => context.Profiles.Add(p));
 			GetMovies().ForEach(m => context.Movies.Add(m));
 			GetTags().ForEach(t => context.Tags.Add(t));
-			GetTagMaps().ForEach(tm => context.TagMaps.Add(tm));
+			GetVotes().ForEach(tm => context.Votes.Add(tm));
 		}
 
 		private static List<Movie> GetMovies()
@@ -94,24 +94,24 @@ namespace CrowdMovieTag.Models
 			return profiles;
 		}
 
-		private static List<TagMap> GetTagMaps()
+		private static List<Vote> GetVotes()
 		{
-			var tagMaps = new List<TagMap> {
-				new TagMap
+			var votes = new List<Vote> {
+				new Vote
 				{
 					ID = 1,
 					TagID = 1,
 					MovieID = 1,
 					Score = 10
 				},
-				new TagMap
+				new Vote
 				{
 					ID = 2,
 					TagID = 2,
 					MovieID = 1,
  					Score = 1
 				},
-				new TagMap
+				new Vote
 				{
 					ID = 3,
 					TagID = 3,
@@ -119,7 +119,7 @@ namespace CrowdMovieTag.Models
  					Score = 22
 				}
 			};
-			return tagMaps;
+			return votes;
 		}
 	}
 }

@@ -14,7 +14,7 @@ namespace CrowdMovieTag.Models
 		public DbSet<Tag> Tags { get; set; }
 		public DbSet<Profile> Profiles { get; set; }
 
-		public DbSet<TagMap> TagMaps { get; set; }
+		public DbSet<Vote> Votes { get; set; }
 
 	}
 }
