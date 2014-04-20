@@ -4,7 +4,7 @@
 	<br />
 
 	<div style ="margin-left:1.7in">
-		<asp:FormView ID="ProfileViewForm" runat="server" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile">
+		<asp:FormView ID="ProfileViewForm" runat="server" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile" CssClass="">
 			<EmptyDataTemplate>
 				<h2>User not found</h2>
 				<p>Did you type the username properly?</p>

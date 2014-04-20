@@ -1,11 +1,13 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CrowdMovieTag.Models
 {
 	public class Movie
 	{
 		[ScaffoldColumn(false)]
+		[DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
 		public int MovieID { get; set; }
 
 		[Required, StringLength(100), Display(Name = "Title")]
