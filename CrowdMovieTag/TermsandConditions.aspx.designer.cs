@@ -11,7 +11,7 @@ namespace CrowdMovieTag
 {
 
 
-    public partial class TermsandConditions
+    public partial class TermsAndConditions
     {
     }
 }

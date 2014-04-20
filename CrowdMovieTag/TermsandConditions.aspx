@@ -1,7 +1,7 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TermsandConditions.aspx.cs" Inherits="CrowdMovieTag.TermsandConditions" %>
+﻿<%@ Page Title="Terms and Conditions" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="TermsAndConditions.aspx.cs" Inherits="CrowdMovieTag.TermsAndConditions" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-    <h2>CrowdTag Terms and Conditions:</h2>
+    <h2 "margin-top:20px">CrowdTag Terms and Conditions:</h2>
     <br />
     <h4>Please Read Carefully:</h4>
     <h6> BY USING CrowdTag's SERVICES ("ON-LINE SERVICES"), YOU AGREE TO THESE TERMS AND CONDITIONS. THESE TERMS AND CONDITIONS APPLY EXCLUSIVELY TO YOUR ACCESS TO, AND USE OF, CrowdTag's ON-LINE SERVICES AND DO NOT ALTER IN ANY WAY THE TERMS OR CONDITIONS OF ANY OTHER AGREEMENT YOU MAY HAVE WITH CrowdTag. IF YOU DO NOT AGREE, DO NOT USE CrowdTag's ON-LINE SERVICES, OR, IF YOU ARE ALREADY USING CrowdTag's ON-LINE SERVICES, CEASE USE IMMEDIATELY.</h6>

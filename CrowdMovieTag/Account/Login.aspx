@@ -3,8 +3,9 @@
 <%@ Register Src="~/Account/OpenAuthProviders.ascx" TagPrefix="uc" TagName="OpenAuthProviders" %>
 
 <asp:Content runat="server" ID="BodyContent" ContentPlaceHolderID="MainContent">
+    <br />
+    <br />
     <h2><%: Title %>.</h2>
-
     <div class="row">
         <div class="col-md-8">
             <section id="loginForm">
@@ -46,6 +47,9 @@
                     </div>
                 </div>
                 <p>
+                <br />
+                <br />
+                <br />
                     <asp:HyperLink runat="server" ID="RegisterHyperLink" ViewStateMode="Disabled">Register</asp:HyperLink>
                     if you don't have a local account.
                 </p>
@@ -58,4 +62,8 @@
             </section>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
 </asp:Content>

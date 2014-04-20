@@ -41,7 +41,7 @@
               <div class="col-md-offset-2 col-md-10">
                   <div class="checkbox">
                         <asp:CheckBox runat="server" ID="TermsofService" />
-                        <asp:Label runat="server" AssociatedControlID="TermsofService">By marking this box, you hereby agree to follow the <a runat="server" href="~/TermsandConditions">Terms & Conditions</a> as detailed herein. </asp:Label>
+                        <asp:Label runat="server" AssociatedControlID="TermsofService">By marking this box, you hereby agree to follow the <a runat="server" href="~/TermsAndConditions">Terms & Conditions</a> as detailed herein. </asp:Label>
                   </div>
               </div>
         </div>
@@ -52,4 +52,9 @@
             </div>
         </div>
     </div>
+    <br />
+    <br />
+    <br />
+    <br />
+
 </asp:Content>

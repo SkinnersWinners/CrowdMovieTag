@@ -15,7 +15,7 @@
     <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
 </head>
-<body>
+<body >
     <form runat="server">
         <asp:ScriptManager runat="server">
             <Scripts>
@@ -38,7 +38,7 @@
             </Scripts>
         </asp:ScriptManager>
 
-        <div class="navbar navbar-default navbar-fixed-top">
+        <div class="navbar navbar-default navbar-fixed-top"">
             <div class="container">
                 <div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
@@ -50,12 +50,12 @@
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a runat="server" href="~/User_Profile">   Profile   </a></li>
-                        <li><a runat="server" href="~/Add_Movie">   Add Movie   </a></li>
-                        <li><a runat="server" href="~/About">   Tagging   </a></li>
-                        <li><a runat="server" href="~/Rewards_Points">   Rewards   </a></li>
-                        <li><a runat="server" href="~/Advanced_Search">   Advanced Search   </a></li>
-                        
+                        <li><a runat="server" href="~/UserProfile"> Profile </a></li>
+                        <li><a runat="server" href="~/PowerTheEngine/AddMovie"> Add Movie </a></li>
+                        <li><a runat="server" href="~/AdvancedSearch"> Advanced Search </a></li>
+                        <li><a runat="server" href="~/ShowAllMovies"> All Movies </a></li>
+                        <li><a runat="server" href="~/About"> About </a></li>
+                        <!--<li><a runat="server" href="~/Contact"> Contact </a></li>-->
                     </ul>
                     <asp:LoginView runat="server" ViewStateMode="Disabled">
                         <AnonymousTemplate>
@@ -83,6 +83,8 @@
             <footer>
 
                 <p>&copy; <%: DateTime.Now.Year %> CrowdTag: Movies - EC512</p>
+                <asp:Label runat="server">If you have any comments, questions, or concerns: <a runat="server" href="~/Contact">Contact Crowd Tag.</a></asp:Label>
+
             </footer>
         </div>
     </form>

@@ -151,8 +151,10 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Images\SlateBackground.png" />
+    <Content Include="ShowAllMovies.aspx" />
     <Content Include="PowerTheEngine\AddMovie.aspx" />
-    <Content Include="Advanced_Search.aspx" />
+    <Content Include="AdvancedSearch.aspx" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />
@@ -183,7 +185,7 @@
     <Content Include="PowerTheEngine\EditProfile.aspx" />
     <Content Include="PowerTheEngine\Web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Rewards_Points.aspx" />
+    <Content Include="RewardsPoints.aspx" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -216,11 +218,11 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <Content Include="Search_Results.aspx" />
+    <Content Include="SearchResults.aspx" />
     <Content Include="Site.Master" />
     <Content Include="Images\SupportingActor.png" />
-    <Content Include="TermsandConditions.aspx" />
-    <Content Include="User_Profile.aspx" />
+    <Content Include="TermsAndConditions.aspx" />
+    <Content Include="UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -279,13 +281,29 @@
     </Compile>
     <Compile Include="PowerTheEngine\AddMovie.aspx.designer.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Advanced_Search.aspx.cs">
-      <DependentUpon>Advanced_Search.aspx</DependentUpon>
+    <Compile Include="ShowAllMovies.aspx.cs">
+      <DependentUpon>ShowAllMovies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Advanced_Search.aspx.designer.cs">
-      <DependentUpon>Advanced_Search.aspx</DependentUpon>
+    <Compile Include="ShowAllMovies.aspx.designer.cs">
+      <DependentUpon>ShowAllMovies.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MovieDatabaseInitializer.cs" />
+    <Compile Include="Models\Profile.cs" />
+    <Compile Include="Models\TagMap.cs" />
+    <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="PowerTheEngine\AddMovie.aspx.designer.cs">
+      <DependentUpon>AddMovie.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="AdvancedSearch.aspx.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AdvancedSearch.aspx.designer.cs">
+      <DependentUpon>AdvancedSearch.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
@@ -333,19 +351,19 @@
       <DependentUpon>EditProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Rewards_Points.aspx.cs">
-      <DependentUpon>Rewards_Points.aspx</DependentUpon>
+    <Compile Include="RewardsPoints.aspx.cs">
+      <DependentUpon>RewardsPoints.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Rewards_Points.aspx.designer.cs">
-      <DependentUpon>Rewards_Points.aspx</DependentUpon>
+    <Compile Include="RewardsPoints.aspx.designer.cs">
+      <DependentUpon>RewardsPoints.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Search_Results.aspx.cs">
-      <DependentUpon>Search_Results.aspx</DependentUpon>
+    <Compile Include="SearchResults.aspx.cs">
+      <DependentUpon>SearchResults.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Search_Results.aspx.designer.cs">
-      <DependentUpon>Search_Results.aspx</DependentUpon>
+    <Compile Include="SearchResults.aspx.designer.cs">
+      <DependentUpon>SearchResults.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>
@@ -362,19 +380,19 @@
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
     <Compile Include="Startup.cs" />
-    <Compile Include="TermsandConditions.aspx.cs">
-      <DependentUpon>TermsandConditions.aspx</DependentUpon>
+    <Compile Include="TermsAndConditions.aspx.cs">
+      <DependentUpon>TermsAndConditions.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="TermsandConditions.aspx.designer.cs">
-      <DependentUpon>TermsandConditions.aspx</DependentUpon>
+    <Compile Include="TermsAndConditions.aspx.designer.cs">
+      <DependentUpon>TermsAndConditions.aspx</DependentUpon>
     </Compile>
-    <Compile Include="User_Profile.aspx.cs">
-      <DependentUpon>User_Profile.aspx</DependentUpon>
+    <Compile Include="UserProfile.aspx.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="User_Profile.aspx.designer.cs">
-      <DependentUpon>User_Profile.aspx</DependentUpon>
+    <Compile Include="UserProfile.aspx.designer.cs">
+      <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
