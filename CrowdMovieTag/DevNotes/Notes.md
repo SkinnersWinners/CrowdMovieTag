@@ -2,13 +2,6 @@
 
 Branch TODO:
 
-- Movie Details page
-	- Bind Movie
-	- Query for tags for that movie
-		- May need a custom select method, probably not though
-	- Add a tag for the movie
-		- Authenticate!
-
 - Movie Adding
 	- Authentication
 	- Validation
@@ -30,6 +23,14 @@ Branch TODO:
 
 - Add Full Model binding					--> Need Steve for updated model
 	- UserTags Table
+
+
++ Movie Details page
+	+ Bind Movie
+	+ Query for tags for that movie
+		+ May need a custom select method, probably not though
+	+ Add a tag for the movie
+		+ Authenticate!
 
 + Add database context
 	+ Movie
