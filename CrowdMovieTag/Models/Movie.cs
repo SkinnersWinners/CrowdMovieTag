@@ -19,6 +19,9 @@ namespace CrowdMovieTag.Models
 		[Required, StringLength(10000), Display(Name = "Movie Description")]
 		public string Description { get; set; }
 
+		[Required, StringLength(128)]
+		public string SubmitterID { get; set; }
+
 /*		[DisplayName("Movie Poster URL"), StringLength(1024)]
 		public string MoviePosterURL { get; set; } */
 	}

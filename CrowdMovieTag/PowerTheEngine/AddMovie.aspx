@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddMovie.aspx.cs" Inherits="CrowdMovieTag.Add_Movie" %>
+﻿<%@ Page Title="AddMovie" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AddMovie.aspx.cs" Inherits="CrowdMovieTag.Add_Movie" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
@@ -71,11 +71,19 @@
 			<!-----------------------Buttons----------------------------->
 			<div class="form-group">
 				<button class="btn btn-default">Reset</button>
-				<asp:Button CssClass="btn btn-primary" CausesValidation="true" Text="Submit" runat="server" />
-				<asp:ValidationSummary runat="server" 
+				<asp:Button CssClass="btn btn-primary" CausesValidation="true" Text="Submit" runat="server"
+					 OnClick="AddMovie_Click" 	/>
+				<asp:ValidationSummary runat="server"
+					 ID="ValidationSummary1" 
 					 DisplayMode="BulletList"
 					 CssClass="validator"
 					 HeaderText="Form is not complete:" />
+				<br />
+				<asp:Label runat="server" 
+					ID="AddMovieErrorLabel" 
+					Text=""
+					Visible="false" 
+					CssClass="validator"></asp:Label>
 			</div>
   
 		</div>

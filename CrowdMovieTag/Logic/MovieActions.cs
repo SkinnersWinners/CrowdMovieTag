@@ -7,19 +7,14 @@ using System.Web;
 using CrowdMovieTag.Models;
 using Microsoft.AspNet.Identity;
 
-namespace CrowdMovieTag.Models
-{
-	public class TestClass
-	{
-		public void getuser()
-		{
-		
-		}
-	}
-}
-
 namespace CrowdMovieTag.Logic
 {
+	enum MovieActionsErrorCode
+	{
+		UnknownError = -1,
+		MovieAlreadyExists = -2
+	}
+
 	public class MovieActions : IDisposable
 	{
 		private MovieContext _db = new MovieContext();
@@ -91,6 +86,35 @@ namespace CrowdMovieTag.Logic
 				_db.TagMaps.Add(newTagMap);
 				_db.SaveChanges();
 			}
+		}
+
+		public int AddNewMovie(string newMovieTitle, int newMovieYear, string newMovieDescription, string submitterID)
+		{
+			var newMovie = new Movie
+			{
+				Title = newMovieTitle,
+				Year = newMovieYear,
+				Description = newMovieDescription,
+				SubmitterID = submitterID
+			};
+
+			try 
+			{
+				// Check if it already exists
+				var dbMovie = _db.Movies.SingleOrDefault(m => String.Compare(m.Title, newMovie.Title) == 0);
+				
+				if (dbMovie != null) return (int)MovieActionsErrorCode.MovieAlreadyExists;
+
+				// Else, add it to the database
+				_db.Movies.Add(newMovie);
+				_db.SaveChanges();
+			}
+			catch (Exception)
+			{
+				return (int)MovieActionsErrorCode.UnknownError;
+			}
+
+			return newMovie.MovieID; // No error occurred
 		}
 
 		public bool IsUserAuthenticated()

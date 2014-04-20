@@ -17,6 +17,7 @@ namespace CrowdMovieTag
         protected void Page_Load(object sender, EventArgs e)
         {
 			List<ListItem> tagTypes = new List<ListItem>();
+			tagTypes.Add(new ListItem("-- Select One--", "-1"));
 			for (int ii = 0; ii < TagFromQuery.TagTypeStringValues.Count; ++ii)
 			{
 				string text = TagFromQuery.TagTypeStringValues[ii];

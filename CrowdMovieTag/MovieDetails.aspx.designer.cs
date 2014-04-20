@@ -40,15 +40,6 @@ namespace CrowdMovieTag {
         protected global::System.Web.UI.WebControls.DropDownList NewTagTypeDropDown;
         
         /// <summary>
-        /// Rfv1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator Rfv1;
-        
-        /// <summary>
         /// NewTagNameTextBox control.
         /// </summary>
         /// <remarks>
@@ -74,14 +65,5 @@ namespace CrowdMovieTag {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexValidator1;
-        
-        /// <summary>
-        /// AddNewTagBtn control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button AddNewTagBtn;
     }
 }

@@ -22,7 +22,8 @@ namespace CrowdMovieTag.Models
 					MovieID = 1,
 					Title = "The Shawshank Redemption",
 					Year = 1994,
-					Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
+					Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.",
+					SubmitterID = Guid.NewGuid().ToString()
 				}
 			};
 			return movies;

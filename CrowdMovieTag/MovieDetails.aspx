@@ -59,9 +59,6 @@
 								CommandArgument="<%#: Item.TagID %>" 
 								Text="-1"
 								CssClass="btn btn-primary btn-xs btn-danger" />
-	<!--
-							<button type="submit" class="btn btn-primary btn-xs btn-success">&nbsp;&nbsp;+1&nbsp;&nbsp;</button>
-							<button type="submit" class="btn btn-primary btn-xs btn-danger">&nbsp;&nbsp;-1&nbsp;&nbsp;</button> -->
 						</ItemTemplate>
 					</asp:TemplateField>
 				</Columns>
@@ -103,17 +100,21 @@
 	</div>
 
 	<!-----------------------Add a New Tag to Movie ----------------------------->
-	<!--<asp:Panel DefaultButton="AddNewTagBtn" runat="server">-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			Add a New Tag:
 		</div>
 		<div class="panel-body" style="height:150px">
 			<div class="form-group" style="margin-left:0px; margin-top:0px">
-				<asp:DropDownList runat="server" ID="NewTagTypeDropDown" CssClass="form-control">
-					<asp:ListItem Text="Select One..." Value="-1" />
-				</asp:DropDownList>
-			<!--	<asp:RequiredFieldValidator id="Rfv1" runat="server" ControlToValidate="NewTagTypeDropDown" InitialValue="-1"  ErrorMessage="Tag Category is required" Display="Dynamic" /> --> 
+				<asp:DropDownList runat="server" 
+					ID="NewTagTypeDropDown" 
+					CssClass="form-control"></asp:DropDownList>
+				<asp:RequiredFieldValidator runat="server" 
+					ControlToValidate="NewTagTypeDropDown" 
+					InitialValue="-1"  
+					ErrorMessage="Tag Category is required" 
+					Display="Dynamic"
+					CssClass="validator" />
 			 </div>
 			<div class="form-group" style="margin-top:-54px; margin-left:200px">
 				<asp:TextBox 
@@ -121,7 +122,7 @@
 					ID="NewTagNameTextBox" 
 					placeholder="Enter new tag..." 
 					runat="server"></asp:TextBox> 
-				<asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
+				<!--<asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
 					runat="server" 
 					Text="* Tag name is required" 
 					ControlToValidate="NewTagNameTextBox" 
@@ -132,22 +133,23 @@
 					ID="RegexValidator1" runat="server" 
 					Text="* Name must not contain spaces or special characters" ControlToValidate="NewTagNameTextBox" 
 					ValidationExpression="^[A-Z\-a-z0-9_]+$"
-					ValidationGroup="NewTag"></asp:RegularExpressionValidator>
+					ValidationGroup="NewTag"></asp:RegularExpressionValidator>-->
 			</div>
 
 			<!-----------------------Buttons----------------------------->
 			
 			<div class="form-group">
-				<asp:Button CssClass="btn btn-primary" ID="AddNewTagBtn" 
-					CausesValidation="true" runat="server" 
-					Text="Submit" 
-					 ValidationGroup="NewTag"
-					OnClick="AddNewTag_Click"/>
+				<asp:Button CssClass="btn btn-primary" CausesValidation="true" Text="Submit"
+					runat="server" 
+					OnClick="AddNewTag_Click" />
+				<asp:ValidationSummary runat="server" 
+					 DisplayMode="BulletList"
+					 CssClass="validator"
+					 HeaderText="Form is not complete:" />
 			</div>
 
 		</div>
 	</div>
-	<!--</asp:Panel>-->
   
 	<br />
 	<br />      
