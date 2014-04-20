@@ -170,7 +170,7 @@
     <Content Include="Images\Extra.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Images\HollywoodStar.png" />
-    <Content Include="individual_Movie.aspx" />
+    <Content Include="MovieDetails.aspx" />
     <None Include="DevNotes\Notes.md" />
     <Content Include="Images\Oscar.png" />
     <Content Include="packages.config" />
@@ -278,6 +278,8 @@
     <Compile Include="Models\MovieDatabaseInitializer.cs" />
     <Compile Include="Models\Profile.cs" />
     <Compile Include="Models\TagMap.cs" />
+    <Compile Include="Logic\MovieActions.cs" />
+    <Compile Include="Models\TagFromQuery.cs" />
     <Compile Include="PowerTheEngine\AddMovie.aspx.cs">
       <DependentUpon>AddMovie.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -319,12 +321,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="individual_Movie.aspx.cs">
-      <DependentUpon>individual_Movie.aspx</DependentUpon>
+    <Compile Include="MovieDetails.aspx.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="individual_Movie.aspx.designer.cs">
-      <DependentUpon>individual_Movie.aspx</DependentUpon>
+    <Compile Include="MovieDetails.aspx.designer.cs">
+      <DependentUpon>MovieDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Movie.cs" />

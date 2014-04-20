@@ -4,7 +4,7 @@ using System.Data.Entity;
 
 namespace CrowdMovieTag.Models
 {
-	public class MovieDatabaseInitializer : DropCreateDatabaseIfModelChanges<MovieContext>
+	public class MovieDatabaseInitializer : CreateDatabaseIfNotExists<MovieContext>
 	{
 		protected override void Seed(MovieContext context)
 		{
@@ -34,13 +34,34 @@ namespace CrowdMovieTag.Models
 				new Tag
 				{
 					TagID = 1,
-					TagTypeEnumID = 0,
+					TagTypeEnumID = (int)TagTypeEnum.Element,
 					ApprovalStatusEnumID = 0,
 					ApproverID = null,
 					CreatedDateTime = DateTime.Now,
-					SubmitterID = 10,
-					Label = "Awesome"
+					SubmitterID = Guid.NewGuid().ToString(),
+					Label = "Awesomeness"
+				},
+				new Tag
+				{
+					TagID = 2,
+					TagTypeEnumID = (int)TagTypeEnum.General,
+					ApprovalStatusEnumID = 1,
+					ApproverID = null,
+					CreatedDateTime = DateTime.Now,
+					SubmitterID = Guid.NewGuid().ToString(),
+					Label = "TrentWouldLikeIt"
+				},
+				new Tag
+				{
+					TagID = 3,
+					TagTypeEnumID = (int)TagTypeEnum.Genre,
+					ApprovalStatusEnumID = 1,
+					ApproverID = null,
+					CreatedDateTime = DateTime.Now,
+					SubmitterID = Guid.NewGuid().ToString(),
+					Label = "Action"
 				}
+				
 			};
 			return tags;
 		}
@@ -64,7 +85,11 @@ namespace CrowdMovieTag.Models
 					AvatarID = 1,
 					FirstName = "Trent",
 					LastName = "Merrell",
+<<<<<<< HEAD
 					Email = "trent.merrell@gmail.com",
+=======
+					Email = "tmerrell@gmail.com",
+>>>>>>> controller_backup
 					DateJoined = DateTime.Now
 				}
 			};
@@ -79,7 +104,26 @@ namespace CrowdMovieTag.Models
 				{
 					ID = 1,
 					TagID = 1,
+<<<<<<< HEAD
 					MovieID = 1 
+=======
+					MovieID = 1,
+					Score = 10
+				},
+				new TagMap
+				{
+					ID = 2,
+					TagID = 2,
+					MovieID = 1,
+ 					Score = 1
+				},
+				new TagMap
+				{
+					ID = 3,
+					TagID = 3,
+					MovieID = 1,
+ 					Score = 22
+>>>>>>> controller_backup
 				}
 			};
 			return tagMaps;

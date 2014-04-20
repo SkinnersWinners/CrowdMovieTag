@@ -1,12 +1,12 @@
-﻿<%@ Page Title="Movie Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="individual_Movie.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MovieDetails.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<br />
-	<asp:FormView ID="FormView1" ItemType="CrowdMovieTag.Models.Movie" SelectMethod="GetMovie" runat="server">
+	<asp:FormView ID="FormView1" ItemType="CrowdMovieTag.Models.Movie" SelectMethod="GetMovie" runat="server" BackColor="Transparent">
 		<EmptyDataTemplate>
 			<h1>Movie Not Found</h1>
 			<p>Did you type the name correctly?</p>		
 		</EmptyDataTemplate>
-		<ItemTemplate> 
+		<ItemTemplate>
 			<h1><%#:Item.Title %> (<%#:Item.Year %>)</h1>
 
 			<hr style="margin-top:10px">
@@ -31,20 +31,37 @@
 			Tags:
 		</div>
 		<div class="panel-body">
-			<asp:GridView ID="TagsList" ItemType="CrowdMovieTag.Models.Tag" AutoGenerateColumns="false" SelectMethod="GetTagsForMovie" CssClass="table table-striped table-hover" runat="server">
-				<HeaderStyle />
+			<asp:GridView ID="TagsList" ItemType="CrowdMovieTag.Models.TagFromQuery" AutoGenerateColumns="false" 
+				SelectMethod="GetTagsForMovie" 
+				CssClass="table table-striped table-hover" 
+				ShowHeader="true"
+				GridLines="None" 
+				AllowSorting="true"
+				OnRowCommand="VoteWasClicked"
+				runat="server">
 				<Columns>
-					<asp:TemplateField HeaderText="Score">
+					<asp:BoundField HeaderText="Score" DataField="Score" />
+					<asp:TemplateField HeaderText="Type">
 						<ItemTemplate>
-							<label>11</label>
+							<%#: EvaluateTagTypeEnum(Item.TagTypeEnumID) %>
 						</ItemTemplate>
 					</asp:TemplateField>
-					<asp:BoundField HeaderText="Type" DataField="TagTypeEnumID" />
 					<asp:BoundField HeaderText="Tag" DataField="Label" />
 					<asp:TemplateField HeaderText="Vote">
 						<ItemTemplate>
+							<asp:Button ID="UpVote" runat="server"
+								CommandName="UpVote"
+								CommandArgument="<%#: Item.TagID %>" 
+								Text="+1"
+								CssClass="btn btn-primary btn-xs btn-success" />
+							<asp:Button ID="DownVote" runat="server"
+								CommandName="DownVote"
+								CommandArgument="<%#: Item.TagID %>" 
+								Text="-1"
+								CssClass="btn btn-primary btn-xs btn-danger" />
+	<!--
 							<button type="submit" class="btn btn-primary btn-xs btn-success">&nbsp;&nbsp;+1&nbsp;&nbsp;</button>
-							<button type="submit" class="btn btn-primary btn-xs btn-danger">&nbsp;&nbsp;-1&nbsp;&nbsp;</button>
+							<button type="submit" class="btn btn-primary btn-xs btn-danger">&nbsp;&nbsp;-1&nbsp;&nbsp;</button> -->
 						</ItemTemplate>
 					</asp:TemplateField>
 				</Columns>
@@ -86,35 +103,51 @@
 	</div>
 
 	<!-----------------------Add a New Tag to Movie ----------------------------->
+	<!--<asp:Panel DefaultButton="AddNewTagBtn" runat="server">-->
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			Add a New Tag:
-
 		</div>
 		<div class="panel-body" style="height:150px">
 			<div class="form-group" style="margin-left:0px; margin-top:0px">
-				<select class="form-control" id="newTagType" style="width:175px">
-						  <option>Select One...</option>
-						  <option>Genre</option>
-						  <option>Thematic Element</option>
-						  <option>Actor/Actress</option>
-						  <option>Director/Producer</option>
-						  <option>Time Period/Era</option>
-						  <option>Location</option>
-				</select>
+				<asp:DropDownList runat="server" ID="NewTagTypeDropDown" CssClass="form-control">
+					<asp:ListItem Text="Select One..." Value="-1" />
+				</asp:DropDownList>
+			<!--	<asp:RequiredFieldValidator id="Rfv1" runat="server" ControlToValidate="NewTagTypeDropDown" InitialValue="-1"  ErrorMessage="Tag Category is required" Display="Dynamic" /> --> 
 			 </div>
 			<div class="form-group" style="margin-top:-54px; margin-left:200px">
-				 <input type="text" class="form-control" id="NewTag" placeholder="Enter new tag...">
+				<asp:TextBox 
+					CssClass="form-control" 
+					ID="NewTagNameTextBox" 
+					placeholder="Enter new tag..." 
+					runat="server"></asp:TextBox> 
+				<asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
+					runat="server" 
+					Text="* Tag name is required" 
+					ControlToValidate="NewTagNameTextBox" 
+					SetFocusOnError="true" 
+					Display="Dynamic"
+					 ValidationGroup="NewTag" ></asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator 
+					ID="RegexValidator1" runat="server" 
+					Text="* Name must not contain spaces or special characters" ControlToValidate="NewTagNameTextBox" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					ValidationGroup="NewTag"></asp:RegularExpressionValidator>
 			</div>
 
 			<!-----------------------Buttons----------------------------->
+			
 			<div class="form-group">
-				<button class="btn btn-default">Cancel</button>
-				<button type="submit" class="btn btn-primary">Submit</button>
-			 </div>
+				<asp:Button CssClass="btn btn-primary" ID="AddNewTagBtn" 
+					CausesValidation="true" runat="server" 
+					Text="Submit" 
+					 ValidationGroup="NewTag"
+					OnClick="AddNewTag_Click"/>
+			</div>
 
 		</div>
 	</div>
+	<!--</asp:Panel>-->
   
 	<br />
 	<br />      
