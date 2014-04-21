@@ -1,18 +1,18 @@
-﻿
-using Microsoft.AspNet.Identity.EntityFramework;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CrowdMovieTag.Models;
-using Microsoft.AspNet.Identity;
 
 namespace CrowdMovieTag.Logic
 {
 	enum MovieActionsErrorCode
 	{
 		UnknownError = -1,
-		MovieAlreadyExists = -2
+		MovieAlreadyExists = -2,
+		TagAlreadyExists = -3,
+		UserOwnsTagApplication = -4,
+		UserAlreadyVoted = -5
 	}
 
 	public class MovieActions : IDisposable
@@ -28,22 +28,24 @@ namespace CrowdMovieTag.Logic
 			}
 		}
 
-		public void CastVoteForTag(int tagID, bool isUpvote)
+		public int CastVoteForTagApp(string submitterID, int tagAppID, bool isUpvote)
 		{
 			try
 			{
-				var vote = _db.Votes.Where(tm => tm.TagID == tagID).FirstOrDefault();
-				if (vote == null) return;
-				
-				if (isUpvote)
+				// Check if the user has already voted for this tagapp
+				var vote = _db.Votes.FirstOrDefault(v => String.Compare(v.SubmitterID, submitterID) == 0);
+
+				if (vote != null) return (int)MovieActionsErrorCode.UserAlreadyVoted;
+
+				vote = new Vote
 				{
-					vote.Score += 1;
-				}
-				else
-				{
-					vote.Score -= 1;
-				}
-				// Commit the changes to the database
+					SubmitterID = submitterID,
+					IsUpvote = isUpvote,
+					TagApplicationID = tagAppID,
+					TagApplication = _db.TagApplications.Where(ta => ta.ID == tagAppID).FirstOrDefault()
+				};
+				// Add the new vote and commit
+				_db.Votes.Add(vote);
 				_db.SaveChanges();
 
 			}
@@ -51,44 +53,42 @@ namespace CrowdMovieTag.Logic
 			{
 				// Log exception
 			}
+			return 0;
 		}
 		
-		public void AddNewTag(int newTagType, string newTagName, int movieID)
+		public int AddNewTagAndApply(string submitterID, int newTagType, string newTagName, int movieID)
 		{
 			var userTag = _db.Tags.SingleOrDefault(t => String.Compare(newTagName.ToLower(), t.Label.ToLower()) == 0);
-			if (userTag == null)
-			{
-				userTag = new Tag
-				{
-					Label = newTagName,
-					TagTypeEnumID = newTagType,
-					ApprovalStatusEnumID = (int)ApprovalStatusEnum.Unapproved,
-					ApproverID = null,
- 					CreatedDateTime = DateTime.Now,
-					SubmitterID = HttpContext.Current.User.Identity.GetUserId()
-				};
-				_db.Tags.Add(userTag);
-				_db.SaveChanges();
-			}
+			if (userTag != null) return (int)MovieActionsErrorCode.TagAlreadyExists;
 
-			var vote = _db.Votes.SingleOrDefault(tm => (tm.MovieID == movieID) && (tm.TagID == userTag.TagID));
-			if (vote == null)
+			userTag = new Tag
 			{
-				var newVote = new Vote
-				{
-					MovieID = movieID,
-					Movie = _db.Movies.SingleOrDefault(m => m.MovieID == movieID),
-					TagID = userTag.TagID,
-					Tag = userTag,
-					Score = 0
-				};
+				Label = newTagName,
+				TagTypeEnumID = newTagType,
+				ApprovalStatusEnumID = (int)ApprovalStatusEnum.Unapproved,
+ 				CreatedDateTime = DateTime.Now,
+				SubmitterID = submitterID
+			};
 
-				_db.Votes.Add(newVote);
-				_db.SaveChanges();
-			}
+			_db.Tags.Add(userTag);
+			_db.SaveChanges();
+
+			var newTagApplication = new TagApplication
+			{
+				SubmitterID = submitterID,
+				MovieID = movieID,
+				Movie = _db.Movies.SingleOrDefault(m => m.MovieID == movieID),
+				TagID = userTag.TagID,
+				Tag = userTag,
+				Score = 0
+			};
+
+			_db.TagApplications.Add(newTagApplication);
+			_db.SaveChanges();
+			return 0;
 		}
 
-		public int AddNewMovie(string newMovieTitle, int newMovieYear, string newMovieDescription, string submitterID)
+		public int AddNewMovie(string submitterID, string newMovieTitle, int newMovieYear, string newMovieDescription)
 		{
 			var newMovie = new Movie
 			{

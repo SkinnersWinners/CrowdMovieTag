@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using CrowdMovieTag.Logic;
+using Microsoft.AspNet.Identity;
 
 namespace CrowdMovieTag
 {
@@ -25,7 +26,7 @@ namespace CrowdMovieTag
 
 			using (var movieActions = new MovieActions())
 			{
-				newMovieID = movieActions.AddNewMovie(newMovieTitle, newMovieYear, newMovieDescription);
+				newMovieID = movieActions.AddNewMovie(User.Identity.GetUserId(), newMovieTitle, newMovieYear, newMovieDescription);
 			}
 
 			// if there was an error

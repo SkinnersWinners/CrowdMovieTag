@@ -9,6 +9,7 @@ using System.Web.ModelBinding;
 using System.Web.Routing;
 using CrowdMovieTag.Models;
 using CrowdMovieTag.Logic;
+using Microsoft.AspNet.Identity;
 
 namespace CrowdMovieTag
 {
@@ -54,11 +55,12 @@ namespace CrowdMovieTag
 					Response.Redirect("~/Account/Login");
 					return;
 				}
-				movieActions.AddNewTag((int)newTagType, newTagName, movieID);
+				movieActions.AddNewTagAndApply(User.Identity.GetUserId(), (int)newTagType, newTagName, movieID);
 			}
 			TagsList.DataBind();
 			NewTagTypeDropDown.ClearSelection();
 			NewTagNameTextBox.Text = "";
+			VoteStatusLabel.Visible = false;
 		}
 
 		public string EvaluateTagTypeEnum(int enumValue)
@@ -84,19 +86,38 @@ namespace CrowdMovieTag
 			{
 				return;
 			}
-
+			int result;
 			// Execute query to upvote here.
 			using (var movieActions = new MovieActions())
 			{
 				if (!movieActions.IsUserAuthenticated())
 				{
 					Response.Redirect("~/Account/Login");
+					return;
 				}
 				else
 				{
-					movieActions.CastVoteForTag(tagID, isUpVote);
-					TagsList.DataBind();
+					
+					result = movieActions.CastVoteForTagApp(User.Identity.GetUserId(), tagID, isUpVote);
 				}
+			}
+
+			if (result < 0)
+			{
+				if (result == (int)MovieActionsErrorCode.UserAlreadyVoted)
+				{
+					VoteStatusLabel.Text = "You have already voted on this tag.";
+				}
+				else
+				{
+					VoteStatusLabel.Text = "Unable to cast new vote.";
+				}
+				VoteStatusLabel.Visible = true;
+			}
+			else
+			{
+				TagsList.DataBind();
+				VoteStatusLabel.Visible = false;
 			}
 
 
@@ -122,8 +143,18 @@ namespace CrowdMovieTag
 			}
 
 			var _db = new CrowdMovieTag.Models.MovieContext();
-			IQueryable<TagFromQuery> tags = from tag in _db.Tags
-											from vote in _db.Votes
+			IQueryable<TagFromQuery> tags = from tagApp in _db.TagApplications
+											where tagApp.MovieID == movieID
+											select new TagFromQuery
+											{
+												TagID = tagApp.Tag.TagID,
+												TagTypeEnumID = tagApp.Tag.TagTypeEnumID,
+												Label = tagApp.Tag.Label,
+												Score = tagApp.Score
+											};
+
+			/*IQueryable<TagFromQuery> tags = from tag in _db.Tags
+											from tagApp in _db.Votes
 											where (vote.MovieID == movieID) && (tag.TagID == vote.TagID)
 											orderby vote.Score descending
 											select new TagFromQuery 
@@ -132,7 +163,7 @@ namespace CrowdMovieTag
 												 TagTypeEnumID = tag.TagTypeEnumID,
 												 Label = tag.Label,
 												 Score = vote.Score
-											 };
+											 };*/
 			return tags;
 		}
     }

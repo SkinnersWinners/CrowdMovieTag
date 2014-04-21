@@ -2,23 +2,39 @@
 
 Branch TODO:
 
-? Implement Admin 
-	? What tasks does an admin perform?
+Revisit:
 
----> Redo Database Initialization to actually map Votes to users
-- Switch tagMap to Vote
+- MovieDetails
+	- Calculate the score
+	- ApplyExistingTag
+	+ Apply New Tag
+	+ Voting
+	+ Movie Tag Retrieval
+
+- Profile retrieval
+	- Retrieve tags
+	- Retreive votes
+	- Retreive movies
+
++ AddMovie: Add submitterID to the movie
 
 - Add Error Handling
-
+- AllMovies
 - Implement search
 	- Access stored procedures
-
-
 
 - Profile page 
 	- Get Most recent tags/User activity	--> Need Steve for Tag Relationships Table
 	+ Bind user data
 	+ Retrieve user data
+
+
+? Implement Admin 
+	? What tasks does an admin perform?
+
++ Switch tagMap to Vote
+
++ Redo Database Initialization to actually map Votes to users
 
 + Movie Adding
 	+ Authentication

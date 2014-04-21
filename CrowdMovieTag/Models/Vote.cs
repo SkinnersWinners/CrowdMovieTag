@@ -9,18 +9,16 @@ namespace CrowdMovieTag.Models
 		[ScaffoldColumn(false)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int ID { get; set; }
-	
-		[Required]
-		public int TagID { get; set; }
 
-		public virtual Tag Tag { get; set; }
-		
-		[Required]
-		public int MovieID { get; set; }
-
-		public virtual Movie Movie { get; set; }
+		[Required, StringLength(128)]
+		public string SubmitterID { get; set; }
 
 		[Required]
-		public int Score { get; set; }
+		public int TagApplicationID { get; set; }
+		public virtual TagApplication TagApplication { get; set; }
+
+		[Required]
+		public bool IsUpvote { get; set; }
+
 	}
 }

@@ -20,7 +20,8 @@
 			</div>
 
 		</ItemTemplate>
-	</asp:FormView>  
+	</asp:FormView>
+	<asp:Label ID="VoteStatusLabel" CssClass="validator" Text="" Visible="false" runat="server"></asp:Label>  
 
 	
     <hr style="margin-top:10px" />
