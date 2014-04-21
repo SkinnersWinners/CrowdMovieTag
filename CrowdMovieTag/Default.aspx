@@ -1,10 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="CrowdMovieTag._Default" %>
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server" >
-    <br />
-    <br />
-    <br />
-
 <!------------- BACKGROUND GRAPHIC ----------------------->
     <div style="background-image: url('/Images/CrowdTagMovieTheater.png'); background-size:100%; height: 650px; width: 975px; margin-top:0px; background-repeat: no-repeat;">
         <div class="form-group" style="position:relative; top: 370px; left: 40px;">
