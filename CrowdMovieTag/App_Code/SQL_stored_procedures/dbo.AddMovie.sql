@@ -3,6 +3,7 @@
 CREATE PROCEDURE [dbo].[AddMovie](
 	@title NVARCHAR(255),
 	@description NVARCHAR(500),
+	@submitter_id INT,
 	@year_released NVARCHAR(4)
 	)
 AS
@@ -18,13 +19,15 @@ IF (SELECT COUNT(movie_id) FROM [Movie]
 			[title],
 			[created_datetime],
 			[year_released],
-			[description]
+			[description],
+			[submitter_id]
 			)
 		VALUES (
 			@title,
 			GETUTCDATE(),
 			@year_released_date,
-			@description
+			@description,
+			@submitter_id
 			)
 	END
 ELSE
