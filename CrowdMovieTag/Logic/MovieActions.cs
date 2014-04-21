@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -130,6 +131,11 @@ namespace CrowdMovieTag.Logic
 			{
 				return false;
 			}
+		}
+
+		public List<Tag> GetTagsForCategoryID(int categoryID)
+		{
+			return _db.Tags.Where(t => t.TagTypeEnumID == categoryID).ToList();
 		}
 
 	}

@@ -12,6 +12,17 @@ namespace CrowdMovieTag.Models
 		Unapproved = 0
 	}
 
+	enum TagTypeEnum
+	{
+		General = 0,
+		Genre,
+		Element,
+		ThematicElement,
+		Actor_Actress,
+		TimePeriod_Era,
+		Location
+	}
+
 	public class Tag
 	{
 	

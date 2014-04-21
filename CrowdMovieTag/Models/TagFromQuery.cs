@@ -5,17 +5,6 @@ using System.Web;
 
 namespace CrowdMovieTag.Models
 {
-	enum TagTypeEnum
-	{
-		General =0,
-		Genre,
-		Element,
-		ThematicElement,
-		Actor_Actress,
-		TimePeriod_Era,
-		Location
-	}
-
 	public class TagFromQuery
 	{
 		public int TagID { get; set; }

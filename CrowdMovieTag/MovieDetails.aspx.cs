@@ -10,6 +10,7 @@ using System.Web.Routing;
 using CrowdMovieTag.Models;
 using CrowdMovieTag.Logic;
 using Microsoft.AspNet.Identity;
+using AjaxControlToolkit;
 
 namespace CrowdMovieTag
 {
@@ -38,6 +39,7 @@ namespace CrowdMovieTag
 			{
 				TagsList.HeaderRow.TableSection = TableRowSection.TableHeader;
 			}
+			base.OnPreRenderComplete(e);
 		}
 
 		public void AddNewTag_Click(object sender, EventArgs e)
@@ -167,5 +169,6 @@ namespace CrowdMovieTag
 											 };*/
 			return tags;
 		}
-    }
+
+	}
 }

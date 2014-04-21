@@ -40,6 +40,42 @@ namespace CrowdMovieTag {
         protected global::System.Web.UI.WebControls.Label VoteStatusLabel;
         
         /// <summary>
+        /// ddlApplyTagCategory control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlApplyTagCategory;
+        
+        /// <summary>
+        /// CascadingDropDown1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CascadingDropDown CascadingDropDown1;
+        
+        /// <summary>
+        /// ddlApplyTagName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlApplyTagName;
+        
+        /// <summary>
+        /// CascadingDropDown2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::AjaxControlToolkit.CascadingDropDown CascadingDropDown2;
+        
+        /// <summary>
         /// NewTagTypeDropDown control.
         /// </summary>
         /// <remarks>

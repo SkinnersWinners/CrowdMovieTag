@@ -16,8 +16,6 @@ Revisit:
 	- Retreive votes
 	- Retreive movies
 
-+ AddMovie: Add submitterID to the movie
-
 - Add Error Handling
 - AllMovies
 - Implement search
@@ -31,6 +29,8 @@ Revisit:
 
 ? Implement Admin 
 	? What tasks does an admin perform?
+
++ AddMovie: Add submitterID to the movie
 
 + Switch tagMap to Vote
 

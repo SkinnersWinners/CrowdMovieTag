@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MovieDetails.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
+﻿<%@ Page Title="Movie Details" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="MovieDetails.aspx.cs" Inherits="CrowdMovieTag.individual_Movie" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	<br />
 	<asp:FormView ID="FormView1" ItemType="CrowdMovieTag.Models.Movie" SelectMethod="GetMovie" runat="server" BackColor="Transparent">
@@ -66,6 +66,47 @@
 		</div>
 	</div>
 
+	<!-----------------------Apply Existing Tag to Movie ----------------------------->
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			Apply Existing Tag:
+		</div>
+		<div class="form-group">
+			<label>Category:</label>
+				
+			<asp:DropDownList runat="server" 
+				ID="ddlApplyTagCategory" 
+				CssClass="form-control"></asp:DropDownList>
+			<ajaxToolkit:CascadingDropDown ID="CascadingDropDown1" runat="server" 
+				TargetControlID="ddlApplyTagCategory" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
+		</div>
+		<div class="form-group">
+			<label>Tag:</label>
+			<asp:DropDownList runat="server" 
+				ID="ddlApplyTagName" 
+				CssClass="form-control"></asp:DropDownList>
+			<ajaxToolkit:CascadingDropDown ID="CascadingDropDown2" runat="server" 
+				ParentControlID="ddlApplyTagCategory"
+				TargetControlID="ddlApplyTagName" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Name"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagsForCategory"/>
+		</div>
+					
+			<!-----------------------Buttons----------------------------->
+		<div class="form-group">
+			<asp:Button CssClass="btn btn-primary" CausesValidation="true" Text="Submit"
+					runat="server" />
+		</div>
+	</div>
+
 	<!-----------------------Add a New Tag to Movie ----------------------------->
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -82,8 +123,8 @@
 					ErrorMessage="Tag Category is required" 
 					Display="Dynamic"
 					CssClass="validator" />
-			 </div>
-			<div class="form-group" style="margin-top:-54px; margin-left:200px">
+			</div>
+			<div class="form-group" style="margin-top:-54px; margin-left:262px">
 				<asp:TextBox 
 					CssClass="form-control" 
 					ID="NewTagNameTextBox" 
