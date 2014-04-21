@@ -179,6 +179,8 @@ namespace CrowdMovieTag.Models
 					TagApplication = tagApp
 				});
 
+				tagApp.Score += (isUpVote ? 1 : -1);
+
 				upVoteCount = (upVoteCount + 1) % 3;
 				if (upVoteCount == 0) isUpVote = !isUpVote;
 				

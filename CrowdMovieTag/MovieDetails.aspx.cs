@@ -106,7 +106,7 @@ namespace CrowdMovieTag
 			{
 				if (result == (int)MovieActionsErrorCode.UserAlreadyVoted)
 				{
-					VoteStatusLabel.Text = "You have already voted on this tag.";
+					VoteStatusLabel.Text = "You have already voted on that tag.";
 				}
 				else
 				{
@@ -145,6 +145,7 @@ namespace CrowdMovieTag
 			var _db = new CrowdMovieTag.Models.MovieContext();
 			IQueryable<TagFromQuery> tags = from tagApp in _db.TagApplications
 											where tagApp.MovieID == movieID
+											orderby tagApp.Score descending
 											select new TagFromQuery
 											{
 												TagID = tagApp.Tag.TagID,

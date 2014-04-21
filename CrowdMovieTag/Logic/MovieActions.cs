@@ -44,6 +44,9 @@ namespace CrowdMovieTag.Logic
 					TagApplicationID = tagAppID,
 					TagApplication = _db.TagApplications.Where(ta => ta.ID == tagAppID).FirstOrDefault()
 				};
+
+				vote.TagApplication.Score = vote.TagApplication.Score + (isUpvote ? 1: -1);
+
 				// Add the new vote and commit
 				_db.Votes.Add(vote);
 				_db.SaveChanges();

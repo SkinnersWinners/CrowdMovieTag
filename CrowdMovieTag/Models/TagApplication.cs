@@ -24,8 +24,8 @@ namespace CrowdMovieTag.Models
 		public int MovieID { get; set; }
 		public virtual Movie Movie { get; set; }
 
-		// A cached version of a computed score, mainly so we can
-		// See it in the tables
+		// Updated every time a vote is cast
+		[Required]
 		public int Score { get; set; }
 
 	}

@@ -5,7 +5,7 @@ Branch TODO:
 Revisit:
 
 - MovieDetails
-	- Calculate the score
+	+ Calculate the score: Score is updated when a vote is cast
 	- ApplyExistingTag
 	+ Apply New Tag
 	+ Voting

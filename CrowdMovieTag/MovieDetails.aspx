@@ -21,9 +21,7 @@
 
 		</ItemTemplate>
 	</asp:FormView>
-	<asp:Label ID="VoteStatusLabel" CssClass="validator" Text="" Visible="false" runat="server"></asp:Label>  
-
-	
+	  
     <hr style="margin-top:10px" />
 
 	<!-----------------------Tag Panel----------------------------->
@@ -64,40 +62,8 @@
 					</asp:TemplateField>
 				</Columns>
 			</asp:GridView>
-			<table class="table table-striped table-hover ">
-				<!-----------------------Table Headings----------------------------->
-				<thead>
-					<tr>
-					  <th>Score:</th>
-					  <th>Type:</th>
-					  <th>Tag:</th>
-					  <th>Vote:</th>
-					</tr>
-				</thead>
-
-				<!-----------------------Table Body-----------------------------> 
-				<tbody>
-					<tr>
-					  <td>11</td>
-					  <td>Genre</td>
-					  <td>Baseball</td>
-					  <td>
-						  <button type="submit" class="btn btn-primary btn-xs btn-success">  +1  </button>
-						  <button type="submit" class="btn btn-primary btn-xs btn-danger">  -1  </button>
-					  </td>
-					</tr>
-
-					<tr>
-					  <td>2</td>
-					  <td>Element</td>
-					  <td>Action</td>
-					  <td><button type="submit" class="btn btn-primary btn-xs btn-success">  +1  </button>
-						  <button type="submit" class="btn btn-primary btn-xs btn-danger">  -1  </button>
-					  </td>
-					</tr>
-				</tbody>
-			</table>
-		</div> <!--End Table Body-->
+			<asp:Label ID="VoteStatusLabel" CssClass="validator" Text="" Visible="false" runat="server"></asp:Label>
+		</div>
 	</div>
 
 	<!-----------------------Add a New Tag to Movie ----------------------------->
