@@ -83,7 +83,7 @@
 					Display="Dynamic"
 					CssClass="validator" />
 			 </div>
-			<div class="form-group" style="margin-top:-54px; margin-left:200px">
+			<div class="form-group" style="margin-top:-54px; margin-left:250px">
 				<asp:TextBox 
 					CssClass="form-control" 
 					ID="NewTagNameTextBox" 
