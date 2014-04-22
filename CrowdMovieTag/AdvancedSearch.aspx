@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="Advanced Search" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdvancedSearch.aspx.cs" Inherits="CrowdMovieTag.AdvancedSearch" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
-<br />
 <br />		
 <h2>Advanced Search</h2>
 <br />
