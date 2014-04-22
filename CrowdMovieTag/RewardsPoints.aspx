@@ -1,8 +1,8 @@
 ﻿<%@ Page Title="Rewards Points" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="RewardsPoints.aspx.cs" Inherits="CrowdMovieTag.RewardsPoints" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <h2>CrowdTag Rewards:</h2>
-    <h3>Add + CrowdTag + Vote = Cool Stuff! </h3>
+    <h2>CrowdTag Profile Points:</h2>
+    <h3>Add + CrowdTag + Vote = Awards! </h3>
     <hr />
  
         <!--    ADD MOVIE POINTS  -->
