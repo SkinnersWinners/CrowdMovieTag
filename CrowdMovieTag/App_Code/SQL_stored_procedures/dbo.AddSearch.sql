@@ -1,7 +1,7 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddSearch](
-	@SubmitterID INT,
+	@SubmitterID NVARCHAR(128),
 	@Tag1 BIGINT,
 	@Tag2 BIGINT,
 	@Tag3 BIGINT,

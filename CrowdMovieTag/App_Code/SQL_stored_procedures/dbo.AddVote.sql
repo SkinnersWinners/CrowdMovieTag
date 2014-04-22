@@ -1,45 +1,45 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddVote](
-	@IsUpVote BIT,
-	@SubmitterId INT,
+	@IsUpvote BIT,
+	@SubmitterID NVARCHAR(128),
 	@TagApplicationID BIGINT
 	)
 AS
 BEGIN
-IF (SELECT COUNT(ID) FROM [Vote]
-	WHERE SubmitterId = @SubmitterId
+IF (SELECT COUNT(ID) FROM [Votes]
+	WHERE SubmitterID = @SubmitterID
 	AND TagApplicationID = @TagApplicationID) = 0
 	BEGIN
 		DECLARE @TagApplicationScore INT
 		SET @TagApplicationScore = (
-			SELECT Score FROM TagApplication
-			WHERE TagApplication.ID = @TagApplicationID)
-		IF (@IsUpVote)
+			SELECT Score FROM TagApplications
+			WHERE ID = @TagApplicationID)
+		IF (@IsUpvote = 1)
 			SET @TagApplicationScore += 1
 		ELSE
 			SET @TagApplicationScore -= 1
-		INSERT INTO [dbo].[Vote](
-			[IsUpVote],
-			[SubmitterId],
+		INSERT INTO [dbo].[Votes](
+			[IsUpvote],
+			[SubmitterID],
 			[TagApplicationID]
 			-- [VoteDateTime]
 			)
 		VALUES (
-			@IsUpVote,
-			@SubmitterId,
+			@IsUpvote,
+			@SubmitterID,
 			@TagApplicationID
 			-- GETUTCDATE()
 			)
 		BEGIN
-			UPDATE [TagApplication]
+			UPDATE [TagApplications]
 			SET Score = @TagApplicationScore
 		END
+		BEGIN	
+			UPDATE [Profiles]
+			SET AvatarScore += 1
+			WHERE ProfileID = @SubmitterID
+		END
+		EXEC [UpdateAvatar] @ProfileID = @SubmitterID
 	END
-	BEGIN	
-		UPDATE [Profile]
-		SET AvatarScore += 1
-		WHERE ProfileID = @SubmitterId
-	END
-	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END

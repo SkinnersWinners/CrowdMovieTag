@@ -2,35 +2,35 @@
 
 CREATE PROCEDURE [dbo].[AddTag](
 	@Label NVARCHAR(50),
-	@SubmitterID INT,
+	@SubmitterID NVARCHAR(128),
 	@TagCategory INT
 	)
 AS
 BEGIN
-IF (SELECT COUNT(tag_id) FROM [Tag]
+IF (SELECT COUNT(TagID) FROM [Tags]
 	WHERE Label = @Label) = 0
 	BEGIN
-		INSERT INTO [dbo].[Tag](
+		INSERT INTO [dbo].[Tags](
 			[Label],
 			[SubmitterID],
 			-- [ApproverID],
-			[approved_status_enum_id],
-			[TagCategory],
+--			[approved_status_enum_id],
+			[TagTypeEnumID],
 			[CreatedDateTime]
 			)
 		VALUES (
 			@Label,
 			@SubmitterID,
-			NULL,
-			1,
+--			NULL,
+--			1,
 			@TagCategory,
 			GETUTCDATE()
 			)
+		BEGIN
+			UPDATE [Profiles]
+			SET AvatarScore += 5
+			WHERE ProfileID = @SubmitterId
+		END
+		EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 	END
-	BEGIN
-		UPDATE [Profile]
-		SET AvatarScore += 5
-		WHERE ProfileID = @SubmitterId
-	END
-	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END

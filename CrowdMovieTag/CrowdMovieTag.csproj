@@ -153,6 +153,7 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Add_Movie.aspx" />
     <Content Include="Advanced_Search.aspx" />
+    <Content Include="App_Code\populate_DB_script.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />

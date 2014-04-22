@@ -1,35 +1,35 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[ApplyTag](
-	@TagID BIGINT,
-	@SubmitterId INT,
+	@TagID INT,
+	@SubmitterID NVARCHAR(128),
 	@MovieID INT
 	)
 AS
 BEGIN
-IF (SELECT COUNT(ID) FROM [TagApplication]
+IF (SELECT COUNT(ID) FROM [TagApplications]
 	WHERE TagID = @TagID
 	AND MovieID = @MovieID) = 0
 	BEGIN
-		INSERT INTO [dbo].[TagApplication](
+		INSERT INTO [dbo].[TagApplications](
 			[TagID],
-			[SubmitterId],
+			[SubmitterID],
 --			[tagged_datetime],
 			[MovieID],
 			[Score]
 			)
 		VALUES (
 			@TagID,
-			@SubmitterId,
+			@SubmitterID,
 --			GETUTCDATE(),
 			@MovieID,
 			1
 			)
+		BEGIN
+			UPDATE [Profiles]
+			SET AvatarScore += 3
+			WHERE ProfileID = @SubmitterID
+		END
+		EXEC [UpdateAvatar] @ProfileID = @SubmitterID
 	END
-	BEGIN
-		UPDATE [Profile]
-		SET AvatarScore += 3
-		WHERE ProfileID = @SubmitterId
-	END
-	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END
