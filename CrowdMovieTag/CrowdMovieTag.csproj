@@ -151,9 +151,13 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="Images\AddMoviePoints.png" />
+    <Content Include="Images\PointsExplained.png" />
     <Content Include="Images\SearchResultsSample.PNG" />
     <Content Include="Images\SlateBackground.png" />
     <Content Include="Images\SmileyFace.png" />
+    <Content Include="Images\TagPoints.png" />
+    <Content Include="Images\VotePoints.png" />
     <Content Include="ShowAllMovies.aspx" />
     <Content Include="PowerTheEngine\AddMovie.aspx" />
     <Content Include="AdvancedSearch.aspx" />
