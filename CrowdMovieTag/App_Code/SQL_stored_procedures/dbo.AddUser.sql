@@ -1,47 +1,47 @@
 ﻿--Copyright (C) 2014	Steve Black
 
-CREATE PROCEDURE [dbo].[AddUser](
-	@first_name NVARCHAR(50),
-	@last_name NVARCHAR(50),
-	@email NVARCHAR(254),
-	@username NVARCHAR(20),
-	@password NVARCHAR(20), 
-	@is_admin BIT
+CREATE PROCEDURE [dbo].[AddProfile](
+	@FirstName NVARCHAR(50),
+	@LastName NVARCHAR(50),
+	@Email NVARCHAR(254),
+	@UserName NVARCHAR(20),
+	@PassWord NVARCHAR(20), 
+	@IsAdmin BIT
 	)
 AS
 BEGIN
-IF ((SELECT COUNT(username) FROM [User] WHERE username = @username) = 0
-		AND (SELECT COUNT(email) FROM [User] WHERE email = @email) = 0)
+IF ((SELECT COUNT(UserName) FROM [Profiles] WHERE UserName = @UserName) = 0
+		AND (SELECT COUNT(Email) FROM [Profiles] WHERE Email = @Email) = 0)
 	BEGIN
 		PRINT N'This is a new user!'
-		DECLARE @avatar_id TINYINT
-		IF @is_admin = 1
+		DECLARE @AvatarID TINYINT
+		IF @IsAdmin = 1
 			BEGIN
-				SET @avatar_id = 5
+				SET @AvatarID = 5
 			END
 		ELSE
 			BEGIN
-				SET @avatar_id = 1
+				SET @AvatarID = 1
 			END
 		INSERT INTO [dbo].[User](
-			[first_name],
-			[last_name],
-			[email],
-			[username],
-			[password],
-			[is_admin],
-			[created_datetime],
-			[avatar_id]
+			[FirstName],
+			[LastName],
+			[Email],
+			[UserName],
+			[PassWord],
+			[IsAdmin],
+			[CreatedDateTime],
+			[AvatarID]
 			)
 		VALUES (
-			@first_name,
-			@last_name,
-			@email, 
-			@username, 
-			@password,
-			@is_admin,
+			@FirstName,
+			@LastName,
+			@Email, 
+			@UserName, 
+			@PassWord,
+			@IsAdmin,
 			GETUTCDATE(),
-			@avatar_id
+			@AvatarID
 			)
 	END
 ELSE

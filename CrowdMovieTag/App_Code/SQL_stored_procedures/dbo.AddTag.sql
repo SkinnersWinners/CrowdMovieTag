@@ -1,35 +1,36 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddTag](
-	@label NVARCHAR(50),
-	@submitter_id INT,
-	@tag_type_enum_id INT
+	@Label NVARCHAR(50),
+	@SubmitterID INT,
+	@TagCategory INT
 	)
 AS
 BEGIN
 IF (SELECT COUNT(tag_id) FROM [Tag]
-	WHERE label = @label) = 0
+	WHERE Label = @Label) = 0
 	BEGIN
-		PRINT N'This is a new tag!'
 		INSERT INTO [dbo].[Tag](
-			[label],
-			[submitter_id],
-			[approver_id],
+			[Label],
+			[SubmitterID],
+			-- [ApproverID],
 			[approved_status_enum_id],
-			[tag_type_enum_id],
-			[created_datetime]
+			[TagCategory],
+			[CreatedDateTime]
 			)
 		VALUES (
-			@label,
-			@submitter_id,
+			@Label,
+			@SubmitterID,
 			NULL,
 			1,
-			@tag_type_enum_id,
+			@TagCategory,
 			GETUTCDATE()
 			)
 	END
-ELSE
 	BEGIN
-		PRINT N'This tag already exists!'
+		UPDATE [Profile]
+		SET AvatarScore += 5
+		WHERE ProfileID = @SubmitterId
 	END
+	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END

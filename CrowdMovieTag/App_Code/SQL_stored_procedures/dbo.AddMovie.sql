@@ -1,37 +1,38 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddMovie](
-	@title NVARCHAR(255),
-	@description NVARCHAR(500),
-	@submitter_id INT,
-	@year_released NVARCHAR(4)
+	@Title NVARCHAR(255),
+	@Description NVARCHAR(500),
+	@SubmitterID INT,
+	@Year NVARCHAR(4)
 	)
 AS
 BEGIN
 DECLARE @year_released_date DATE
-SET @year_released_date = CONVERT ( DATE, (@year_released + '.01.01'), 102)
-IF (SELECT COUNT(movie_id) FROM [Movie]
-	WHERE title = @title
-	AND year_released = @year_released) = 0
+SET @year_released_date = CONVERT ( DATE, (@Year + '.01.01'), 102)
+IF (SELECT COUNT(MovieID) FROM [Movie]
+	WHERE Title = @Title
+	AND Year = @Year) = 0
 	BEGIN
-		PRINT N'This is a new movie!'
 		INSERT INTO [dbo].[Movie](
-			[title],
-			[created_datetime],
-			[year_released],
-			[description],
-			[submitter_id]
+			[Title],
+			-- [CreatedDateTime],
+			[Year],
+			[Description],
+			[SubmitterID]
 			)
 		VALUES (
-			@title,
-			GETUTCDATE(),
-			@year_released_date,
-			@description,
-			@submitter_id
+			@Title,
+			-- GETUTCDATE(),
+			@Year,
+			@Description,
+			@SubmitterID
 			)
 	END
-ELSE
 	BEGIN
-		PRINT N'This movie already exists!'
+		UPDATE [Profile]
+		SET AvatarScore += 10
+		WHERE ProfileID = @SubmitterID
 	END
+	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END

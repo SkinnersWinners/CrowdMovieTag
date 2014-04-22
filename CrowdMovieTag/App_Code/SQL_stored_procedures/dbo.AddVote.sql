@@ -1,32 +1,45 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddVote](
-	@is_upvote BIT,
-	@user_id INT,
-	@tag_app_voted_on BIGINT
+	@IsUpVote BIT,
+	@SubmitterId INT,
+	@TagApplicationID BIGINT
 	)
 AS
 BEGIN
-IF (SELECT COUNT(vote_id) FROM [Vote]
-	WHERE user_id = @user_id
-	AND tag_app_voted_on = @tag_app_voted_on) = 0
+IF (SELECT COUNT(ID) FROM [Vote]
+	WHERE SubmitterId = @SubmitterId
+	AND TagApplicationID = @TagApplicationID) = 0
 	BEGIN
-		PRINT N'This is a new vote!'
+		DECLARE @TagApplicationScore INT
+		SET @TagApplicationScore = (
+			SELECT Score FROM TagApplication
+			WHERE TagApplication.ID = @TagApplicationID)
+		IF (@IsUpVote)
+			SET @TagApplicationScore += 1
+		ELSE
+			SET @TagApplicationScore -= 1
 		INSERT INTO [dbo].[Vote](
-			[is_upvote],
-			[user_id],
-			[tag_app_voted_on],
-			[vote_datetime]
+			[IsUpVote],
+			[SubmitterId],
+			[TagApplicationID]
+			-- [VoteDateTime]
 			)
 		VALUES (
-			@is_upvote,
-			@user_id,
-			@tag_app_voted_on,
-			GETUTCDATE()
+			@IsUpVote,
+			@SubmitterId,
+			@TagApplicationID
+			-- GETUTCDATE()
 			)
+		BEGIN
+			UPDATE [TagApplication]
+			SET Score = @TagApplicationScore
+		END
 	END
-ELSE
-	BEGIN
-		PRINT N'This vote already exists!'
+	BEGIN	
+		UPDATE [Profile]
+		SET AvatarScore += 1
+		WHERE ProfileID = @SubmitterId
 	END
+	EXEC [UpdateAvatar] @ProfileID = @SubmitterId
 END
