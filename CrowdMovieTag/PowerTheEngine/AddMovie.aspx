@@ -9,9 +9,7 @@
  
 	<!-----------------------Panel----------------------------->
 	<div class="panel panel-default panel-info">
-		<div class="panel-heading" style="margin-top:-0px">
-			<h3>Add A Movie:</h3>
-		</div>
+		<div class="panel-heading" style="margin-top:-0px"><h4><strong>Add A Movie:</strong></h4></div>
 		<div class="panel-body">
 
 			<!-----------------------Enter Title----------------------------->
