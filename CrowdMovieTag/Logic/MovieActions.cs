@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using CrowdMovieTag.Models;
+using System.Data.Entity;
 
 namespace CrowdMovieTag.Logic
 {
@@ -43,10 +44,10 @@ namespace CrowdMovieTag.Logic
 					SubmitterID = submitterID,
 					IsUpvote = isUpvote,
 					TagApplicationID = tagAppID,
-					TagApplication = _db.TagApplications.Where(ta => ta.ID == tagAppID).FirstOrDefault()
 				};
 
-				vote.TagApplication.Score = vote.TagApplication.Score + (isUpvote ? 1: -1);
+				var tagApp = _db.TagApplications.Where(ta => ta.ID == tagAppID).FirstOrDefault();
+				tagApp.Score = tagApp.Score + (isUpvote ? 1: -1);
 
 				// Add the new vote and commit
 				_db.Votes.Add(vote);
@@ -68,8 +69,7 @@ namespace CrowdMovieTag.Logic
 			userTag = new Tag
 			{
 				Label = newTagName,
-				TagTypeEnumID = newTagType,
-				ApprovalStatusEnumID = (int)ApprovalStatusEnum.Unapproved,
+				CategoryID = newTagType,
  				CreatedDateTime = DateTime.Now,
 				SubmitterID = submitterID
 			};
@@ -135,7 +135,7 @@ namespace CrowdMovieTag.Logic
 
 		public List<Tag> GetTagsForCategoryID(int categoryID)
 		{
-			return _db.Tags.Where(t => t.TagTypeEnumID == categoryID).ToList();
+			return _db.Tags.Where(t => t.CategoryID == categoryID).ToList();
 		}
 
 	}

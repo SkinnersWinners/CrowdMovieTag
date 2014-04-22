@@ -27,24 +27,21 @@ namespace CrowdMovieTag.Models
 	{
 	
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
-		[ScaffoldColumn(false)]
 		public int TagID { get; set; }
-
-		public int TagTypeEnumID { get; set; }
 
 		[Required, StringLength(50), Display(Name = "Tag Name")]
 		public string Label { get; set; }
 
+		[ForeignKey("Category")]
+		public int CategoryID { get; set; }
+		public virtual TagCategory Category { get; set; }
+
 		[Required]
 		public DateTime CreatedDateTime { get; set; }
 
-		//[Required, StringLength(128)]
+		[Required, StringLength(128), ForeignKey("Submitter")]
 		public string SubmitterID { get; set; }
+		public virtual Profile Submitter { get; set; }
 
-		[Range(0, Int32.MaxValue)]
-		public int? ApproverID { get; set; }
-
-		[Required, Range(0, Int16.MaxValue)]
-		public int ApprovalStatusEnumID { get; set; }
 	}
 }

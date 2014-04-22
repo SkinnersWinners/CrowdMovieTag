@@ -151,22 +151,11 @@ namespace CrowdMovieTag
 											select new TagFromQuery
 											{
 												TagID = tagApp.Tag.TagID,
-												TagTypeEnumID = tagApp.Tag.TagTypeEnumID,
+												TagTypeEnumID = tagApp.Tag.CategoryID,
 												Label = tagApp.Tag.Label,
 												Score = tagApp.Score
 											};
 
-			/*IQueryable<TagFromQuery> tags = from tag in _db.Tags
-											from tagApp in _db.Votes
-											where (vote.MovieID == movieID) && (tag.TagID == vote.TagID)
-											orderby vote.Score descending
-											select new TagFromQuery 
-											{
-												 TagID = tag.TagID,
-												 TagTypeEnumID = tag.TagTypeEnumID,
-												 Label = tag.Label,
-												 Score = vote.Score
-											 };*/
 			return tags;
 		}
 

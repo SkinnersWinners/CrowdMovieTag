@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -19,10 +20,11 @@ namespace CrowdMovieTag.Models
 		[Required, StringLength(10000), Display(Name = "Movie Description")]
 		public string Description { get; set; }
 
-		[Required, StringLength(128)]
+		[Required, StringLength(128), ForeignKey("Submitter")]
 		public string SubmitterID { get; set; }
+		public virtual Profile Submitter { get; set; }
 
-/*		[DisplayName("Movie Poster URL"), StringLength(1024)]
-		public string MoviePosterURL { get; set; } */
+		public virtual ICollection<TagApplication> TagApplications { get; set; }
+
 	}
 }

@@ -296,7 +296,10 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfileAvatar.cs" />
     <Compile Include="Models\TagApplication.cs" />
+    <Compile Include="Models\TagCategory.cs" />
+    <Compile Include="Models\UserSearch.cs" />
     <Compile Include="ShowAllMovies.aspx.cs">
       <DependentUpon>ShowAllMovies.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

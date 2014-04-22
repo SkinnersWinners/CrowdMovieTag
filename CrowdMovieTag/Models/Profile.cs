@@ -1,20 +1,28 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using CrowdMovieTag;
 
 namespace CrowdMovieTag.Models
 {
 	public class Profile
 	{
-		[ScaffoldColumn(false), Required, StringLength(128)]
+		[StringLength(128)]
 		public string ProfileID { get; set; }
 
 		[StringLength(160), DisplayName("Username")]
 		public string Username { get; set; }
 
-		[Required]
+		[ForeignKey("Avatar")]
 		public int AvatarID { get; set; }
+		public virtual Avatar Avatar {get; set;}
+
+	
+		[Required]
+		public int Score { get; set; } // updated with every action a user makes
 
 		[DisplayName("First Name")]
 		[StringLength(160)]
@@ -32,6 +40,12 @@ namespace CrowdMovieTag.Models
 
 		[DisplayName("Member Since")]
 		public DateTime DateJoined { get; set; }
+
+		public virtual ICollection<UserSearch>		SearchHistory { get; set; }
+		public virtual ICollection<TagApplication>	TagApplications { get; set; }
+		public virtual ICollection<Movie>			AddedMovies { get; set; }
+		public virtual ICollection<Tag>				AddedTags { get; set; }
+		public virtual ICollection<Vote>			Votes { get; set; }
 
 	}
 }

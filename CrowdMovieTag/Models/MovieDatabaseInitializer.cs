@@ -1,13 +1,23 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Specialized;
+using System.IO;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.SqlClient;
+using System.Data.SqlTypes;
+using Microsoft.SqlServer.Server;
+using System.Linq;
 
 namespace CrowdMovieTag.Models
 {
-	public class MovieDatabaseInitializer : CreateDatabaseIfNotExists<MovieContext>
+	public class MovieDatabaseInitializer : DropCreateDatabaseIfModelChanges<MovieContext>
 	{
 		protected override void Seed(MovieContext context)
 		{
+
+			AddStoredProcedures(context);
+
 			var profiles = GetProfiles();
 			var movies = GetMovies(profiles);
 			var tags = GetTags(profiles);
@@ -20,6 +30,30 @@ namespace CrowdMovieTag.Models
 			tags.ForEach(t => context.Tags.Add(t));
 			tagApps.ForEach(ta => context.TagApplications.Add(ta));
 			votes.ForEach(v => context.Votes.Add(v));
+
+			
+
+		}
+
+		private static void AddStoredProcedures(MovieContext context)
+		{
+			var sqlFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.sql").OrderBy(s => s);
+			
+			foreach (string file in sqlFiles)
+			{
+				context.Database.ExecuteSqlCommand(File.ReadAllText(file));
+			}
+
+			/*context.Database.Connection.Open();
+			var command = context.Database.Connection.CreateCommand();
+			command.CommandType = System.Data.CommandType.StoredProcedure;*/
+
+		//	var movieID = 10;
+		//	var movieTitle = "shawshank redemption";
+		//	object[] parameters = new object[] { movieID, movieTitle }; 
+		//	Movie movie = context.Movies.SqlQuery("dbo.GetMovie @movieID @movieTitle", parameters).AsQueryable().FirstOrDefault();
+		
+
 		}
 
 		private static List<Profile> GetProfiles()
@@ -102,7 +136,7 @@ namespace CrowdMovieTag.Models
 			{
 				tags.Add(new Tag
 				{
-					TagTypeEnumID = (int)TagTypeEnum.Genre,
+					CategoryID = (int)TagTypeEnum.Genre,
 					Label = label
 				});
 			}
@@ -111,7 +145,7 @@ namespace CrowdMovieTag.Models
 			{
 				tags.Add(new Tag
 				{
-					TagTypeEnumID = (int)TagTypeEnum.Element,
+					CategoryID = (int)TagTypeEnum.Element,
 					Label = label
 				});
 			}
@@ -122,7 +156,6 @@ namespace CrowdMovieTag.Models
 			{
 				tag.SubmitterID = profiles[profileIndex].ProfileID;
 				tag.CreatedDateTime = DateTime.Now;
-				tag.ApprovalStatusEnumID = profileIndex % 2;
 				profileIndex = (profileIndex + 1) % profiles.Count;
 			}
 
@@ -176,7 +209,6 @@ namespace CrowdMovieTag.Models
 					SubmitterID = profiles[profileIndex].ProfileID,
 					IsUpvote = isUpVote,
 					TagApplicationID = tagApp.ID,
-					TagApplication = tagApp
 				});
 
 				tagApp.Score += (isUpVote ? 1 : -1);
