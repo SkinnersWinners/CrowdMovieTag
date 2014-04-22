@@ -21,21 +21,21 @@
 <!------------ ELEMENTS START HERE ----------------------->
     <div class="row">
         <div class="col-md-4">
-            <h2>Earn Rewards Points</h2>
-            <p>Add Movies, upgrade and/or downgrade tags, complete your profile, to earn CrowdTag Points and one of many prizes!</p>
-            <p><a class="btn btn-default" runat="server" href="~/Rewards_Points">Rewards &raquo;</a></p>
+            <h2>Earn Profile Points</h2>
+            <p>Add Movies, add CrowdTags, and vote on existing CrowdTags, to earn Profile Points!</p>
+            <p><a class="btn btn-default" runat="server" href="~/RewardsPoints">Rewards &raquo;</a></p>
         </div>
 
         <div class="col-md-4">
             <h2>Become a Tagging Guru</h2>
-            <p>Learn how to assign tags what will provide more efficient power to the crowdtag engine.</p>
+            <p>Learn how to assign tags what will provide more efficient power to the CrowdTag engine.</p>
             <p><a class="btn btn-default" runat="server" href="~/About">Tagging School &raquo;</a></p>
         </div>
         
         <div class="col-md-4">
             <h2>Advanced Searching</h2>
-            <p>Search for multiple tags to obtain improved results!</p>
-			<p><a class="btn btn-default" runat="server" href="~/Advanced_Search" style="bottom:0px">Advanced Search &raquo;</a></p>
+            <p>Search for multiple CrowdTags to obtain improved results!</p>
+			<p><a class="btn btn-default" runat="server" href="~/AdvancedSearch" style="bottom:0px">Advanced Search &raquo;</a></p>
         </div>
     </div>
 
