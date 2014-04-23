@@ -200,7 +200,7 @@
     <Content Include="MovieDetails.aspx" />
     <Content Include="TagService.asmx" />
     <None Include="DevNotes\Notes.md" />
-    <Content Include="Images\Avatars\Oscar.png" />
+    <Content Include="Images\Avatars\OscarWinner.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -297,6 +297,7 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Avatar.cs" />
+    <Compile Include="Models\MovieFromQuery.cs" />
     <Compile Include="Models\TagApplication.cs" />
     <Compile Include="Models\TagCategory.cs" />
     <Compile Include="Models\UserSearch.cs" />

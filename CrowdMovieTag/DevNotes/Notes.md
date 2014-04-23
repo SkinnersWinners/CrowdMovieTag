@@ -4,6 +4,8 @@ Branch TODO:
 
 Revisit:
 
+- AddMoviePage
+
 - Profile retrieval
 	- Retrieve tags
 	- Retreive votes

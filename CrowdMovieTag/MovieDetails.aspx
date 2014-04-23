@@ -128,7 +128,7 @@
 		</div>
 		<asp:Label runat="server" ID="ApplyExistingTagStatusLabel" Visible="false" Text="" CssClass="validator"></asp:Label>
 	</div>
-	<ajaxToolkit:Up
+	
 	<!-----------------------Add a New Tag to Movie ----------------------------->
 	<div class="panel panel-default">
 		<div class="panel-heading">
