@@ -3,7 +3,7 @@
 -- search with free text
 -- If we need to search by TagID (say, a user is choosing
 -- from a drop-down), that is easily done before calling
--- this procedure, and then we can pass the label/name
+-- this procedure, and then we can pass the Name/name
 -- of the tag here.
 --
 -- At this time, this procedure does not call the AddSearch SP
@@ -35,13 +35,13 @@ BEGIN
 		@Tag5 IS NULL)
 		BEGIN
 			INSERT INTO @TemporaryResults
-			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Label
+			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Name
 			FROM Movies M
 			INNER JOIN TagApplications TA
 			ON M.MovieID = TA.MovieID
 			INNER JOIN Tags T
 			ON TA.TagID = T.TagID
-			WHERE T.Label IN (@Tag1)
+			WHERE T.Name IN (@Tag1)
 		END
 	-- Only Tag1 and Tag2 are submitted
 	ELSE IF (@Tag3 IS NULL AND
@@ -49,50 +49,50 @@ BEGIN
 			 @Tag5 IS NULL)
 		BEGIN
 			INSERT INTO @TemporaryResults
-			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Label
+			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Name
 			FROM Movies M
 			INNER JOIN TagApplications TA
 			ON M.MovieID = TA.MovieID
 			INNER JOIN Tags T
 			ON TA.TagID = T.TagID
-			WHERE T.Label IN (@Tag1, @Tag2)
+			WHERE T.Name IN (@Tag1, @Tag2)
 		END
 	-- Only Tag1, Tag2, Tag3 are submitted
 	ELSE IF (@Tag4 IS NULL AND
 			 @Tag5 IS NULL)
 		BEGIN
 			INSERT INTO @TemporaryResults
-			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Label
+			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Name
 			FROM Movies M
 			INNER JOIN TagApplications TA
 			ON M.MovieID = TA.MovieID
 			INNER JOIN Tags T
 			ON TA.TagID = T.TagID
-			WHERE T.Label IN (@Tag1, @Tag2, @Tag3)
+			WHERE T.Name IN (@Tag1, @Tag2, @Tag3)
 		END
 	-- Only Tag1, Tag2, Tag3, Tag4 are submitted
 	ELSE IF (@Tag5 IS NULL)
 		BEGIN
 			INSERT INTO @TemporaryResults
-			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Label
+			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Name
 			FROM Movies M
 			INNER JOIN TagApplications TA
 			ON M.MovieID = TA.MovieID
 			INNER JOIN Tags T
 			ON TA.TagID = T.TagID
-			WHERE T.Label IN (@Tag1, @Tag2, @Tag3, @Tag4)
+			WHERE T.Name IN (@Tag1, @Tag2, @Tag3, @Tag4)
 		END
 	-- All tags are submitted
 	ELSE 
 		BEGIN
 			INSERT INTO @TemporaryResults
-			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Label
+			SELECT M.MovieID, M.Title, M.Year, TA.Score, T.Name
 			FROM Movies M
 			INNER JOIN TagApplications TA
 			ON M.MovieID = TA.MovieID
 			INNER JOIN Tags T
 			ON TA.TagID = T.TagID
-			WHERE T.Label IN (@Tag1, @Tag2, @Tag3, @Tag4, @Tag5)
+			WHERE T.Name IN (@Tag1, @Tag2, @Tag3, @Tag4, @Tag5)
 		END
 
 	-- HERE'S THE BREADWINNER!

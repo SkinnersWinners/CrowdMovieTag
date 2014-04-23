@@ -9,11 +9,11 @@ BEGIN
 	SELECT @AvatarScore = AvatarScore, @CurrentAvatarID = AvatarID
 	FROM [Profiles]
 	WHERE ProfileID = @ProfileID
-	IF (@AvatarScore >= 800)
+	IF (@AvatarScore >= 1000)
 		SET @NewAvatarID = 4
-	ELSE IF (@AvatarScore >= 400)
+	ELSE IF (@AvatarScore >= 500)
 		SET @NewAvatarID = 3
-	ELSE IF (@AvatarScore >= 200)
+	ELSE IF (@AvatarScore >= 250)
 		SET @NewAvatarID = 2
 	ELSE
 		SET @NewAvatarID = 1

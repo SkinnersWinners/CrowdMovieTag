@@ -153,10 +153,16 @@
     <Content Include="Account\RegisterExternalLogin.aspx" />
     <Content Include="Add_Movie.aspx" />
     <Content Include="Advanced_Search.aspx" />
+    <Content Include="App_Code\adjust_tagapp_score_from_votes.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddSearch.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddVote.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AdvancedSearch.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.ApplyTag.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.ProfileRecentMoviesAdded.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.UpdateAvatar.sql" />
     <Content Include="App_Code\populate_DB_script.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddUser.sql" />
     <Content Include="App_Data\appdb.mdf" />
     <Content Include="App_Data\appdb_log.ldf">

@@ -4,29 +4,28 @@ CREATE PROCEDURE [dbo].[AddMovie](
 	@Title NVARCHAR(255),
 	@Description NVARCHAR(500),
 	@SubmitterID NVARCHAR(128),
-	@Year INT
+	@Year INT,
+	@DateAdded DATETIME
 	)
 AS
 BEGIN
---DECLARE @year_released_date DATE
---SET @year_released_date = CONVERT ( DATE, (@Year + '.01.01'), 102)
 IF (SELECT COUNT(MovieID) FROM [Movies]
 	WHERE Title = @Title
 	AND Year = @Year) = 0
 	BEGIN
 		INSERT INTO [dbo].[Movies](
 			[Title],
-			-- [CreatedDateTime],
 			[Year],
 			[Description],
-			[SubmitterID]
+			[SubmitterID],
+			[DateAdded]
 			)
 		VALUES (
 			@Title,
-			-- GETUTCDATE(),
 			@Year,
 			@Description,
-			@SubmitterID
+			@SubmitterID,
+			GETUTCDATE()
 			)
 		BEGIN
 			UPDATE [Profiles]

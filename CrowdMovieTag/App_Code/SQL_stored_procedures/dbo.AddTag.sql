@@ -1,17 +1,17 @@
 ﻿--Copyright (C) 2014	Steve Black
 
 CREATE PROCEDURE [dbo].[AddTag](
-	@Label NVARCHAR(50),
+	@Name NVARCHAR(50),
 	@SubmitterID NVARCHAR(128),
 	@TagCategory INT
 	)
 AS
 BEGIN
 IF (SELECT COUNT(TagID) FROM [Tags]
-	WHERE Label = @Label) = 0
+	WHERE Name = @Name) = 0
 	BEGIN
 		INSERT INTO [dbo].[Tags](
-			[Label],
+			[Name],
 			[SubmitterID],
 			-- [ApproverID],
 --			[approved_status_enum_id],
@@ -19,7 +19,7 @@ IF (SELECT COUNT(TagID) FROM [Tags]
 			[CreatedDateTime]
 			)
 		VALUES (
-			@Label,
+			@Name,
 			@SubmitterID,
 --			NULL,
 --			1,

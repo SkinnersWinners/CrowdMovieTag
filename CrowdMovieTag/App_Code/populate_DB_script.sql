@@ -1,3 +1,5 @@
+--MUST SUBSTITUTE A VALID SubmitterID IN TO EACH OCURRENCE
+
 -- POPULATE TagCategory TABLE
 -- Only needs to run if Sam's code doesn't initialize this table
 INSERT INTO [dbo].[TagCategory]([TagCategoryID], [Label], [Description])
