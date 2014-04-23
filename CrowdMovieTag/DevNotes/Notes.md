@@ -3,14 +3,7 @@
 Branch TODO:
 
 Revisit:
-
-- AddMoviePage
-
-- Profile retrieval
-	- Retrieve tags
-	- Retreive votes
-	- Retreive movies
-	- Update Profile Score based on user actions
+- Update Profile Score based on user actions
 
 - AllMovies
 - Implement search
@@ -18,9 +11,16 @@ Revisit:
 
 - Add Error Handling
 
-
 ? Implement Admin 
 	? What tasks does an admin perform?
+
+
++ AddMoviePage
+
++ Profile retrieval
+	+ Retrieve tags
+	+ Retreive votes
+	+ Retreive movies
 
 + MovieDetails
 	+ Calculate the score: Score is updated when a vote is cast

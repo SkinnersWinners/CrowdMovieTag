@@ -54,33 +54,33 @@ namespace CrowdMovieTag
 			//List<Tuple<bool, String, String>> topVotes;
 			List<Vote> topVotes;
 			
-				profile = db.Profiles.FirstOrDefault(p => String.Compare(p.Username, username) == 0);
-				// Next get the top 5 movies from that profile
-				topMovies = (from m in profile.AddedMovies
-							 orderby m.DateAdded descending
-							  select m).Take(magicNumber).ToList();
+			profile = db.Profiles.FirstOrDefault(p => String.Compare(p.Username, username) == 0);
+			// Next get the top 5 movies from that profile
+			topMovies = (from m in profile.AddedMovies
+							orderby m.DateAdded descending
+							select m).Take(magicNumber).ToList();
 
 				
-				// For each movie get the top 5 tag names
-				foreach (var movie in topMovies)
-				{
-					topTagNames.Add((from ta in movie.TagApplications
-									orderby ta.Score descending
-									select ta.Tag.Name).Take(magicNumber).ToList());
-				}
+			// For each movie get the top 5 tag names
+			foreach (var movie in topMovies)
+			{
+				topTagNames.Add((from ta in movie.TagApplications
+								orderby ta.Score descending
+								select ta.Tag.Name).Take(magicNumber).ToList());
+			}
 
-				// Next get the top 5 Tag Applications
-				topTagApps = (from ta in profile.TagApplications
-									orderby ta.SubmittedDateTime descending
-									  select Tuple.Create(
-										GetElapsedTimeAsString(ta.SubmittedDateTime),
-										ta)
-										).Take(magicNumber).ToList();
+			// Next get the top 5 Tag Applications
+			topTagApps = (from ta in profile.TagApplications
+								orderby ta.SubmittedDateTime descending
+									select Tuple.Create(
+									GetElapsedTimeAsString(ta.SubmittedDateTime),
+									ta)
+									).Take(magicNumber).ToList();
 
-				// Next get the top 5 Votes
-				topVotes = (from vote in profile.Votes
-								orderby vote.VotedDateTime descending
-								select vote).Take(magicNumber).ToList();
+			// Next get the top 5 Votes
+			topVotes = (from vote in profile.Votes
+							orderby vote.VotedDateTime descending
+							select vote).Take(magicNumber).ToList();
 
 			
 			/*

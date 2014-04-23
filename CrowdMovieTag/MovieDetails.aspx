@@ -29,9 +29,17 @@
 		<div class="panel-heading">
 			Tags:
 		</div>
+
 		<div class="panel-body">
-			<asp:GridView ID="TagsList" ItemType="CrowdMovieTag.Models.TagFromQuery" AutoGenerateColumns="false" 
-				SelectMethod="GetTagsForMovie" 
+			<asp:Label runat="server"
+				ID="lblNoTagsForMovie"
+				Text="No tags have been added yet, you can be the first!"
+				Visible="false"></asp:Label>
+				 
+
+			<asp:GridView ID="TagsList" 
+				AutoGenerateColumns="false" 
+				ItemType="Tuple<Pair, CrowdMovieTag.Models.TagApplication>" 
 				CssClass="table table-striped table-hover" 
 				ShowHeader="true"
 				GridLines="None" 
@@ -39,23 +47,50 @@
 				OnRowCommand="VoteWasClicked"
 				runat="server">
 				<Columns>
-					<asp:BoundField HeaderText="Score" DataField="Score" />
-					<asp:TemplateField HeaderText="Type">
+					<asp:TemplateField HeaderText="Score">
 						<ItemTemplate>
-							<%#: Item.TagCategoryName %>
+							<%#: Item.Item2.Score %>
 						</ItemTemplate>
 					</asp:TemplateField>
-					<asp:BoundField HeaderText="Tag" DataField="TagName" />
+					
+					<asp:TemplateField HeaderText="Category">
+						<ItemTemplate>
+							<%#: Item.Item2.Tag.Category.Name %>
+						</ItemTemplate>
+					</asp:TemplateField>
+					<asp:TemplateField HeaderText="Tag">
+						<ItemTemplate>
+							<%#: Item.Item2.Tag.Name %>
+						</ItemTemplate>
+					</asp:TemplateField>
+					
+					<asp:TemplateField HeaderText="Total Votes:">
+						<ItemTemplate>
+							<%#: Item.Item2.Votes.Count %>
+						</ItemTemplate>
+					</asp:TemplateField>
+
+					<asp:TemplateField HeaderText="Last Vote:">
+						<ItemTemplate>
+							<%#: Item.Item1.Second %>
+						</ItemTemplate>
+					</asp:TemplateField>
+					<asp:TemplateField HeaderText="Submitted:">
+						<ItemTemplate>
+							<%#: Item.Item1.First %>
+						</ItemTemplate>
+					</asp:TemplateField>
+					
 					<asp:TemplateField HeaderText="Vote">
 						<ItemTemplate>
 							<asp:Button ID="UpVote" runat="server"
 								CommandName="UpVote"
-								CommandArgument="<%#: Item.TagApplicationID %>" 
+								CommandArgument="<%#: Item.Item2.TagApplicationID %>" 
 								Text="+1"
 								CssClass="btn btn-primary btn-xs btn-success" />
 							<asp:Button ID="DownVote" runat="server"
 								CommandName="DownVote"
-								CommandArgument="<%#: Item.TagApplicationID %>" 
+								CommandArgument="<%#: Item.Item2.TagApplicationID %>" 
 								Text="-1"
 								CssClass="btn btn-primary btn-xs btn-danger" />
 						</ItemTemplate>

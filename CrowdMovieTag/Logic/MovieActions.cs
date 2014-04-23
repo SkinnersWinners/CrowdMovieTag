@@ -155,6 +155,7 @@ namespace CrowdMovieTag.Logic
 			var newMovie = new Movie
 			{
 				Title = newMovieTitle,
+				DateAdded = DateTime.Now,
 				Year = newMovieYear,
 				Description = newMovieDescription,
 				SubmitterID = submitterID
@@ -163,7 +164,7 @@ namespace CrowdMovieTag.Logic
 			try 
 			{
 				// Check if it already exists
-				var dbMovie = _db.Movies.SingleOrDefault(m => String.Compare(m.Title, newMovie.Title) == 0);
+				var dbMovie = _db.Movies.SingleOrDefault(m => (String.Compare(m.Title, newMovie.Title) == 0) && m.Year == newMovie.Year);
 				
 				if (dbMovie != null) return (int)MovieActionsErrorCode.MovieAlreadyExists;
 

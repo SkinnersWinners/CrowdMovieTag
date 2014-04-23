@@ -30,19 +30,117 @@ namespace CrowdMovieTag
 			NewTagTypeDropDown.DataValueField = "Value";
 			NewTagTypeDropDown.DataSource = tagTypes;
 			NewTagTypeDropDown.DataBind();*/
+			if (!IsPostBack)
+			{
+				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				
+				BindDataControls(movieID);
+				
+			}
+
         }
 
-		protected override void OnPreRenderComplete(EventArgs e)
+		public void BindDataControls(int movieID)
 		{
-			// Make sure that the TagList GridView Header row actually
-			// gets rendered in a <thead> element, and not in the <tbody>
-			if (TagsList.Rows.Count > 0)
+			using (var db = new MovieContext())
 			{
-				TagsList.HeaderRow.TableSection = TableRowSection.TableHeader;
+				Movie movie = db.Movies.FirstOrDefault(m => m.MovieID == movieID);
+
+				// Next get the top 5 Tag Applications
+				List<TagApplication> topTagApps = 
+							(from tagApp in movie.TagApplications
+							  orderby tagApp.Score descending
+							  select tagApp).ToList();
+							  				
+				/*
+				List<Tuple<String, TagApplication>> topTagApps =
+							(from tagApp in movie.TagApplications
+							 orderby tagApp.Score descending
+							 select Tuple.Create(
+									   GetElapsedTimeAsString(tagApp.SubmittedDateTime),
+									   tagApp)).ToList(); */
+
+				//--------- Bind Top Tags ------------//
+				// ItemType = Tuple<Movie, Pair(TagName), int(Score))
+				if (topTagApps.Count == 0)
+				{
+					TagsList.Visible = false;
+					lblNoTagsForMovie.Visible = true;
+				}
+				else
+				{
+					var bindingValues = new List<Tuple<Pair, TagApplication>>();
+					foreach (var tagApp in topTagApps)
+					{
+						string lastVoteString;
+						if (tagApp.Votes.Count < 1)
+						{
+							lastVoteString = "Never";
+						}
+						else
+						{
+							DateTime lastVoteTime = (from v in tagApp.Votes
+													 orderby v.VotedDateTime descending
+													 select v.VotedDateTime).FirstOrDefault();
+							lastVoteString = GetElapsedTimeAsString(lastVoteTime);
+						}
+
+						bindingValues.Add(Tuple.Create(
+							new Pair(
+								GetElapsedTimeAsString(tagApp.SubmittedDateTime),
+								lastVoteString
+							),
+							tagApp)
+						);
+					}
+
+					TagsList.Visible = true;
+					lblNoTagsForMovie.Visible = false;
+					TagsList.DataSource = bindingValues;
+					TagsList.DataBind();
+
+					// Make sure that the TagList GridView Header row actually
+					// gets rendered in a <thead> element, and not in the <tbody>
+					TagsList.HeaderRow.TableSection = TableRowSection.TableHeader;
+				
+				}
 			}
-			base.OnPreRenderComplete(e);
 		}
 
+		public string GetElapsedTimeAsString(DateTime time)
+		{
+			TimeSpan elapsed = DateTime.Now - time;
+			string timestamp;
+			if (elapsed.Days > 30)
+			{
+				timestamp = String.Format("{0} Months ago", Math.Ceiling(elapsed.Days / (365.25 / 12)));
+			}
+			else if (elapsed.Days >= 1)
+			{
+				timestamp = String.Format("{0} Days ago", elapsed.Days);
+			}
+			else if (elapsed.Hours >= 1)
+			{
+				timestamp = String.Format("{0} Hours ago", elapsed.Hours);
+			}
+			else if (elapsed.Minutes >= 1)
+			{
+				if (elapsed.Minutes == 1)
+				{
+					timestamp = String.Format("{0} Minute ago", 1);
+				}
+				else
+				{
+					timestamp = String.Format("{0} Minutes ago", elapsed.Minutes);
+				}
+			}
+			else
+			{
+				timestamp = "Just Now";
+			}
+			return timestamp;
+		}
+	
 		public void ClearStatusLabels()
 		{
 			ApplyExistingTagStatusLabel.Visible = false;
@@ -58,14 +156,14 @@ namespace CrowdMovieTag
 			ddlApplyTagName.ClearSelection();
 		}
 
-
 		public void AddExistingTag_Click(object sender, EventArgs e)
 		{
 			ClearStatusLabels();
 			int result;
+			int movieID = 0;
 			try
 			{
-				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				movieID = Convert.ToInt32(Request.QueryString["movieID"]);
 				if (movieID == 0) return;
 
 			
@@ -101,7 +199,7 @@ namespace CrowdMovieTag
 			}
 			else
 			{
-				TagsList.DataBind();
+				BindDataControls(movieID);
 				ClearAllFields();
 				ApplyExistingTagStatusLabel.Text = "Applied tag successfully!";
 			}
@@ -112,9 +210,10 @@ namespace CrowdMovieTag
 		{
 			ClearStatusLabels();
 			int result;
+			int movieID = 0;
 			try
 			{
-				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				movieID = Convert.ToInt32(Request.QueryString["movieID"]);
 				if (movieID == 0) return;
 
 				string newTagName = NewTagNameTextBox.Text;
@@ -151,7 +250,7 @@ namespace CrowdMovieTag
 			}
 			else
 			{
-				TagsList.DataBind();
+				BindDataControls(movieID);
 				ClearAllFields();
 				AddNewTagStatusLabel.Text = "Added tag successfully!";
 			}
@@ -216,7 +315,8 @@ namespace CrowdMovieTag
 					VoteStatusLabel.Text = "Your vote has been changed.";
 					VoteStatusLabel.Visible = true;
 				}
-				TagsList.DataBind();
+				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				BindDataControls(movieID);
 			}
 		}
 

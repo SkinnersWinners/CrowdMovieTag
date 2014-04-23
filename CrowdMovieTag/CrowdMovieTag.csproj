@@ -297,7 +297,6 @@
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
     <Compile Include="Models\Avatar.cs" />
-    <Compile Include="Models\MovieFromQuery.cs" />
     <Compile Include="Models\TagApplication.cs" />
     <Compile Include="Models\TagCategory.cs" />
     <Compile Include="Models\UserSearch.cs" />
