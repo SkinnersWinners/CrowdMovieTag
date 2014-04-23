@@ -4,31 +4,28 @@ Branch TODO:
 
 Revisit:
 
-- MovieDetails
-	+ Calculate the score: Score is updated when a vote is cast
-	- ApplyExistingTag
-	+ Apply New Tag
-	+ Voting
-	+ Movie Tag Retrieval
-
 - Profile retrieval
 	- Retrieve tags
 	- Retreive votes
 	- Retreive movies
+	- Update Profile Score based on user actions
 
-- Add Error Handling
 - AllMovies
 - Implement search
 	- Access stored procedures
 
-- Profile page 
-	- Get Most recent tags/User activity	--> Need Steve for Tag Relationships Table
-	+ Bind user data
-	+ Retrieve user data
+- Add Error Handling
 
 
 ? Implement Admin 
 	? What tasks does an admin perform?
+
++ MovieDetails
+	+ Calculate the score: Score is updated when a vote is cast
+	+ ApplyExistingTag
+	+ Apply New Tag
+	+ Voting
+	+ Movie Tag Retrieval
 
 + AddMovie: Add submitterID to the movie
 

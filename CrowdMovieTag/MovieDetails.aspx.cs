@@ -43,36 +43,124 @@ namespace CrowdMovieTag
 			base.OnPreRenderComplete(e);
 		}
 
-		public void AddNewTag_Click(object sender, EventArgs e)
+		public void ClearStatusLabels()
 		{
-			int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
-			if (movieID == 0) return;
-
-			string newTagName = NewTagNameTextBox.Text;
-			TagTypeEnum newTagType = (TagTypeEnum)Convert.ToInt32(NewTagTypeDropDown.SelectedValue);
-			
-			using (var movieActions = new MovieActions())
-			{
-				if (!movieActions.IsUserAuthenticated())
-				{
-					Response.Redirect("~/Account/Login");
-					return;
-				}
-				movieActions.AddNewTagAndApply(User.Identity.GetUserId(), (int)newTagType, newTagName, movieID);
-			}
-			TagsList.DataBind();
-			NewTagTypeDropDown.ClearSelection();
-			NewTagNameTextBox.Text = "";
+			ApplyExistingTagStatusLabel.Visible = false;
+			AddNewTagStatusLabel.Visible = false;
 			VoteStatusLabel.Visible = false;
 		}
 
-		public string EvaluateTagTypeEnum(int enumValue)
+		public void ClearAllFields()
 		{
-			return TagFromQuery.GetStringForEnumValue(enumValue);
+			NewTagNameTextBox.Text = "";
+			NewTagDynamicDropDown.ClearSelection();
+			ddlApplyTagCategory.ClearSelection();
+			ddlApplyTagName.ClearSelection();
+		}
+
+
+		public void AddExistingTag_Click(object sender, EventArgs e)
+		{
+			ClearStatusLabels();
+			int result;
+			try
+			{
+				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				if (movieID == 0) return;
+
+			
+				int tagCategoryID = Convert.ToInt32(ddlApplyTagCategory.SelectedValue);
+				int tagID =			Convert.ToInt32(ddlApplyTagName.SelectedValue);
+				
+
+				using (var movieActions = new MovieActions())
+				{
+					if (!movieActions.IsUserAuthenticated())
+					{
+						Response.Redirect("~/Account/Login");
+						return;
+					}
+					result = movieActions.ApplyExistingTagToMovie(User.Identity.GetUserId().ToString(), tagID, movieID);
+				}
+			}
+			catch (Exception)
+			{
+				result = -1000; // trigger the if statement below
+			}
+
+			if (result < 0)
+			{
+				if (result == (int)Logic.MovieActionsErrorCode.TagAlreadyExists)
+				{
+					ApplyExistingTagStatusLabel.Text = "That tag is already applied to this movie!";
+				}
+				else
+				{
+					ApplyExistingTagStatusLabel.Text = "Unable to Add New Tag.";
+				}
+			}
+			else
+			{
+				TagsList.DataBind();
+				ClearAllFields();
+				ApplyExistingTagStatusLabel.Text = "Applied tag successfully!";
+			}
+			ApplyExistingTagStatusLabel.Visible = true;
+		}
+
+		public void AddNewTag_Click(object sender, EventArgs e)
+		{
+			ClearStatusLabels();
+			int result;
+			try
+			{
+				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
+				if (movieID == 0) return;
+
+				string newTagName = NewTagNameTextBox.Text;
+				int newTagType = Convert.ToInt32(NewTagDynamicDropDown.SelectedValue);
+
+				
+				using (var movieActions = new MovieActions())
+				{
+					if (!movieActions.IsUserAuthenticated())
+					{
+						Response.Redirect("~/Account/Login");
+						return;
+					}
+					result = movieActions.AddNewTagAndApply(User.Identity.GetUserId(), newTagType, newTagName, movieID);
+				}	
+			}
+			catch (Exception)
+			{
+				AddNewTagStatusLabel.Text = "Unable to Add New Tag.";
+				AddNewTagStatusLabel.Visible = true;
+				return;
+			}
+
+			if (result < 0)
+			{
+				if (result == (int)Logic.MovieActionsErrorCode.TagAlreadyExists)
+				{
+					AddNewTagStatusLabel.Text = "A tag with that name already exists!";
+				}
+				else 
+				{
+					AddNewTagStatusLabel.Text = "Unable to Add New Tag.";
+				}
+			}
+			else
+			{
+				TagsList.DataBind();
+				ClearAllFields();
+				AddNewTagStatusLabel.Text = "Added tag successfully!";
+			}
+			AddNewTagStatusLabel.Visible = true;
 		}
 
 		public void VoteWasClicked(object sender, GridViewCommandEventArgs e)
 		{
+			ClearStatusLabels();
 			bool isUpVote = false;
 			int tagID = Convert.ToInt32(e.CommandArgument);
 			if (tagID == 0) return;
@@ -104,12 +192,16 @@ namespace CrowdMovieTag
 					result = movieActions.CastVoteForTagApp(User.Identity.GetUserId(), tagID, isUpVote);
 				}
 			}
-
+			
 			if (result < 0)
 			{
 				if (result == (int)MovieActionsErrorCode.UserAlreadyVoted)
 				{
 					VoteStatusLabel.Text = "You have already voted on that tag.";
+				}
+				else if (result == (int)MovieActionsErrorCode.UserOwnsTagApplication)
+				{
+					VoteStatusLabel.Text = "You cannot vote on your own tag!";
 				}
 				else
 				{
@@ -119,11 +211,13 @@ namespace CrowdMovieTag
 			}
 			else
 			{
+				if (result == (int)MovieActionsSuccessCode.VoteValueChanged)
+				{
+					VoteStatusLabel.Text = "Your vote has been changed.";
+					VoteStatusLabel.Visible = true;
+				}
 				TagsList.DataBind();
-				VoteStatusLabel.Visible = false;
 			}
-
-
 		}
 
 		public IQueryable<Movie> GetMovie([QueryString("movieID")] int? movieID)

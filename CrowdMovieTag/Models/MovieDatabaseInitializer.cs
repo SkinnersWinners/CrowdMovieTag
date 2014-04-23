@@ -234,13 +234,10 @@ namespace CrowdMovieTag.Models
 				tagApps.Add(new TagApplication
 				{
 					SubmitterID			= profiles[profileIndex].ProfileID,
-				//	Submitter			= profiles[profileIndex],
 					Score				= 0,
 					SubmittedDateTime	= DateTime.Now,
 					TagID				= tags[tagIndex].TagID,
-				//	Tag					= tags[tagIndex],
 					MovieID				= movies[movieIndex].MovieID
-				//	Movie				= movies[movieIndex]
 				});
 
 				profileIndex = (profileIndex + 1) % profiles.Count;

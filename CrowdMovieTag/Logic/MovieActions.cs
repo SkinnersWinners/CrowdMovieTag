@@ -8,13 +8,19 @@ using System.Data.Entity;
 
 namespace CrowdMovieTag.Logic
 {
+	enum MovieActionsSuccessCode
+	{
+		VoteValueChanged = 1
+	}
+
 	enum MovieActionsErrorCode
 	{
 		UnknownError = -1,
 		MovieAlreadyExists = -2,
 		TagAlreadyExists = -3,
-		UserOwnsTagApplication = -4,
-		UserAlreadyVoted = -5
+		TagApplicationAlreadyExists = -4,
+		UserOwnsTagApplication = -5,
+		UserAlreadyVoted = -6
 	}
 
 	public class MovieActions : IDisposable
@@ -30,23 +36,67 @@ namespace CrowdMovieTag.Logic
 			}
 		}
 
+		public void AddProfileForUserAfterLoginOrRegister(string userID, string userName)
+		{
+			var profile = _db.Profiles.FirstOrDefault(p => String.Compare(p.ProfileID, userID) == 0);
+			if (profile != null) return;
+
+			var newProfile = new Profile()
+			{
+				ProfileID = userID,
+				Username = userName,
+				AvatarID = 1,
+				DateJoined = DateTime.Now
+			};
+			
+			_db.Profiles.Add(newProfile);
+			_db.SaveChanges();
+			
+		}
+
 		public int CastVoteForTagApp(string submitterID, int tagAppID, bool isUpvote)
 		{
 			try
 			{
-				// Check if the user has already voted for this tagapp
-				var vote = _db.Votes.FirstOrDefault(v => String.Compare(v.SubmitterID, submitterID) == 0);
+				// Check if the user owns this tagapp
+				var profile = _db.Profiles.FirstOrDefault(p => String.Compare(p.ProfileID, submitterID) == 0);
+				var tagApp = _db.TagApplications.Where(ta => ta.TagApplicationID == tagAppID).FirstOrDefault();
 
-				if (vote != null) return (int)MovieActionsErrorCode.UserAlreadyVoted;
+				if (String.Compare(tagApp.SubmitterID, submitterID) == 0)
+				{
+					return (int)MovieActionsErrorCode.UserOwnsTagApplication;
+				}
 
+				var vote = profile.Votes.FirstOrDefault(ta => ta.TagApplicationID == tagAppID);
+				
+				if (vote != null)
+				{
+					// check if the user wants to change their vote
+					if (vote.IsUpvote != isUpvote)
+					{
+						vote.IsUpvote = isUpvote;
+
+						// Push the score by two to account for the vote changing.
+						tagApp.Score = tagApp.Score + (isUpvote ? 2 : -2);
+						
+						// Commit Changes
+						_db.SaveChanges();
+						return (int)MovieActionsSuccessCode.VoteValueChanged;
+					}
+					else
+					{
+						return (int)MovieActionsErrorCode.UserAlreadyVoted;
+					}
+				}			
+				
 				vote = new Vote
 				{
 					SubmitterID = submitterID,
 					IsUpvote = isUpvote,
 					TagApplicationID = tagAppID,
+					VotedDateTime = DateTime.Now
 				};
 
-				var tagApp = _db.TagApplications.Where(ta => ta.TagApplicationID == tagAppID).FirstOrDefault();
 				tagApp.Score = tagApp.Score + (isUpvote ? 1: -1);
 
 				// Add the new vote and commit
@@ -61,7 +111,7 @@ namespace CrowdMovieTag.Logic
 			return 0;
 		}
 		
-		public int AddNewTagAndApply(string submitterID, int newTagType, string newTagName, int movieID)
+		public int AddNewTagAndApply(string submitterID, int newTagCategoryID, string newTagName, int movieID)
 		{
 			var userTag = _db.Tags.SingleOrDefault(t => String.Compare(newTagName.ToLower(), t.Name.ToLower()) == 0);
 			if (userTag != null) return (int)MovieActionsErrorCode.TagAlreadyExists;
@@ -69,23 +119,31 @@ namespace CrowdMovieTag.Logic
 			userTag = new Tag
 			{
 				Name = newTagName,
-				CategoryID = newTagType,
+				CategoryID = newTagCategoryID,
  				CreatedDateTime = DateTime.Now,
 				SubmitterID = submitterID
 			};
-
 			_db.Tags.Add(userTag);
 			_db.SaveChanges();
 
+			return ApplyExistingTagToMovie(submitterID, userTag.TagID, movieID);
+		}
+
+		public int ApplyExistingTagToMovie(string submitterID, int tagID, int movieID)
+		{
 			var newTagApplication = new TagApplication
 			{
 				SubmitterID = submitterID,
+				SubmittedDateTime = DateTime.Now,
 				MovieID = movieID,
-				Movie = _db.Movies.SingleOrDefault(m => m.MovieID == movieID),
-				TagID = userTag.TagID,
-				Tag = userTag,
+				TagID = tagID,
 				Score = 0
 			};
+
+			if (_db.TagApplications.FirstOrDefault(ta => (ta.TagID == tagID) && (ta.MovieID == movieID)) != null)
+			{
+				return (int)MovieActionsErrorCode.TagApplicationAlreadyExists;
+			}
 
 			_db.TagApplications.Add(newTagApplication);
 			_db.SaveChanges();

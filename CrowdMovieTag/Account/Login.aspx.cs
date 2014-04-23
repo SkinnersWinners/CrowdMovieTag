@@ -34,6 +34,10 @@ namespace CrowdMovieTag.Account
                 {
                     IdentityHelper.SignIn(manager, user, RememberMe.Checked);
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
+					using (var movieActions = new CrowdMovieTag.Logic.MovieActions())
+					{
+						movieActions.AddProfileForUserAfterLoginOrRegister(user.Id, user.UserName);
+					}
                 }
                 else
                 {

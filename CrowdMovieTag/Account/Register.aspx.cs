@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using CrowdMovieTag.Models;
+using CrowdMovieTag.Logic;
 
 namespace CrowdMovieTag.Account
 {
@@ -20,20 +21,9 @@ namespace CrowdMovieTag.Account
             {
                 IdentityHelper.SignIn(manager, user, isPersistent: false);
 				// showes Added: Create an entry in the Profiles table for this user
-				var newProfile = new Profile()
+				using (var movieActions = new MovieActions())
 				{
-					ProfileID = user.Id,
-					Username = user.UserName,
-					AvatarID = 0,
-					FirstName = null,
-					LastName = null,
-					Email = null,
-					DateJoined = DateTime.Now
-				};
-				using (MovieContext _db = new MovieContext())
-				{
-					_db.Profiles.Add(newProfile);
-					_db.SaveChanges();
+					movieActions.AddProfileForUserAfterLoginOrRegister(user.Id, user.UserName);
 				}
 
                 IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);

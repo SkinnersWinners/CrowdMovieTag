@@ -3,6 +3,7 @@ using Microsoft.Owin.Security;
 using System;
 using System.Web;
 using CrowdMovieTag.Models;
+using CrowdMovieTag.Logic;
 
 namespace CrowdMovieTag.Account
 {
@@ -40,6 +41,11 @@ namespace CrowdMovieTag.Account
                 if (user != null)
                 {
                     IdentityHelper.SignIn(manager, user, isPersistent: false);
+					// showes Added: Create an entry in the Profiles table for this user
+					using (var movieActions = new MovieActions())
+					{
+						movieActions.AddProfileForUserAfterLoginOrRegister(user.Id, user.UserName);
+					}
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                 }
                 else if (User.Identity.IsAuthenticated)
@@ -52,8 +58,13 @@ namespace CrowdMovieTag.Account
                     }
 
                     var result = manager.AddLogin(User.Identity.GetUserId(), verifiedloginInfo.Login);
-                    if (result.Succeeded)
+					if (result.Succeeded)
                     {
+						// showes Added: Create an entry in the Profiles table for this user
+						using (var movieActions = new MovieActions())
+						{
+							movieActions.AddProfileForUserAfterLoginOrRegister(user.Id, user.UserName);
+						}
                         IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                     }
                     else
@@ -95,6 +106,10 @@ namespace CrowdMovieTag.Account
                 if (result.Succeeded)
                 {
                     IdentityHelper.SignIn(manager, user, isPersistent: false);
+					using (var movieActions = new MovieActions())
+					{
+						movieActions.AddProfileForUserAfterLoginOrRegister(user.Id, user.UserName);
+					}
                     IdentityHelper.RedirectToReturnUrl(Request.QueryString["ReturnUrl"], Response);
                     return;
                 }
