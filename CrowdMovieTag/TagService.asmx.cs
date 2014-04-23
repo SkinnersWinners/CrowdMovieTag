@@ -29,12 +29,18 @@ namespace CrowdMovieTag
 		[WebMethod]
 		public CascadingDropDownNameValue[] GetTagCategories(string knownCategoryValues, string category)
 		{
-			List<String> categoryNames = TagFromQuery.TagTypeStringValues;
-			List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
-			for (int ii = 0; ii < categoryNames.Count; ++ii)
+
+			List<TagCategory> tagCategories;
+			using (var db = new MovieContext())
 			{
-				values.Add(new CascadingDropDownNameValue(categoryNames[ii], ii.ToString()));
+				tagCategories = db.TagCategories.ToList();
 			}
+			List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
+			foreach (var tagCategory in tagCategories)
+			{
+				values.Add(new CascadingDropDownNameValue(tagCategory.Name, tagCategory.TagCategoryID.ToString()));
+			}
+			
 			return values.ToArray();
 		}
 
@@ -69,7 +75,7 @@ namespace CrowdMovieTag
 			List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
 			foreach (Tag tag in tagsInCategory)
 			{
-				values.Add(new CascadingDropDownNameValue(tag.Label, tag.TagID.ToString()));
+				values.Add(new CascadingDropDownNameValue(tag.Name, tag.TagID.ToString()));
 			}
 			return values.ToArray();
 		}

@@ -24,21 +24,17 @@ namespace CrowdMovieTag.Models
 		[Required]
 		public int Score { get; set; } // updated with every action a user makes
 
-		[DisplayName("First Name")]
-		[StringLength(160)]
+		[StringLength(100)]
 		public string FirstName { get; set; }
-
-		[DisplayName("Last Name")]
-		[StringLength(160)]
+		
+		[StringLength(100)]
 		public string LastName { get; set; }
 
-		[DisplayName("Email Address")]
 		[RegularExpression(@"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",
 			ErrorMessage = "Email is is not valid.")]
 		[DataType(DataType.EmailAddress)]
 		public string Email { get; set; }
 
-		[DisplayName("Member Since")]
 		public DateTime DateJoined { get; set; }
 
 		public virtual ICollection<UserSearch>		SearchHistory { get; set; }

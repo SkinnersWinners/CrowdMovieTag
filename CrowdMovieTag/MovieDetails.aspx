@@ -42,20 +42,20 @@
 					<asp:BoundField HeaderText="Score" DataField="Score" />
 					<asp:TemplateField HeaderText="Type">
 						<ItemTemplate>
-							<%#: EvaluateTagTypeEnum(Item.TagTypeEnumID) %>
+							<%#: Item.TagCategoryName %>
 						</ItemTemplate>
 					</asp:TemplateField>
-					<asp:BoundField HeaderText="Tag" DataField="Label" />
+					<asp:BoundField HeaderText="Tag" DataField="TagName" />
 					<asp:TemplateField HeaderText="Vote">
 						<ItemTemplate>
 							<asp:Button ID="UpVote" runat="server"
 								CommandName="UpVote"
-								CommandArgument="<%#: Item.TagID %>" 
+								CommandArgument="<%#: Item.TagApplicationID %>" 
 								Text="+1"
 								CssClass="btn btn-primary btn-xs btn-success" />
 							<asp:Button ID="DownVote" runat="server"
 								CommandName="DownVote"
-								CommandArgument="<%#: Item.TagID %>" 
+								CommandArgument="<%#: Item.TagApplicationID %>" 
 								Text="-1"
 								CssClass="btn btn-primary btn-xs btn-danger" />
 						</ItemTemplate>
@@ -116,7 +116,8 @@
 			<div class="form-group" style="margin-left:0px; margin-top:0px">
 				<asp:DropDownList runat="server" 
 					ID="NewTagTypeDropDown" 
-					CssClass="form-control"></asp:DropDownList>
+					CssClass="form-control"
+					SelectMethod="GetTagCategories"></asp:DropDownList>
 				<asp:RequiredFieldValidator runat="server" 
 					ControlToValidate="NewTagTypeDropDown" 
 					InitialValue="-1"  

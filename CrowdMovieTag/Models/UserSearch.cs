@@ -13,6 +13,9 @@ namespace CrowdMovieTag.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int SearchID { get; set; }
 
+		[Required]
+		public DateTime SubmissionDate { get; set; }
+
 		[ForeignKey("Submitter"), StringLength(128)]
 		public string SubmitterID { get; set; }
 		public virtual Profile Submitter { get; set; }
@@ -21,7 +24,7 @@ namespace CrowdMovieTag.Models
 		public int TagID1 { get; set; }
 		public virtual Tag Tag1 { get; set; }
 
-		[ForeignKey("Tag2")]
+/*		[ForeignKey("Tag2")]
 		public int TagID2 { get; set; }
 		public virtual Tag Tag2 { get; set; }
 
@@ -35,7 +38,7 @@ namespace CrowdMovieTag.Models
 
 		[ForeignKey("Tag5")]
 		public int TagID5 { get; set; }
-		public virtual Tag Tag5 { get; set; }
+		public virtual Tag Tag5 { get; set; } */
 
 
 

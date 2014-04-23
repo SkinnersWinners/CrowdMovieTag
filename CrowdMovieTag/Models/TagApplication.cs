@@ -11,21 +11,24 @@ namespace CrowdMovieTag.Models
 	{
 		[Required, Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int ID { get; set; }
+		public int TagApplicationID { get; set; }
 
 		// Updated every time a vote is cast
 		[Required]
 		public int Score { get; set; }
 
 		[Required]
+		public DateTime SubmittedDateTime { get; set; }
+
+		[Required]
 		public int MovieID { get; set; }
 		public virtual Movie Movie { get; set; }
 
-		[Required]
+		//[Required]
 		public int TagID { get; set; }
 		public virtual Tag Tag { get; set; }
 
-		[Required, StringLength(128)]
+		[StringLength(128), ForeignKey("Submitter")]
 		public string SubmitterID { get; set; }
 		public virtual Profile Submitter { get; set; }
 

@@ -18,6 +18,7 @@ namespace CrowdMovieTag
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+			/*
 			List<ListItem> tagTypes = new List<ListItem>();
 			tagTypes.Add(new ListItem("-- Select One--", "-1"));
 			for (int ii = 0; ii < TagFromQuery.TagTypeStringValues.Count; ++ii)
@@ -28,7 +29,7 @@ namespace CrowdMovieTag
 			NewTagTypeDropDown.DataTextField = "Text";
 			NewTagTypeDropDown.DataValueField = "Value";
 			NewTagTypeDropDown.DataSource = tagTypes;
-			NewTagTypeDropDown.DataBind();
+			NewTagTypeDropDown.DataBind();*/
         }
 
 		protected override void OnPreRenderComplete(EventArgs e)
@@ -137,7 +138,12 @@ namespace CrowdMovieTag
 			return query;
 		}
 
-		public IQueryable<TagFromQuery> GetTagsForMovie([QueryString("movieID")] int? movieID)
+		public IQueryable<TagCategory> GetTagCategories()
+		{
+			return new CrowdMovieTag.Models.MovieContext().TagCategories.AsQueryable();
+		}
+
+		public IEnumerable<TagFromQuery> GetTagsForMovie([QueryString("movieID")] int? movieID)
 		{
 			if (!movieID.HasValue)
 			{
@@ -145,18 +151,38 @@ namespace CrowdMovieTag
 			}
 
 			var _db = new CrowdMovieTag.Models.MovieContext();
-			IQueryable<TagFromQuery> tags = from tagApp in _db.TagApplications
+
+				
+				
+
+			ICollection<TagApplication> tagApps = _db.Movies.FirstOrDefault(m => m.MovieID == movieID).TagApplications;
+			
+			
+
+			var queryTags =
+												(from t in tagApps
+												 where true
+												 orderby t.Score descending
+												 select new TagFromQuery
+												 {
+														TagApplicationID = t.TagApplicationID,
+														TagName = t.Tag.Name,
+														TagCategoryName = t.Tag.Category.Name,
+														Score = t.Score
+													});
+			
+			/*IQueryable<TagFromQuery> tags = from tagApp in _db.TagApplications
 											where tagApp.MovieID == movieID
 											orderby tagApp.Score descending
 											select new TagFromQuery
 											{
 												TagID = tagApp.Tag.TagID,
 												TagTypeEnumID = tagApp.Tag.CategoryID,
-												Label = tagApp.Tag.Label,
+												Label = tagApp.Tag.Name,
 												Score = tagApp.Score
-											};
+											}; */
 
-			return tags;
+			return queryTags;
 		}
 
 	}

@@ -193,14 +193,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Images\CrowdTagMovieTheater.png" />
-    <Content Include="Images\Director.png" />
-    <Content Include="Images\Extra.png" />
+    <Content Include="Images\Avatars\Director.png" />
+    <Content Include="Images\Avatars\Extra.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Images\HollywoodStar.png" />
+    <Content Include="Images\Avatars\HollywoodStar.png" />
     <Content Include="MovieDetails.aspx" />
     <Content Include="TagService.asmx" />
     <None Include="DevNotes\Notes.md" />
-    <Content Include="Images\Oscar.png" />
+    <Content Include="Images\Avatars\Oscar.png" />
     <Content Include="packages.config" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -244,7 +244,7 @@
     <Content Include="Global.asax" />
     <Content Include="SearchResults.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="Images\SupportingActor.png" />
+    <Content Include="Images\Avatars\SupportingActor.png" />
     <Content Include="TermsAndConditions.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
@@ -296,7 +296,7 @@
     <Compile Include="Account\RegisterExternalLogin.aspx.designer.cs">
       <DependentUpon>RegisterExternalLogin.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProfileAvatar.cs" />
+    <Compile Include="Models\Avatar.cs" />
     <Compile Include="Models\TagApplication.cs" />
     <Compile Include="Models\TagCategory.cs" />
     <Compile Include="Models\UserSearch.cs" />

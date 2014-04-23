@@ -11,6 +11,7 @@ namespace CrowdMovieTag.Models
 		{
 
 		}
+
 		public DbSet<Avatar>			Avatars { get; set; }
 		public DbSet<Profile>			Profiles { get; set; }
 		public DbSet<Movie>				Movies { get; set; }
@@ -25,7 +26,8 @@ namespace CrowdMovieTag.Models
 
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Profile>()
+			modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+			/*modelBuilder.Entity<Profile>()
 				.HasRequired(p => p.TagApplications)
 				.WithMany()
 				.WillCascadeOnDelete(false);
@@ -44,7 +46,7 @@ namespace CrowdMovieTag.Models
 				.HasRequired(ta => ta.Votes)
 				.WithMany()
 				.WillCascadeOnDelete(false);
-
+			*/
 
 
 		}

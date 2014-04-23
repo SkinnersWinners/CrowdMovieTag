@@ -16,23 +16,42 @@ namespace CrowdMovieTag.Models
 		protected override void Seed(MovieContext context)
 		{
 
-			AddStoredProcedures(context);
+			//AddStoredProcedures(context);
 
-			var profiles = GetProfiles();
-			var movies = GetMovies(profiles);
-			var tags = GetTags(profiles);
-			var tagApps = GetTagApplications(profiles, movies, tags);
-			var votes = GetVotes(profiles, tagApps);
+			var avatars = GetAvatars();
+			avatars.ForEach(a => context.Avatars.Add(a));
 
+			var categories = GetTagCategories();
+			categories.ForEach(c => context.TagCategories.Add(c));
 
+			context.SaveChanges(); 
+			//------------------------------Save------------------//
+			// Avatar and Category IDs are now valid
+
+			var profiles = GetProfiles(avatars);
 			profiles.ForEach(p => context.Profiles.Add(p));
-			movies.ForEach(m => context.Movies.Add(m));
+
+			var tags = GetTags(profiles, categories);
 			tags.ForEach(t => context.Tags.Add(t));
-			tagApps.ForEach(ta => context.TagApplications.Add(ta));
-			votes.ForEach(v => context.Votes.Add(v));
+			context.SaveChanges();
+
+			var movies = GetMovies(profiles);
+			movies.ForEach(m => context.Movies.Add(m));
+			context.SaveChanges();
 
 			
+			//------------------------------Save------------------//
+			// TagIDs and Movie IDs are now valid
 
+			var tagApps = GetTagApplications(profiles, movies, tags);
+			tagApps.ForEach(ta => context.TagApplications.Add(ta));
+			context.SaveChanges();
+			//------------------------------Save------------------//
+			// TagAppIDs are now valid
+
+			var votes = GetVotes(profiles, tagApps);
+			votes.ForEach(v => context.Votes.Add(v));
+			context.SaveChanges();
 		}
 
 		private static void AddStoredProcedures(MovieContext context)
@@ -56,34 +75,111 @@ namespace CrowdMovieTag.Models
 
 		}
 
-		private static List<Profile> GetProfiles()
+		// ---------- No dependencies -----------//
+		private static List<Avatar> GetAvatars()
 		{
-			var profiles = new List<Profile> {
-				new Profile
-				{
-					ProfileID = Guid.NewGuid().ToString(),
-					Username = "showes",
-					AvatarID = 2,
-					FirstName = "Sam",
-					LastName = "Howes",
-					Email = "showes06@gmail.com",
-					DateJoined = DateTime.Now
-				},
-				new Profile	
-				{
-					ProfileID = Guid.NewGuid().ToString(),
-					Username = "tmerrell",
-					AvatarID = 1,
-					FirstName = "Trent",
-					LastName = "Merrell",
-					Email = "trent.merrell@gmail.com",
-					DateJoined = DateTime.Now
-				}
-			};
+			var avatarNames = new List<String>(new string[] {
+				"Extra", "Supporting Role", "Movie Star", "Oscar Winner"
+			});
 
-			return profiles;
+			var avatars = new List<Avatar>();
+			foreach (var name in avatarNames)
+			{
+				avatars.Add(new Avatar
+				{
+					Name = name,
+					ImageURL = "~/Images/Avatars/" + name.Replace(" ", "") + ".png"
+				});
+			}
+			return avatars;
 		}
 
+		private static List<TagCategory> GetTagCategories()
+		{
+			List<String> names = new List<String> {
+				"General",
+				"Genre",
+				"Thematic Element",
+				"Actor/Actress",
+				"Time Period/Era",
+				"Location"
+			};
+
+			var categories = new List<TagCategory>();
+			foreach (var name in names)
+			{
+				categories.Add(new TagCategory
+				{
+					Name = name,
+					Description = name
+				});
+			}
+			return categories;
+		}
+
+		// ---------- Linear Dependence -----------//
+		private static List<Profile> GetProfiles(List<Avatar> avatars)
+		{
+			var userNames = new List<String>(new string[] {
+				"Steve Black", "Sam Howes", "Trent Merrell", "Tom Skinner", "Your Mom", "Ari Trachtenberg", "President Obama", "Steve Jobs", "Ashton Kutcher", "Bill Gates", "Tony Stark", "Tony Hawk"
+			});
+
+			int avatarIndex = 0;
+			var profiles = new List<Profile>();
+			foreach (var name in userNames)
+			{
+				profiles.Add(new Profile
+				{
+					ProfileID = Guid.NewGuid().ToString(),
+					Username = name.Replace(" ", ""),
+					FirstName = name.Split(' ')[0],
+					LastName = name.Split(' ')[1],
+					Email = name[0].ToString() + name.Split(' ')[1] + "@gmail.com",
+ 					DateJoined = DateTime.Now,
+					AvatarID = avatars[avatarIndex].AvatarID,
+					Score = 0
+				});
+
+				avatarIndex = (avatarIndex + 1) % avatars.Count;
+			}
+
+			var check = false;
+			if (check)
+			{
+				throw new Exception("Check the AvatarID! Is it null?");
+			}
+			return profiles;
+			
+		}
+
+		private static List<Tag> GetTags(List<Profile> profiles, List<TagCategory> categories)
+		{
+			var tagNames = new List<String>(new string[] {
+				"Action","Drama", "Comedy", "Romance", "Adventure", "Crime", "Faction", "Fantasy", "Sci-Fi", "Awesomeness", "Terror", "Awe", "GoodPhotography"
+			});
+
+			int profileIndex = 0;
+			var tags = new List<Tag>();
+			foreach (var name in tagNames)
+			{
+				tags.Add(new Tag
+				{
+					SubmitterID = profiles[profileIndex].ProfileID,
+					CategoryID = (int)TagTypeEnum.Genre,
+					Name = name,
+					CreatedDateTime = DateTime.Now
+				});
+				profileIndex = (profileIndex + 1) % profiles.Count;
+			}
+			var check = false;
+			if (check)
+			{
+				throw new Exception("Check the TagID! Is it null?");
+			}
+			return tags;
+		}
+
+		// ---------- Depends on Unsaved Profiles -----------//
 		private static List<Movie> GetMovies(List<Profile> profiles)
 		{
 			var titles = new List<String>(new string[] {
@@ -94,74 +190,37 @@ namespace CrowdMovieTag.Models
 				new Movie
 				{
 					Title = "The Shawshank Redemption",
+					DateAdded = DateTime.Now,
 					Year = 1994,
 					Description = "Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency."
 				}
 			};
 
+			Random rand = new Random();
 			foreach (var title in titles)
 			{
+				int year = rand.Next(1800, 2014);
 				movies.Add(new Movie
 				{
 					Title = title,
-					Year = 1992,
+					DateAdded = DateTime.Now,
+					Year = year,
 					Description = "Default Description"
 				});
 			}
 
-			// Assign a submitter ID to all the movies
+			// Assign a submitterID to all the movies
 			int profileIndex = 0;
-			int profileCount = profiles.Count;
 			foreach (var movie in movies)
 			{
 				movie.SubmitterID = profiles[profileIndex].ProfileID;
-				profileIndex = (profileIndex + 1) % profileCount;
+				profileIndex = (profileIndex + 1) % profiles.Count;
 			}
 
 			return movies;
 		}
 
-		private static List<Tag> GetTags(List<Profile> profiles)
-		{
-			var genreLabels = new List<String>(new string[] {
-				"Action","Drama", "Comedy", "Romance", "Adventure", "Crime", "Faction", "Fantasy", "Sci-Fi"
-			});
-
-			var elementLabels = new List<String>(new string[] {
-				"Awesomeness", "Terror", "Awe", "GoodPhotography"
-			});
-
-			var tags = new List<Tag>();
-			foreach (var label in genreLabels)
-			{
-				tags.Add(new Tag
-				{
-					CategoryID = (int)TagTypeEnum.Genre,
-					Label = label
-				});
-			}
-
-			foreach (var label in elementLabels)
-			{
-				tags.Add(new Tag
-				{
-					CategoryID = (int)TagTypeEnum.Element,
-					Label = label
-				});
-			}
-
-
-			int profileIndex = 0;
-			foreach (var tag in tags)
-			{
-				tag.SubmitterID = profiles[profileIndex].ProfileID;
-				tag.CreatedDateTime = DateTime.Now;
-				profileIndex = (profileIndex + 1) % profiles.Count;
-			}
-
-			return tags;
-		}
-
+		// ---------- Depends on TagID, MovieID and unsaved Profile -----------//
 		private static List<TagApplication> GetTagApplications(List<Profile> profiles, List<Movie> movies, List<Tag> tags)
 		{
 			int profileIndex = 0;
@@ -174,12 +233,14 @@ namespace CrowdMovieTag.Models
 			{
 				tagApps.Add(new TagApplication
 				{
-					SubmitterID = profiles[profileIndex].ProfileID,
-					TagID		= tags[tagIndex].TagID,
-					Tag			= tags[tagIndex],
-					MovieID		= movies[movieIndex].MovieID,
-					Movie		= movies[movieIndex],
-					Score		= 0
+					SubmitterID			= profiles[profileIndex].ProfileID,
+				//	Submitter			= profiles[profileIndex],
+					Score				= 0,
+					SubmittedDateTime	= DateTime.Now,
+					TagID				= tags[tagIndex].TagID,
+				//	Tag					= tags[tagIndex],
+					MovieID				= movies[movieIndex].MovieID
+				//	Movie				= movies[movieIndex]
 				});
 
 				profileIndex = (profileIndex + 1) % profiles.Count;
@@ -189,36 +250,39 @@ namespace CrowdMovieTag.Models
 			return tagApps;
 		}
 
+		// ---------- Depends on TagAppID -----------//
 		private static List<Vote> GetVotes(List<Profile> profiles, List<TagApplication> tagApps)
 		{
-			int profileIndex = 0;
-			int upVoteCount = 0;
-			bool isUpVote = true;
-
+			
 			var votes = new List<Vote>();
+
+			int currentScore = profiles.Count - 1;
+			int increment = 2;
 
 			foreach (var tagApp in tagApps)
 			{
-				if (profiles[profileIndex].ProfileID == tagApp.SubmitterID)
+				bool isUpVote = true;
+				for (int ii = 0; ii < profiles.Count;  ++ii)
 				{
-					profileIndex = (profileIndex + 1) % profiles.Count;
+					if (ii == currentScore)
+					{
+						isUpVote = !isUpVote;
+					}
+					var profile = profiles[ii];
+					if (String.Compare(profile.ProfileID, tagApp.SubmitterID) == 0) continue;
+
+					votes.Add(new Vote
+					{
+						SubmitterID		= profile.ProfileID,
+						VotedDateTime	= DateTime.Now,
+						IsUpvote		= isUpVote,
+						TagApplicationID= tagApp.TagApplicationID,
+					});
+
+					tagApp.Score += (isUpVote ? 1 : -1);
 				}
-				
-				votes.Add(new Vote
-				{
-					SubmitterID = profiles[profileIndex].ProfileID,
-					IsUpvote = isUpVote,
-					TagApplicationID = tagApp.ID,
-				});
-
-				tagApp.Score += (isUpVote ? 1 : -1);
-
-				upVoteCount = (upVoteCount + 1) % 3;
-				if (upVoteCount == 0) isUpVote = !isUpVote;
-				
-				profileIndex = (profileIndex + 1) % profiles.Count;
+				currentScore -= increment;
 			}
-
 			return votes;
 		}
 	}

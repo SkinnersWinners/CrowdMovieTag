@@ -13,7 +13,11 @@ namespace CrowdMovieTag.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int TagCategoryID {get; set;}
 
+		[Required, StringLength(50)]
 		public string Name { get; set; }
+
+		[Required, StringLength(50)]
+		public string Description;
 
 		public virtual ICollection<Tag> Tags { get; set; }
 	}

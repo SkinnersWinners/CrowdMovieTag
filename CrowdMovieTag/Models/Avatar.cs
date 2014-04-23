@@ -12,8 +12,10 @@ namespace CrowdMovieTag.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public int AvatarID { get; set; }
 
-		public int Name { get; set; }
+		[Required, StringLength(50)]
+		public string Name { get; set; }
 
+		[StringLength(500)]
 		public string ImageURL { get; set; }
 
 	}

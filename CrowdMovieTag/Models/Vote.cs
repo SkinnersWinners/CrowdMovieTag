@@ -6,9 +6,11 @@ namespace CrowdMovieTag.Models
 {
 	public class Vote
 	{
-		[ScaffoldColumn(false)]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public int ID { get; set; }
+		public int VoteID { get; set; }
+
+		[Required]
+		public System.DateTime VotedDateTime { get; set; }
 
 		[Required]
 		public bool IsUpvote { get; set; }
@@ -18,7 +20,7 @@ namespace CrowdMovieTag.Models
 		public virtual TagApplication TagApplication {get; set;}
 
 
-		[ForeignKey("Submitter")]
+		[ForeignKey("Submitter"), StringLength(128)]
 		public string SubmitterID { get; set; }
 		public virtual Profile Submitter { get; set; }
 

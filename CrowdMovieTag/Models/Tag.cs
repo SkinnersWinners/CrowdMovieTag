@@ -29,8 +29,8 @@ namespace CrowdMovieTag.Models
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)] 
 		public int TagID { get; set; }
 
-		[Required, StringLength(50), Display(Name = "Tag Name")]
-		public string Label { get; set; }
+		[Required, StringLength(50)]
+		public string Name { get; set; }
 
 		[ForeignKey("Category")]
 		public int CategoryID { get; set; }

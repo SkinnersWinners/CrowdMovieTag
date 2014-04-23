@@ -46,7 +46,7 @@ namespace CrowdMovieTag.Logic
 					TagApplicationID = tagAppID,
 				};
 
-				var tagApp = _db.TagApplications.Where(ta => ta.ID == tagAppID).FirstOrDefault();
+				var tagApp = _db.TagApplications.Where(ta => ta.TagApplicationID == tagAppID).FirstOrDefault();
 				tagApp.Score = tagApp.Score + (isUpvote ? 1: -1);
 
 				// Add the new vote and commit
@@ -63,12 +63,12 @@ namespace CrowdMovieTag.Logic
 		
 		public int AddNewTagAndApply(string submitterID, int newTagType, string newTagName, int movieID)
 		{
-			var userTag = _db.Tags.SingleOrDefault(t => String.Compare(newTagName.ToLower(), t.Label.ToLower()) == 0);
+			var userTag = _db.Tags.SingleOrDefault(t => String.Compare(newTagName.ToLower(), t.Name.ToLower()) == 0);
 			if (userTag != null) return (int)MovieActionsErrorCode.TagAlreadyExists;
 
 			userTag = new Tag
 			{
-				Label = newTagName,
+				Name = newTagName,
 				CategoryID = newTagType,
  				CreatedDateTime = DateTime.Now,
 				SubmitterID = submitterID
