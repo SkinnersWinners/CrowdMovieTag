@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 	
-	<asp:FormView runat="server" ID="EditProfileForm" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile" >
+	<asp:FormView runat="server" ID="EditProfileForm" BackColor="Transparent" ItemType="CrowdMovieTag.Models.Profile" SelectMethod="GetProfile" >
 		<EmptyDataTemplate>
 			<h1>User not found</h1>
 			<p>Please log out, and log back in again to retry.</p>

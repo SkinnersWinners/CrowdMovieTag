@@ -2,7 +2,6 @@
 
 <asp:Content ID="BodyContent" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <br />
     <h2>Contact Us:</h2>
 
     <h3>CrowdTag.com, AlmostanInc.</h3>

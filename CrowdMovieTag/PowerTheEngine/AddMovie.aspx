@@ -2,16 +2,13 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <br />
-    <br />
     <h2>Power the Engine:</h2>
     <br />
 
  
 	<!-----------------------Panel----------------------------->
 	<div class="panel panel-default panel-info">
-		<div class="panel-heading" style="margin-top:-0px">
-			<h3>Add A Movie:</h3>
-		</div>
+		<div class="panel-heading">Add A Movie:</div>
 		<div class="panel-body">
 
 			<!-----------------------Enter Title----------------------------->

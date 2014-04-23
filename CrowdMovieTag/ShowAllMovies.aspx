@@ -2,9 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
 <br />
-<br />
-<h3>Where We Go One, We Go All:</h3>
-<h5>Name that movie...</h5>
+<h2>Where We Go One, We Go All:</h2>
 <br />
 
 <!-----------------------Panel Begins----------------------------->
