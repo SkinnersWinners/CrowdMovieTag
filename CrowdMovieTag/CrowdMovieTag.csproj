@@ -159,6 +159,7 @@
     <Content Include="App_Code\SQL_stored_procedures\dbo.AdvancedSearch.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.ApplyTag.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.ProfileRecentMoviesAdded.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.ProfileRecentTagsApplied.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.UpdateAvatar.sql" />
     <Content Include="App_Code\populate_DB_script.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
