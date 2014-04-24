@@ -11,6 +11,13 @@
 
 			<hr style="margin-top:10px">
 
+			<label>Submitted By:
+				<a href="UserProfile?username=<%#: Item.Submitter.Username%>"><%#: Item.Submitter.Username %></a></label>
+			<label><%#: CrowdMovieTag.Utilities.ControllerUtilities.GetElapsedTimeAsString(Item.DateAdded) %></label>
+			
+			<br />
+			<br />
+
 			<!-----------------------Movie Description Panel----------------------------->
 			<div class="panel panel-default">
 				<div class="panel-heading">Movie Description:</div>

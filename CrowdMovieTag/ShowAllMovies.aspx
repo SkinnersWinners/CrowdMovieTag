@@ -41,7 +41,7 @@
 							<td><%#: (string)Item.Item1.Second %></td>
 							<td><%#: (string)Item.Item1.First %></td>
 							<td>
-								<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
+								<a href="MovieDetails?movieID=<%#: Item.Item2.MovieID %>">
 									<button type="button" class="btn btn-primary btn-xs btn-info">  
 										Movie Page
 									</button>
