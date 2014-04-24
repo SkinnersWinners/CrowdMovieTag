@@ -51,8 +51,9 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/UserProfile"> Profile </a></li>
                         <li><a runat="server" href="~/PowerTheEngine/AddMovie"> Add Movie </a></li>
-                        <li><a runat="server" href="~/AdvancedSearch"> Advanced Search </a></li>
-                        <li><a runat="server" href="~/ShowAllMovies"> All Movies </a></li>
+                        <li><a runat="server" href="~/AdvancedSearch"> Search </a></li>
+                        <li><a runat="server" href="~/ShowAllMovies"> Browse Movies </a></li>
+                        <li><a runat="server" href="~/RewardsPoints"> Points </a></li>
                         <li><a runat="server" href="~/About"> About </a></li>
                         <!--<li><a runat="server" href="~/Contact"> Contact </a></li>-->
                     </ul>

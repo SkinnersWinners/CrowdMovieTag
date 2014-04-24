@@ -12,17 +12,17 @@
 			</EmptyDataTemplate>
 			<ItemTemplate>
 				<br />	      		
-				<div style="float:left; width:1.5in; height:100%">
-					<img runat="server" src="<%#: Item.Avatar.ImageURL %>" />
+				<div style="float:left; height:100%">
+					<img runat="server" style="width:2.70in" src="<%#: Item.Avatar.ImageURL %>" />
 				</div>
 
 				<br />
 
-				<h2 style="margin-left:2in"><%#: Item.Avatar.Name %>: <%#: Item.FirstName + " " + Item.LastName %></h2>
-				<h4 style="margin-left:2in">Username: <label id="userName"><%#: Item.Username %></label></h4>
-				<h4 style="margin-left:2in">Member since: <label id="userRegDate"><%#: Item.DateJoined.Year %></label></h4>
+				<h2 style="margin-left:3in"><%#: Item.Avatar.Name %>: <%#: Item.FirstName + " " + Item.LastName %></h2>
+				<h4 style="margin-left:3in">Username: <label id="userName"><%#: Item.Username %></label></h4>
+				<h4 style="margin-left:3in">Member since: <label id="userRegDate"><%#: Item.DateJoined.Year %></label></h4>
 				
-				<h4 style="margin-left:2in">Profile Score: <label id="userProfileRank"><%#: Item.Score %></label></h4>
+				<h4 style="margin-left:3in">Profile Score: <label id="userProfileRank"><%#: Item.Score %></label></h4>
 			</ItemTemplate>
 		</asp:FormView>
 			

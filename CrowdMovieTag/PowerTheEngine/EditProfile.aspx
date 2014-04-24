@@ -7,7 +7,7 @@
 			<h1>User not found</h1>
 			<p>Please log out, and log back in again to retry.</p>
 		</EmptyDataTemplate>
-		<ItemTemplate>
+		<ItemTemplate >
 			<asp:HiddenField ID="HiddenProfileID" Value="<%#: Item.ProfileID %>" runat="server" />
 			
 				<h1><%#: Item.Username %></h1>
