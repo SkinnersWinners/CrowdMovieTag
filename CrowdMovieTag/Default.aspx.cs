@@ -13,5 +13,12 @@ namespace CrowdMovieTag
 		{
 
 		}
+
+		public void TagSearch_Click(object sender, EventArgs e)
+		{
+			string userText = Server.UrlEncode(TagSearchTextBox.Text);
+			Response.Redirect("~/ShowAllMovies?search=" + userText);
+		}
+
 	}
 }

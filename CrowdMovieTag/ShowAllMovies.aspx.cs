@@ -4,8 +4,10 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Microsoft.AspNet.Identity;
 using CrowdMovieTag.Models;
 using CrowdMovieTag.Utilities;
+using CrowdMovieTag.Logic;
 
 namespace CrowdMovieTag
 {
@@ -13,10 +15,30 @@ namespace CrowdMovieTag
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-			BindDataControls();
+			
+			
+			if (!IsPostBack)
+			{
+				string searchText = Request.QueryString["search"];
+				if (searchText != null)
+				{
+					searchText = Server.UrlDecode(searchText);
+					List<MovieResultClass> results;
+					using (var movieActions = new MovieActions())
+					{
+						results = movieActions.SearchForMovies(User.Identity.GetUserId().ToString(), new List<String> { searchText });
+					}
+
+					BindDataControls(results);
+				}
+				else
+				{
+					BindDataControls(null);
+				}
+			}
         }
 
-		public void BindDataControls()
+		public void BindDataControls(List<MovieResultClass> searchResults)
 		{
 			using (var db = new MovieContext())
 			{
@@ -25,13 +47,30 @@ namespace CrowdMovieTag
 				List<List<String>> topTagNames = new List<List<String>>();
 				try
 				{
-					var movieQuery = (from m in db.Movies
+					if (searchResults != null)
+					{
+						topMovies = new List<Movie>();
+						foreach (var result in searchResults)
+						{
+							var movie = db.Movies.FirstOrDefault(m => m.MovieID == result.MovieID);
+							
+							if (movie != null) topMovies.Add(movie);
+						}
+					}
+					else
+					{
+						var movieQuery = (from m in db.Movies
 									  orderby m.DateAdded descending
 									  select m).Take(magicNumber);
+						if (movieQuery != null)
+						{
+							topMovies = movieQuery.ToList();
+						}
+					}
+					 
 
-					if (movieQuery != null)
+					if (topMovies != null && topMovies.Count != 0)
 					{
-						topMovies = movieQuery.ToList();
 						// For each movie get the top 5 tag names
 						foreach (var movie in topMovies)
 						{

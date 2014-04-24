@@ -11,28 +11,43 @@ namespace CrowdMovieTag.Utilities
 		{
 			TimeSpan elapsed = DateTime.Now - time;
 			string timestamp;
+			string unit = "";
+			int number = -1;
+
 			if (elapsed.Days > 30)
 			{
-				timestamp = String.Format("{0} Months ago", Math.Ceiling(elapsed.Days / (365.25 / 12)));
-			}
-			else if (elapsed.Days >= 1)
-			{
-				timestamp = String.Format("{0} Days ago", elapsed.Days);
-			}
-			else if (elapsed.Hours >= 1)
-			{
-				timestamp = String.Format("{0} Hours ago", elapsed.Hours);
-			}
-			else if (elapsed.Minutes >= 1)
-			{
-				if (elapsed.Minutes == 1)
+				number = (int)Math.Ceiling(elapsed.Days / (365.25 / 12));
+				if (number < 12)
 				{
-					timestamp = String.Format("{0} Minute ago", 1);
+					unit = "Month";
 				}
 				else
 				{
-					timestamp = String.Format("{0} Minutes ago", elapsed.Minutes);
+					number = number / 12;
+					unit = "Year";
 				}
+				
+			}
+			else if (elapsed.Days >= 1)
+			{
+				number = elapsed.Days;
+				unit = "Day";
+			}
+			else if (elapsed.Hours >= 1)
+			{
+				number = elapsed.Hours;
+				unit = "Hour";
+			}
+			else if (elapsed.Minutes >= 1)
+			{
+				number = elapsed.Minutes;
+				unit = "Minute";
+			}
+
+			if (number != -1)
+			{
+				if (number > 1) unit += "s";
+				timestamp = String.Format("{0} {1} ago", number, unit);
 			}
 			else
 			{

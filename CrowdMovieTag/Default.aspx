@@ -4,8 +4,34 @@
 <!------------- BACKGROUND GRAPHIC ----------------------->
     <div style="background-image: url('/Images/CrowdTagMovieTheater.png'); background-size:100%; height: 650px; width: 975px; margin-top:0px; background-repeat: no-repeat;">
         <div class="form-group" style="position:relative; top: 370px; left: 40px;">
-            <input type="text" class="form-control" id="quickSearch" placeholder="Quick Search: Enter a single tag...">
-            <button type="button" class="btn btn-primary">Search</button>        
+            
+			<asp:TextBox 
+					CssClass="form-control" 
+					ID="TagSearchTextBox" 
+					placeholder="Quick Search: Enter a single tag..." 
+					runat="server"></asp:TextBox> 
+				<asp:RequiredFieldValidator ID="RequiredFieldValidator2" 
+					runat="server"
+					CssClass="validator" 
+					Text="* Tag name is required" 
+					ControlToValidate="TagSearchTextBox" 
+					SetFocusOnError="true" 
+					Display="Dynamic"
+					></asp:RequiredFieldValidator>
+				<asp:RegularExpressionValidator 
+						ID="RegexValidator1" runat="server" 
+						Display="Dynamic"
+						CssClass="validator"
+						Text="* Name must not contain spaces or special characters" 
+						ControlToValidate="TagSearchTextBox" 
+						ValidationExpression="^[A-Z\-a-z0-9_]+$"
+						></asp:RegularExpressionValidator>
+			
+				<asp:Button CssClass="btn btn-primary" 
+					CausesValidation="true" 
+					Text="Search"
+					runat="server" 
+					 OnClick="TagSearch_Click" />        
         </div>
     </div>
 

@@ -13,30 +13,30 @@ namespace CrowdMovieTag {
     public partial class _Default {
         
         /// <summary>
-        /// vacationDate control.
+        /// TagSearchTextBox control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox vacationDate;
+        protected global::System.Web.UI.WebControls.TextBox TagSearchTextBox;
         
         /// <summary>
-        /// ddlApplyTagCategory control.
+        /// RequiredFieldValidator2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlApplyTagCategory;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator RequiredFieldValidator2;
         
         /// <summary>
-        /// CascadingDropDown1 control.
+        /// RegexValidator1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::AjaxControlToolkit.CascadingDropDown CascadingDropDown1;
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegexValidator1;
     }
 }

@@ -178,10 +178,7 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddSearch.sql" />
     <Content Include="App_Code\SQL_stored_procedures\dbo.AdvancedSearch.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.ProfileRecentMoviesAdded.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\001_populate_DB_script.sql" />
     <Content Include="Images\AddMoviePoints.png" />
     <Content Include="Images\AddNewTag.png" />
     <Content Include="Images\PointsExplained.png" />

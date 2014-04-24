@@ -9,6 +9,7 @@ using System.Web.ModelBinding;
 using System.Web.Routing;
 using CrowdMovieTag.Models;
 using CrowdMovieTag.Logic;
+using CrowdMovieTag.Utilities;
 using Microsoft.AspNet.Identity;
 using AjaxControlToolkit;
 
@@ -33,7 +34,15 @@ namespace CrowdMovieTag
 			if (!IsPostBack)
 			{
 				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
-				
+				if (movieID == 0)
+				{
+					PanelToHidePageWhenNoMovie.Visible = false;
+
+				}
+				else
+				{
+					PanelToHidePageWhenNoMovie.Visible = true;
+				}
 				BindDataControls(movieID);
 				
 			}
@@ -90,12 +99,12 @@ namespace CrowdMovieTag
 							DateTime lastVoteTime = (from v in tagApp.Votes
 													 orderby v.VotedDateTime descending
 													 select v.VotedDateTime).FirstOrDefault();
-							lastVoteString = GetElapsedTimeAsString(lastVoteTime);
+							lastVoteString = ControllerUtilities.GetElapsedTimeAsString(lastVoteTime);
 						}
 
 						bindingValues.Add(Tuple.Create(
 							new Pair(
-								GetElapsedTimeAsString(tagApp.SubmittedDateTime),
+								ControllerUtilities.GetElapsedTimeAsString(tagApp.SubmittedDateTime),
 								lastVoteString
 							),
 							tagApp)
@@ -115,39 +124,7 @@ namespace CrowdMovieTag
 			}
 		}
 
-		public string GetElapsedTimeAsString(DateTime time)
-		{
-			TimeSpan elapsed = DateTime.Now - time;
-			string timestamp;
-			if (elapsed.Days > 30)
-			{
-				timestamp = String.Format("{0} Months ago", Math.Ceiling(elapsed.Days / (365.25 / 12)));
-			}
-			else if (elapsed.Days >= 1)
-			{
-				timestamp = String.Format("{0} Days ago", elapsed.Days);
-			}
-			else if (elapsed.Hours >= 1)
-			{
-				timestamp = String.Format("{0} Hours ago", elapsed.Hours);
-			}
-			else if (elapsed.Minutes >= 1)
-			{
-				if (elapsed.Minutes == 1)
-				{
-					timestamp = String.Format("{0} Minute ago", 1);
-				}
-				else
-				{
-					timestamp = String.Format("{0} Minutes ago", elapsed.Minutes);
-				}
-			}
-			else
-			{
-				timestamp = "Just Now";
-			}
-			return timestamp;
-		}
+		
 	
 		public void ClearStatusLabels()
 		{

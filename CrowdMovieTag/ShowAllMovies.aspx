@@ -23,10 +23,10 @@
 						<thead>
 							<tr>
 								<th>#</th>
-								<th>Added:</th>
 								<th>Movie Title:</th>
 								<th>Year:</th>
 								<th>Top 5 tags:</th>
+								<th>Added:</th>
 								<th>More Information:</th>
 							</tr>
 						</thead>
@@ -36,10 +36,10 @@
 					<ItemTemplate>
 						<tr>
 							<td><%#: Container.ItemIndex + 1 %></td>
-							<td><%#: (string)Item.Item1.First %></td>
 							<td><%#: Item.Item2.Title %></td>
 							<td><%#: Item.Item2.Year %></td>
 							<td><%#: (string)Item.Item1.Second %></td>
+							<td><%#: (string)Item.Item1.First %></td>
 							<td>
 								<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
 									<button type="button" class="btn btn-primary btn-xs btn-info">  

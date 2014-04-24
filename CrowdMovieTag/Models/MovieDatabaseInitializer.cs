@@ -17,7 +17,7 @@ namespace CrowdMovieTag.Models
 		protected override void Seed(MovieContext context)
 		{
 
-			//AddStoredProcedures(context);
+			AddStoredProcedures(context);
 
 			var avatars = GetAvatars();
 			avatars.ForEach(a => context.Avatars.Add(a));
@@ -57,10 +57,8 @@ namespace CrowdMovieTag.Models
 
 		private static void AddStoredProcedures(MovieContext context)
 		{
-			
-
 			var path = HttpContext.Current.Server.MapPath("~/App_Code/SQL_stored_procedures");
-			var sqlFiles = Directory.GetFiles(path, "*.sql").OrderBy(s => s);
+			var sqlFiles = Directory.GetFiles(path, "dbo.*.sql").OrderBy(s => s);
 			foreach (string fileName in sqlFiles)
 			{
 				string sqlCode = File.ReadAllText(fileName);

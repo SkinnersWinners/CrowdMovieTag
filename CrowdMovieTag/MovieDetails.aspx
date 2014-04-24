@@ -22,8 +22,10 @@
 		</ItemTemplate>
 	</asp:FormView>
 	  
-    <hr style="margin-top:10px" />
+    
 
+	<asp:Panel runat="server" ID="PanelToHidePageWhenNoMovie">
+	<hr style="margin-top:10px" />
 	<!-----------------------Tag Panel----------------------------->
 	<div class="panel panel-default">
 		<div class="panel-heading">
@@ -236,5 +238,5 @@
   
 	<br />
 	<br />      
-
+	</asp:Panel>
 </asp:Content>

@@ -1,4 +1,7 @@
 ﻿using System;
+using System.IO;
+using System.Data.Sql;
+using System.Data.SqlClient;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +30,12 @@ namespace CrowdMovieTag.Models
 namespace CrowdMovieTag.Logic
 {
 
+	public class MovieResultClass
+	{
+		public int MovieID { get; set; }
+		public Decimal Score { get; set; }
+	}
+
 	enum MovieActionsSuccessCode
 	{
 		VoteValueChanged = 1
@@ -48,11 +57,28 @@ namespace CrowdMovieTag.Logic
 
 		public void Dispose()
 		{
+		//	LoadStoredProcedures(); COMMENT OUT AND EXECUTE ONLY ONCE TRENT
 			if (_db != null)
 			{
 				_db.Dispose();
 				_db = null;
 			}
+		}
+
+		public List<MovieResultClass> SearchForMovies(string submitterID, List<String> tagList)
+		{
+			//var parameters = new object[] { new SsubmitterID, tagList[0] };
+			var query = _db.Database.SqlQuery<MovieResultClass>("dbo.AdvancedSearch @SubmitterID, @Tag1, @Tag2, @Tag3, @Tag4, @Tag5;",
+								new SqlParameter("SubmitterID", submitterID),
+								new SqlParameter("Tag1", tagList[0]),
+								new SqlParameter("Tag2", ""),
+								new SqlParameter("Tag3", ""),
+								new SqlParameter("Tag4", ""),
+								new SqlParameter("Tag5", "")).AsQueryable();
+			
+			
+
+			return query.ToList();
 		}
 
 		public void AddProfileForUserAfterLoginOrRegister(string userID, string userName)
@@ -271,5 +297,16 @@ namespace CrowdMovieTag.Logic
 			return _db.Tags.Where(t => t.CategoryID == categoryID).ToList();
 		}
 
+		public void LoadStoredProcedures()
+		{
+			// Execute our stored procedures:
+			var path = HttpContext.Current.Server.MapPath("~/App_Code/SQL_stored_procedures");
+			var sqlFiles = Directory.GetFiles(path, "dbo.*.sql").OrderBy(s => s);
+			foreach (string fileName in sqlFiles)
+			{
+				string sqlCode = File.ReadAllText(fileName);
+				_db.Database.ExecuteSqlCommand(sqlCode);
+			}
+		}
 	}
 }
