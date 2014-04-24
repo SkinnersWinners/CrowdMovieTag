@@ -6,8 +6,27 @@ using System.Web;
 using CrowdMovieTag.Models;
 using System.Data.Entity;
 
+namespace CrowdMovieTag.Models
+{
+	public enum ProfileRewardAction
+	{
+		AddMovie = 1,
+		AddOrApplyCrowdTag = 2,
+		VoteForCrowdTag = 3
+	}
+
+	public enum ProfileAvatars
+	{
+		Extra = 1,
+		SupportingRole = 2,
+		MovieStar = 3,
+		OscarWinner = 4
+	}
+}
+
 namespace CrowdMovieTag.Logic
 {
+
 	enum MovieActionsSuccessCode
 	{
 		VoteValueChanged = 1
@@ -98,6 +117,7 @@ namespace CrowdMovieTag.Logic
 				};
 
 				tagApp.Score = tagApp.Score + (isUpvote ? 1: -1);
+				UpdateScoreForProfile(profile, ProfileRewardAction.VoteForCrowdTag);
 
 				// Add the new vote and commit
 				_db.Votes.Add(vote);
@@ -145,6 +165,13 @@ namespace CrowdMovieTag.Logic
 				return (int)MovieActionsErrorCode.TagApplicationAlreadyExists;
 			}
 
+			var profile = _db.Profiles.FirstOrDefault(p => String.Compare(p.ProfileID, submitterID) == 0);
+
+			if (profile != null)
+			{
+				UpdateScoreForProfile(profile, ProfileRewardAction.AddOrApplyCrowdTag);
+			}
+			
 			_db.TagApplications.Add(newTagApplication);
 			_db.SaveChanges();
 			return 0;
@@ -165,11 +192,18 @@ namespace CrowdMovieTag.Logic
 			{
 				// Check if it already exists
 				var dbMovie = _db.Movies.SingleOrDefault(m => (String.Compare(m.Title, newMovie.Title) == 0) && m.Year == newMovie.Year);
-				
+
 				if (dbMovie != null) return (int)MovieActionsErrorCode.MovieAlreadyExists;
 
-				// Else, add it to the database
 				_db.Movies.Add(newMovie);
+
+				// Update the profile Score and add the movie to the database
+				var profile = _db.Profiles.FirstOrDefault(p => String.Compare(p.ProfileID, submitterID) == 0);
+				if (profile != null)
+				{
+					UpdateScoreForProfile(profile, ProfileRewardAction.AddMovie);
+				}
+			
 				_db.SaveChanges();
 			}
 			catch (Exception)
@@ -189,6 +223,46 @@ namespace CrowdMovieTag.Logic
 			else
 			{
 				return false;
+			}
+		}
+		 
+		public void UpdateScoreForProfile(Profile userProfile, ProfileRewardAction action)
+		{
+			
+			switch (action)
+			{
+				case ProfileRewardAction.AddMovie:
+					userProfile.Score += 10;
+					break;
+				case ProfileRewardAction.AddOrApplyCrowdTag:
+					userProfile.Score += 5;
+					break;
+				case ProfileRewardAction.VoteForCrowdTag:
+					userProfile.Score += 1;
+					break;
+				default:
+					break;
+			}
+
+			if (userProfile.Score < 250)
+			{
+				userProfile.AvatarID = (int)ProfileAvatars.Extra;
+			}
+			else if (userProfile.Score >= 250 && userProfile.Score < 500)
+			{
+				userProfile.AvatarID = (int)ProfileAvatars.SupportingRole;
+			}
+			else if (userProfile.Score >= 500 && userProfile.Score < 1000)
+			{
+				userProfile.AvatarID = (int)ProfileAvatars.MovieStar;
+			}
+			else if (userProfile.Score >= 1000)
+			{
+				userProfile.AvatarID = (int)ProfileAvatars.OscarWinner;
+			}
+			else
+			{
+				userProfile.AvatarID = (int)ProfileAvatars.Extra;
 			}
 		}
 

@@ -178,6 +178,10 @@
     <Content Include="Account\OpenAuthProviders.ascx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="Account\RegisterExternalLogin.aspx" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AddSearch.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.AdvancedSearch.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\dbo.ProfileRecentMoviesAdded.sql" />
+    <Content Include="App_Code\SQL_stored_procedures\001_populate_DB_script.sql" />
     <Content Include="Images\AddMoviePoints.png" />
     <Content Include="Images\AddNewTag.png" />
     <Content Include="Images\PointsExplained.png" />
@@ -190,10 +194,6 @@
     <Content Include="ShowAllMovies.aspx" />
     <Content Include="PowerTheEngine\AddMovie.aspx" />
     <Content Include="AdvancedSearch.aspx" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddMovie.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddTag.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddTagApplied.sql" />
-    <Content Include="App_Code\SQL_stored_procedures\dbo.AddUser.sql" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-original.css" />
     <Content Include="Content\bootstrap-original.min.css" />
