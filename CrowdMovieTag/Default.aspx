@@ -23,7 +23,7 @@
         <div class="col-md-4">
             <h2>Earn Profile Points</h2>
             <p>Add Movies, add CrowdTags, and vote on existing CrowdTags, to earn Profile Points!</p>
-            <p><a class="btn btn-default" runat="server" href="~/RewardsPoints">Rewards &raquo;</a></p>
+            <p><a class="btn btn-default" runat="server" href="~/RewardsPoints">Profile Points &raquo;</a></p>
         </div>
 
         <div class="col-md-4">

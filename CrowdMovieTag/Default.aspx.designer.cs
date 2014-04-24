@@ -11,32 +11,5 @@ namespace CrowdMovieTag {
     
     
     public partial class _Default {
-        
-        /// <summary>
-        /// vacationDate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox vacationDate;
-        
-        /// <summary>
-        /// ddlApplyTagCategory control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlApplyTagCategory;
-        
-        /// <summary>
-        /// CascadingDropDown1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::AjaxControlToolkit.CascadingDropDown CascadingDropDown1;
     }
 }
