@@ -106,7 +106,7 @@
 		<div class="panel-heading">
 			Apply Existing Tag:
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-left:15px; margin-top:0px">
 			<label>Category:</label>
 				
 			<asp:DropDownList runat="server" 
@@ -121,7 +121,7 @@
 				 ValidationGroup="ExistingTag"></asp:RequiredFieldValidator> 
 
 		</div>
-		<div class="form-group">
+		<div class="form-group" style="margin-top:-78px; margin-left:275px">
 			<label>Tag:</label>
 			<asp:DropDownList runat="server" 
 				ID="ddlApplyTagName" 
@@ -151,9 +151,10 @@
 				LoadingText="LoadingCategories..." 
 				PromptText="Select a Tag Name"
 				ServicePath="TagService.asmx"
-				ServiceMethod="GetTagsForCategory"/>		
+				ServiceMethod="GetTagsForCategory"/>
+        <br />		
 			<!-----------------------Buttons----------------------------->
-		<div class="form-group">
+		<div class="form-group" style="margin-left:15px; margin-top:-5px">
 			<asp:Button CssClass="btn btn-primary" CausesValidation="true"
 				Text="Submit"
 				runat="server" 
