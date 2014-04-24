@@ -6,12 +6,13 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
+using System.Web;
 using Microsoft.SqlServer.Server;
 using System.Linq;
 
 namespace CrowdMovieTag.Models
 {
-	public class MovieDatabaseInitializer : DropCreateDatabaseIfModelChanges<MovieContext>
+	public class MovieDatabaseInitializer : CreateDatabaseIfNotExists<MovieContext>
 	{
 		protected override void Seed(MovieContext context)
 		{
@@ -56,8 +57,10 @@ namespace CrowdMovieTag.Models
 
 		private static void AddStoredProcedures(MovieContext context)
 		{
-			var sqlFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.sql").OrderBy(s => s);
 			
+
+			var path = HttpContext.Current.Server.MapPath("~/App_Code/SQL_stored_procedures");
+			var sqlFiles = Directory.GetFiles(path, "*.sql").OrderBy(s => s);
 			foreach (string fileName in sqlFiles)
 			{
 				string sqlCode = File.ReadAllText(fileName);
@@ -71,10 +74,10 @@ namespace CrowdMovieTag.Models
 			 * 
 			 */
 
-			var movieID = 10;
+			/*var movieID = 10;
 			var movieTitle = "shawshank redemption";
 			object[] parameters = new object[] { movieID, movieTitle }; 
-			Movie movie = context.Movies.SqlQuery("dbo.GetMovie @movieID, @movieTitle;", parameters).AsQueryable().FirstOrDefault();
+			Movie movie = context.Movies.SqlQuery("dbo.GetMovie @movieID, @movieTitle;", parameters).AsQueryable().FirstOrDefault();*/
 		
 
 		}
@@ -125,7 +128,7 @@ namespace CrowdMovieTag.Models
 		private static List<Profile> GetProfiles(List<Avatar> avatars)
 		{
 			var userNames = new List<String>(new string[] {
-				"Steve Black", "Sam Howes", "Trent Merrell", "Tom Skinner", "Your Mom", "Ari Trachtenberg", "President Obama", "Steve Jobs", "Ashton Kutcher", "Bill Gates", "Tony Stark", "Tony Hawk"
+				"Tom Skinner", "Your Mom", "Ari Trachtenberg", "President Obama", "Steve Jobs", "Ashton Kutcher", "Bill Gates", "Tony Stark", "Tony Hawk"
 			});
 
 			int avatarIndex = 0;
@@ -175,11 +178,7 @@ namespace CrowdMovieTag.Models
 				});
 				profileIndex = (profileIndex + 1) % profiles.Count;
 			}
-			var check = false;
-			if (check)
-			{
-				throw new Exception("Check the TagID! Is it null?");
-			}
+			
 			return tags;
 		}
 

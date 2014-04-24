@@ -17,7 +17,7 @@ namespace CrowdMovieTag.Models
 		public string Name { get; set; }
 
 		[Required, StringLength(50)]
-		public string Description;
+		public string Description { get; set; }
 
 		public virtual ICollection<Tag> Tags { get; set; }
 	}

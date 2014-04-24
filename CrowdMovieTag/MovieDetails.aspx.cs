@@ -45,13 +45,21 @@ namespace CrowdMovieTag
 			using (var db = new MovieContext())
 			{
 				Movie movie = db.Movies.FirstOrDefault(m => m.MovieID == movieID);
+				List<TagApplication> topTagApps = null;
+				if (movie != null)
+				{
+					// Next get the top 5 Tag Applications
+					var tagAppQuery =
+							   (from tagApp in movie.TagApplications
+								orderby tagApp.Score descending
+								select tagApp);
 
-				// Next get the top 5 Tag Applications
-				List<TagApplication> topTagApps = 
-							(from tagApp in movie.TagApplications
-							  orderby tagApp.Score descending
-							  select tagApp).ToList();
-							  				
+					if (tagAppQuery != null)
+					{
+						topTagApps = tagAppQuery.ToList();
+					}
+				}
+
 				/*
 				List<Tuple<String, TagApplication>> topTagApps =
 							(from tagApp in movie.TagApplications
@@ -62,7 +70,7 @@ namespace CrowdMovieTag
 
 				//--------- Bind Top Tags ------------//
 				// ItemType = Tuple<Movie, Pair(TagName), int(Score))
-				if (topTagApps.Count == 0)
+				if (topTagApps == null || topTagApps.Count == 0)
 				{
 					TagsList.Visible = false;
 					lblNoTagsForMovie.Visible = true;
@@ -188,7 +196,7 @@ namespace CrowdMovieTag
 
 			if (result < 0)
 			{
-				if (result == (int)Logic.MovieActionsErrorCode.TagAlreadyExists)
+				if (result == (int)Logic.MovieActionsErrorCode.TagApplicationAlreadyExists)
 				{
 					ApplyExistingTagStatusLabel.Text = "That tag is already applied to this movie!";
 				}
@@ -306,18 +314,21 @@ namespace CrowdMovieTag
 				{
 					VoteStatusLabel.Text = "Unable to cast new vote.";
 				}
-				VoteStatusLabel.Visible = true;
 			}
 			else
 			{
 				if (result == (int)MovieActionsSuccessCode.VoteValueChanged)
 				{
 					VoteStatusLabel.Text = "Your vote has been changed.";
-					VoteStatusLabel.Visible = true;
+				}
+				else
+				{
+					VoteStatusLabel.Text = "Vote submitted successfully!";
 				}
 				int movieID = Convert.ToInt32(Request.QueryString["movieID"]);
 				BindDataControls(movieID);
 			}
+			VoteStatusLabel.Visible = true;
 		}
 
 		public IQueryable<Movie> GetMovie([QueryString("movieID")] int? movieID)
