@@ -1,47 +1,65 @@
 ﻿<%@ Page Title="All Movies" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ShowAllMovies.aspx.cs" Inherits="CrowdMovieTag.All_Movies" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
 
-<br />
-<h2>Where We Go One, We Go All:</h2>
-<br />
+	<br />
+	<h2>Where We Go One, We Go All:</h2>
+	<br />
 
-<!-----------------------Panel Begins----------------------------->
+	<!-----------------------Panel Begins----------------------------->
     <div class="panel panel-default panel-warning" "margin-top:30px">
-        <div class="panel-heading">Movies Belonging to the Crowd:</div>
-        <div class="panel-body">
-        <table class="table table-striped table-hover ">
+        <div class="panel-heading">
+			Movies Belonging to the Crowd:
+        </div>
+        
+		<div class="panel-body"> 
+			<asp:Label ID="lblNoMoviesAdded" Text="The crowd has no movies!" runat="server" Visible="False"></asp:Label>
+				
+			<table class="table table-striped table-hover ">
+				<asp:Repeater runat="server"
+						ID="MoviesListRepeater" 
+					ItemType="Tuple<Pair, CrowdMovieTag.Models.Movie>">
+					<HeaderTemplate>
+						<!-----------------------Table Headings----------------------------->
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Added:</th>
+								<th>Movie Title:</th>
+								<th>Year:</th>
+								<th>Top 5 tags:</th>
+								<th>More Information:</th>
+							</tr>
+						</thead>
+						<tbody>
+					</HeaderTemplate>
+						
+					<ItemTemplate>
+						<tr>
+							<td><%#: Container.ItemIndex + 1 %></td>
+							<td><%#: (string)Item.Item1.First %></td>
+							<td><%#: Item.Item2.Title %></td>
+							<td><%#: Item.Item2.Year %></td>
+							<td><%#: (string)Item.Item1.Second %></td>
+							<td>
+								<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
+									<button type="button" class="btn btn-primary btn-xs btn-info">  
+										Movie Page
+									</button>
+								</a>
+							</td>
+						</tr>
+					</ItemTemplate>
+
+					<FooterTemplate>
+						</tbody>
+					</FooterTemplate>
+				</asp:Repeater>
+			</table>
+		</div>
+
+	</div>
 
 
-<!-----------------------Table Headings----------------------------->
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Movie Title:</th>
-              <th>Year:</th>
-              <th>Top 5 Tags:</th>
-              <th>More Information:</th>
-            </tr>
-          </thead>
-          <tbody>
-
-<!-----------------------Table Body-----------------------------> 
-            <tr>
-              <td>1</td>
-              <td>Shawshank Redemption</td>
-              <td>1994</td>
-              <td>Drama, Prison, Morgan Freeman, 1940's, Tim Robbins</td>
-              <td>
-                  <button type="submit" class="btn btn-primary btn-xs btn-info">  Description  </button>
-              </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-</div>
-</div>
-
-
-<br />
-<br />
+	<br />
+	<br />
 </asp:Content>

@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Web.ModelBinding;
 using System.Web.Routing;
 using CrowdMovieTag.Models;
+using CrowdMovieTag.Utilities;
 
 namespace CrowdMovieTag
 {
@@ -85,7 +86,7 @@ namespace CrowdMovieTag
 				var tagAppQuery = (from ta in profile.TagApplications
 								   orderby ta.SubmittedDateTime descending
 								   select Tuple.Create(
-								   GetElapsedTimeAsString(ta.SubmittedDateTime),
+								   ControllerUtilities.GetElapsedTimeAsString(ta.SubmittedDateTime),
 								   ta)
 										).Take(magicNumber);
 
@@ -120,12 +121,8 @@ namespace CrowdMovieTag
 			{
 				for (int ii = 0; ii < topMovies.Count; ++ii)
 				{
-					string tagString = topTagNames[ii].FirstOrDefault();
-					foreach (var name in topTagNames[ii])
-					{
-						tagString += ", " + name;
-					}
-					string timestamp = GetElapsedTimeAsString(topMovies[ii].DateAdded);
+					string tagString = String.Join(", ", topTagNames[ii]);
+					string timestamp = ControllerUtilities.GetElapsedTimeAsString(topMovies[ii].DateAdded);
 					bindingValues.Add(Tuple.Create(new Pair(timestamp, tagString), topMovies[ii]));
 				}
 			}
@@ -172,7 +169,7 @@ namespace CrowdMovieTag
 
 				foreach (var vote in topVotes)
 				{
-					string timestamp = GetElapsedTimeAsString(vote.VotedDateTime);
+					string timestamp = ControllerUtilities.GetElapsedTimeAsString(vote.VotedDateTime);
 					votesBindingValues.Add(Tuple.Create(timestamp, vote));
 				}
 
@@ -183,40 +180,7 @@ namespace CrowdMovieTag
 			}
 		}
 
-		public string GetElapsedTimeAsString(DateTime time)
-		{
-			TimeSpan elapsed = DateTime.Now - time;
-			string timestamp;
-			if (elapsed.Days > 30)
-			{
-				timestamp = String.Format("{0} Months ago", Math.Ceiling(elapsed.Days / (365.25 / 12)));
-			}
-			else if (elapsed.Days >= 1)
-			{
-				timestamp = String.Format("{0} Days ago", elapsed.Days);
-			}
-			else if (elapsed.Hours >= 1)
-			{
-				timestamp = String.Format("{0} Hours ago", elapsed.Hours);
-			}
-			else if (elapsed.Minutes >= 1)
-			{
-				if (elapsed.Minutes == 1)
-				{
-					timestamp = String.Format("{0} Minute ago", 1);
-				}
-				else
-				{
-					timestamp = String.Format("{0} Minutes ago", elapsed.Minutes);
-				}
-			}
-			else
-			{
-				timestamp = "Just Now";
-			}
-			return timestamp;
-		}
-
+		
 		public IQueryable<Profile> GetProfile([QueryString("username")] string username)
 		{
 			if (String.IsNullOrEmpty(username))

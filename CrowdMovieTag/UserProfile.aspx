@@ -149,7 +149,7 @@
 				Last 5 Movies Added:
 			</div>
 
-			<div class="panel-body">
+			<div class="panel-body"> 
 				<asp:Label ID="lblNoMoviesAdded" Text="User has not added any movies" runat="server" Visible="False"></asp:Label>
 				
 				<table class="table table-striped table-hover ">

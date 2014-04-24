@@ -423,6 +423,7 @@
     <Compile Include="UserProfile.aspx.designer.cs">
       <DependentUpon>UserProfile.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Utilities\ControllerUtilities.cs" />
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
