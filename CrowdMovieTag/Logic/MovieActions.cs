@@ -307,7 +307,7 @@ namespace CrowdMovieTag.Logic
 		{
 			// Execute our stored procedures:
 			var path = HttpContext.Current.Server.MapPath("~/App_Code/SQL_stored_procedures");
-			var sqlFiles = Directory.GetFiles(path, "dbo.*.sql").OrderBy(s => s);
+			var sqlFiles = Directory.GetFiles(path, "dbo.AdvancedSearch.sql").OrderBy(s => s);
 			foreach (string fileName in sqlFiles)
 			{
 				string sqlCode = File.ReadAllText(fileName);
