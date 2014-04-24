@@ -201,7 +201,7 @@
     <Content Include="Images\Avatars\Director.png" />
     <Content Include="Images\Avatars\Extra.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Images\Avatars\HollywoodStar.png" />
+    <Content Include="Images\Avatars\MovieStar.png" />
     <Content Include="MovieDetails.aspx" />
     <Content Include="TagService.asmx" />
     <None Include="DevNotes\Notes.md" />
@@ -249,7 +249,7 @@
     <Content Include="Global.asax" />
     <Content Include="SearchResults.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="Images\Avatars\SupportingActor.png" />
+    <Content Include="Images\Avatars\SupportingRole.png" />
     <Content Include="TermsAndConditions.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
