@@ -1,4 +1,4 @@
-﻿<%@ Page Title="Advanced Search" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdvancedSearch.aspx.cs" Inherits="CrowdMovieTag.AdvancedSearch" %>
+﻿<%@ Page Title="Advanced Search" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="AdvancedSearch.aspx.cs" Inherits="CrowdMovieTag.AdvancedSearch" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     
 <br />		
@@ -15,7 +15,7 @@
               <th>#</th>
               <th>Type:</th>
               <th>Tag:</th>
-              <th>Message:  (if applicable)</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -25,21 +25,21 @@
               <tr>
               <td style="vertical-align:middle">1</td>
               <td>
-                  <select class="form-control" id="searchTag1_type" style="width:175px">
-                      <option>Select One...</option>
-                      <option>Genre</option>
-                      <option>Thematic Element</option>
-                      <option>Actor/Actress</option>
-                      <option>Director/Producer</option>
-                      <option>Time Period/Era</option>
-                      <option>Location</option>
-                   </select>
+					<asp:DropDownList runat="server" 
+						ID="DropDownList1" 
+						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
-                  <input type="text" class="form-control" id="searchTag1" placeholder="Enter first tag...">
+                  <asp:TextBox runat="server" CssClass="form-control" ID="TextBox1" placeholder="Enter First tag..."></asp:TextBox>
               </td>
               <td style="vertical-align:middle">
-                  <label id="searchTag1_error" style="color:#FF6600"">Print Tag 1 errors here...</label>
+                  <asp:RegularExpressionValidator 
+					ID="RegexValidator1" runat="server" 
+					CssClass="validator"
+					Text="* Name must not contain spaces or special characters" 
+					ControlToValidate="TextBox1" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					></asp:RegularExpressionValidator>
               </td>
             </tr>
 
@@ -47,21 +47,21 @@
             <tr>
               <td style="vertical-align:middle">2</td>
               <td>
-                  <select class="form-control" id="searchTag2_type" style="width:175px">
-                      <option>Select One...</option>
-                      <option>Genre</option>
-                      <option>Thematic Element</option>
-                      <option>Actor/Actress</option>
-                      <option>Director/Producer</option>
-                      <option>Time Period/Era</option>
-                      <option>Location</option>
-                   </select>
+                  <asp:DropDownList runat="server" 
+						ID="DropDownList2" 
+						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
-                  <input type="text" class="form-control" id="searchTag2" placeholder="Enter second tag...">
+                   <asp:TextBox runat="server" CssClass="form-control" ID="TextBox2" placeholder="Enter Second tag..."></asp:TextBox>
               </td>
               <td style="vertical-align:middle">
-                  <label id="searchTag2_error" style="color:#FF6600"">Print Tag 2 errors here...</label>
+                  <asp:RegularExpressionValidator 
+					ID="RegularExpressionValidator1" runat="server" 
+					CssClass="validator"
+					Text="* Name must not contain spaces or special characters" 
+					ControlToValidate="TextBox2" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					></asp:RegularExpressionValidator>
               </td>
             </tr>
 
@@ -69,21 +69,21 @@
             <tr>
               <td style="vertical-align:middle">3</td>
               <td>
-                  <select class="form-control" id="searchTag3_type" style="width:175px">
-                      <option>Select One...</option>
-                      <option>Genre</option>
-                      <option>Thematic Element</option>
-                      <option>Actor/Actress</option>
-                      <option>Director/Producer</option>
-                      <option>Time Period/Era</option>
-                      <option>Location</option>
-                   </select>
+                  <asp:DropDownList runat="server" 
+						ID="DropDownList3" 
+						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
-                  <input type="text" class="form-control" id="searchTag3" placeholder="Enter third tag...">
+                   <asp:TextBox runat="server" CssClass="form-control" ID="TextBox3" placeholder="Enter Third tag..."></asp:TextBox>
               </td>
               <td style="vertical-align:middle">
-                  <label id="searchTag3_error" style="color:#FF6600"">Print Tag 3 errors here...</label>
+                  <asp:RegularExpressionValidator 
+					ID="RegularExpressionValidator4" runat="server" 
+					CssClass="validator"
+					Text="* Name must not contain spaces or special characters" 
+					ControlToValidate="TextBox3" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					></asp:RegularExpressionValidator>
               </td>
             </tr>
 
@@ -91,21 +91,21 @@
             <tr>
               <td style="vertical-align:middle">4</td>
               <td>
-                  <select class="form-control" id="searchTag4_type" style="width:175px">
-                      <option>Select One...</option>
-                      <option>Genre</option>
-                      <option>Time Period</option>
-                      <option>Actor/Actress</option>
-                      <option>Producer</option>
-                      <option>Thematic Elements</option>
-                      <option>Movie Title</option>
-                   </select>
+                  <asp:DropDownList runat="server" 
+						ID="DropDownList4" 
+						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
-                  <input type="text" class="form-control" id="searchTag4" placeholder="Enter fourth tag...">
+                   <asp:TextBox runat="server" CssClass="form-control" ID="TextBox4" placeholder="Enter Fourth tag..."></asp:TextBox>
               </td>
               <td style="vertical-align:middle">
-                  <label id="searchTag4_error" style="color:#FF6600"">Print Tag 4 errors here...</label>
+                 <asp:RegularExpressionValidator 
+					ID="RegularExpressionValidator2" runat="server" 
+					CssClass="validator"
+					Text="* Name must not contain spaces or special characters" 
+					ControlToValidate="TextBox4" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					></asp:RegularExpressionValidator>
               </td>
             </tr>
 
@@ -113,31 +113,71 @@
             <tr>
               <td style="vertical-align:middle">5</td>
               <td>
-                  <select class="form-control" id="searchTag5_type" style="width:175px">
-                      <option>Select One...</option>
-                      <option>Genre</option>
-                      <option>Thematic Element</option>
-                      <option>Actor/Actress</option>
-                      <option>Director/Producer</option>
-                      <option>Time Period/Era</option>
-                      <option>Location</option>
-                   </select>
+                  <asp:DropDownList runat="server" 
+						ID="DropDownList5" 
+						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
-                  <input type="text" class="form-control" id="searchTag5" placeholder="Enter fifth tag...">
+                   <asp:TextBox runat="server" CssClass="form-control" ID="TextBox5" placeholder="Enter Fifth tag..."></asp:TextBox>
               </td>
               <td style="vertical-align:middle">
-                  <label id="searchTag5_error" style="color:#FF6600"">Print Tag 5 errors here...</label>
+                  <asp:RegularExpressionValidator 
+					ID="RegularExpressionValidator3" runat="server" 
+					CssClass="validator"
+					Text="* Name must not contain spaces or special characters" 
+					ControlToValidate="TextBox5" 
+					ValidationExpression="^[A-Z\-a-z0-9_]+$"
+					></asp:RegularExpressionValidator>
               </td>
             </tr>
           </tbody>
     </table>
+	<ajaxToolkit:CascadingDropDown ID="CascadingDropDown1" runat="server"
+				TargetControlID="DropDownList1" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
+		<ajaxToolkit:CascadingDropDown ID="CascadingDropDown2" runat="server" 
+				TargetControlID="DropDownList2" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
+		<ajaxToolkit:CascadingDropDown ID="CascadingDropDown3" runat="server" 
+				TargetControlID="DropDownList3" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
+		<ajaxToolkit:CascadingDropDown ID="CascadingDropDown4" runat="server" 
+				TargetControlID="DropDownList4" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
+		<ajaxToolkit:CascadingDropDown ID="CascadingDropDown5" runat="server" 
+				TargetControlID="DropDownList5" 
+				Category="Category"
+				LoadingText="LoadingCategories..." 
+				PromptText="Select a Tag Category"
+				ServicePath="TagService.asmx"
+				ServiceMethod="GetTagCategories"/>
     </div>
 </div>
  
 <div class="form-group" style="margin-top:20px">
-       <button class="btn btn-default">Cancel</button>
-       <button type="submit" class="btn btn-primary">Search</button>
+	<asp:Label ID="ErrorLabel" runat="server" Text="" Visible="false"
+		CssClass="validator"></asp:Label>
+	<br />
+	<asp:Button runat="server" CssClass="btn btn-primary" Text="Search" 
+		   CausesValidation="true" OnClick="Search_Click"/>
+	
+	
 </div>
 
 <br />

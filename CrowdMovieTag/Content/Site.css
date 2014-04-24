@@ -46,5 +46,6 @@ input[type="password"] {
 }
 
 .validator {
-	color: red;
+	color:#FF6600;
+	font-weight: bold;
 }

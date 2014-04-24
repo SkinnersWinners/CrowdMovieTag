@@ -22,27 +22,49 @@ namespace CrowdMovieTag
 				string searchText = Request.QueryString["search"];
 				if (searchText != null)
 				{
-					searchText = Server.UrlDecode(searchText);
+					searchText = Request.QueryString.ToString().Split('=')[1];
+					List<string> tagsToSearchOn = searchText.Split('&').ToList();
+					var searchCriteria = new List<String>();
+					foreach (var tag in tagsToSearchOn)
+					{
+						searchCriteria.Add(Server.UrlDecode(tag));
+					}
+
+					if (searchCriteria.Count > 5)
+					{
+						SearchedForLabel.Text = "Error: Invalid search, you can only search for 5 tags!";
+						SearchResultsLabel.Text = "";
+						SearchLabelsPanel.Visible = true;
+						return;
+					}
+
 					List<MovieResultClass> results;
 					using (var movieActions = new MovieActions())
 					{
-						results = movieActions.SearchForMovies(User.Identity.GetUserId().ToString(), new List<String> { searchText });
+						results = movieActions.SearchForMovies(User.Identity.GetUserId().ToString(), searchCriteria);
 					}
 
-					BindDataControls(results);
+					BindDataControls(results, null);
+					SearchedForLabel.Text = "Your search for: " + String.Join(", ", searchCriteria);
+					SearchResultsLabel.Text = "Returned " + results.Count.ToString() + " results";
+					SearchLabelsPanel.Visible = true;
 				}
 				else
 				{
-					BindDataControls(null);
+					int magicNumber = 20;
+					BindDataControls(null, 20);
+					SearchedForLabel.Visible = false;
+					SearchResultsLabel.Text = "Showing " + magicNumber.ToString() + " recently added movies";
+					SearchLabelsPanel.Visible = true;
 				}
 			}
         }
 
-		public void BindDataControls(List<MovieResultClass> searchResults)
+		public void BindDataControls(List<MovieResultClass> searchResults, int? magicNumberParameter)
 		{
+			int magicNumber = (magicNumberParameter == null ? 0: (int)magicNumberParameter);
 			using (var db = new MovieContext())
 			{
-				int magicNumber = 20;
 				List<Movie> topMovies = null;
 				List<List<String>> topTagNames = new List<List<String>>();
 				try
@@ -76,7 +98,7 @@ namespace CrowdMovieTag
 						{
 							var taQuery = (from ta in movie.TagApplications
 										   orderby ta.Score descending
-										   select ta.Tag.Name).Take(magicNumber);
+										   select ta.Tag.Name).Take(5);
 							if (taQuery != null)
 							{
 								topTagNames.Add(taQuery.ToList());

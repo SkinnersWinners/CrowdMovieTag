@@ -11,6 +11,14 @@
 			Movies Belonging to the Crowd:
         </div>
         
+		<asp:Panel runat="server" ID="SearchLabelsPanel" Visible="false">
+			<br />
+			<asp:Label ID="SearchedForLabel" runat="server" Text="" ></asp:Label>
+			<br />
+			<br />
+			<asp:Label ID="SearchResultsLabel" runat="server" Text=""></asp:Label>
+		</asp:Panel>
+
 		<div class="panel-body"> 
 			<asp:Label ID="lblNoMoviesAdded" Text="The crowd has no movies!" runat="server" Visible="False"></asp:Label>
 				

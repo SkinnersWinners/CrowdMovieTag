@@ -68,13 +68,19 @@ namespace CrowdMovieTag.Logic
 		public List<MovieResultClass> SearchForMovies(string submitterID, List<String> tagList)
 		{
 			//var parameters = new object[] { new SsubmitterID, tagList[0] };
-			var query = _db.Database.SqlQuery<MovieResultClass>("dbo.AdvancedSearch @SubmitterID, @Tag1, @Tag2, @Tag3, @Tag4, @Tag5;",
-								new SqlParameter("SubmitterID", submitterID),
-								new SqlParameter("Tag1", tagList[0]),
-								new SqlParameter("Tag2", ""),
-								new SqlParameter("Tag3", ""),
-								new SqlParameter("Tag4", ""),
-								new SqlParameter("Tag5", "")).AsQueryable();
+			var searchParameters = new List<SqlParameter>();
+			searchParameters.Add(new SqlParameter("SubmitterID", submitterID));
+			for (int ii = 0; ii < 5; ++ii)
+			{
+				var param = (ii < tagList.Count ? tagList[ii] : "");
+				searchParameters.Add(
+					new SqlParameter(
+						String.Format("Tag{0}", ii+1),
+						param)
+						);
+			}
+
+			var query = _db.Database.SqlQuery<MovieResultClass>("dbo.AdvancedSearch @SubmitterID, @Tag1, @Tag2, @Tag3, @Tag4, @Tag5;",searchParameters.ToArray()).AsQueryable();
 			
 			
 
