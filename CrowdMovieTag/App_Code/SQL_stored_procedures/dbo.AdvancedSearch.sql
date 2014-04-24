@@ -108,8 +108,8 @@ BEGIN
 	WHERE NetUpvotes > 0
 	ORDER BY MovieID
 
-	SELECT MovieID, Title, Year, SUM(UpvoteTieBreaker) AS Score
+	SELECT MovieID, SUM(UpvoteTieBreaker) AS Score
 	FROM #TopResultsByNetUpvotes
-	GROUP BY MovieID, Title, Year
+	GROUP BY MovieID
 	ORDER BY Score DESC
 END
