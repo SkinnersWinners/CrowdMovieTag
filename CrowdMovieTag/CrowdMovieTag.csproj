@@ -252,7 +252,7 @@
     <Content Include="Global.asax" />
     <Content Include="SearchResults.aspx" />
     <Content Include="Site.Master" />
-    <Content Include="Images\Avatars\SupportingActor.png" />
+    <Content Include="Images\Avatars\SupportingRole.png" />
     <Content Include="TermsAndConditions.aspx" />
     <Content Include="UserProfile.aspx" />
     <Content Include="ViewSwitcher.ascx" />
