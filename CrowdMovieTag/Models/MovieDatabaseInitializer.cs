@@ -58,19 +58,23 @@ namespace CrowdMovieTag.Models
 		{
 			var sqlFiles = Directory.GetFiles(AppDomain.CurrentDomain.BaseDirectory, "*.sql").OrderBy(s => s);
 			
-			foreach (string file in sqlFiles)
+			foreach (string fileName in sqlFiles)
 			{
-				context.Database.ExecuteSqlCommand(File.ReadAllText(file));
+				string sqlCode = File.ReadAllText(fileName);
+				context.Database.ExecuteSqlCommand(sqlCode);
 			}
 
-			/*context.Database.Connection.Open();
-			var command = context.Database.Connection.CreateCommand();
-			command.CommandType = System.Data.CommandType.StoredProcedure;*/
+			/*
+			 * context.Database.Connection.Open();
+			 * var command = context.Database.Connection.CreateCommand();
+			 * command.CommandType = System.Data.CommandType.StoredProcedure;
+			 * 
+			 */
 
-		//	var movieID = 10;
-		//	var movieTitle = "shawshank redemption";
-		//	object[] parameters = new object[] { movieID, movieTitle }; 
-		//	Movie movie = context.Movies.SqlQuery("dbo.GetMovie @movieID @movieTitle", parameters).AsQueryable().FirstOrDefault();
+			var movieID = 10;
+			var movieTitle = "shawshank redemption";
+			object[] parameters = new object[] { movieID, movieTitle }; 
+			Movie movie = context.Movies.SqlQuery("dbo.GetMovie @movieID, @movieTitle;", parameters).AsQueryable().FirstOrDefault();
 		
 
 		}
