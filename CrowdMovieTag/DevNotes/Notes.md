@@ -3,17 +3,17 @@
 Branch TODO:
 
 Revisit:
-- Update Profile Score based on user actions
-
-- AllMovies
-- Implement search
-	- Access stored procedures
 
 - Add Error Handling
 
 ? Implement Admin 
 	? What tasks does an admin perform?
 
++ Update Profile Score based on user actions
+
++ AllMovies
++ Implement search
+	+ Access stored procedures
 
 + AddMoviePage
 
