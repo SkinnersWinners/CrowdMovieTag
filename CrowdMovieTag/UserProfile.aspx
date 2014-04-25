@@ -74,11 +74,21 @@
 								<td><%#: Item.Item2.TagApplication.Movie.Title %></td>
 								<td><%#: Item.Item2.TagApplication.Score %></td>
 								<td>
+									<%-- Old way that it was done: TRENT LOOK AT ME HERE
 									<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.TagApplication.MovieID %>">
 										<button type="button" class="btn btn-primary btn-xs btn-info">  
 											Movie Page
 										</button>
 									</a>
+									--%>
+									
+									<%-- Possibly better new way: --%>
+									<button type="button" class="btn btn-primary btn-xs btn-info">  
+										<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.TagApplication.MovieID %>">
+											Movie Page
+										</a>
+									</button>
+
 								</td>
 							</tr>
 						</ItemTemplate>
