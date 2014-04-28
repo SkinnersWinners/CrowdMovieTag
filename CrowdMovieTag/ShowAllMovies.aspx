@@ -49,12 +49,21 @@
 							<td><%#: (string)Item.Item1.Second %></td>
 							<td><%#: (string)Item.Item1.First %></td>
 							<td>
-								<a href="MovieDetails?movieID=<%#: Item.Item2.MovieID %>">
+								<!-- Link fix for Intenet Explorer? -->
+                                <button type="button" class="btn btn-primary btn-xs btn-info"  
+								onClick="javascript:location.href = 'MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>';">
+								    Movie Page
+										
+								</button>
+                                
+                                <!-- OLD LINK
+                                <a href="MovieDetails?movieID=<%#: Item.Item2.MovieID %>">
 									<button type="button" class="btn btn-primary btn-xs btn-info">  
 										Movie Page
 									</button>
-								</a>
-							</td>
+								</a> -->
+							
+                            </td>
 						</tr>
 					</ItemTemplate>
 
