@@ -26,7 +26,7 @@
               <td style="vertical-align:middle">1</td>
               <td>
 					<asp:DropDownList runat="server" 
-						ID="DropDownList1" 
+						ID="DropDownList1" style="width:205px"
 						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
@@ -48,7 +48,7 @@
               <td style="vertical-align:middle">2</td>
               <td>
                   <asp:DropDownList runat="server" 
-						ID="DropDownList2" 
+						ID="DropDownList2" style="width:205px"
 						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
@@ -70,7 +70,7 @@
               <td style="vertical-align:middle">3</td>
               <td>
                   <asp:DropDownList runat="server" 
-						ID="DropDownList3" 
+						ID="DropDownList3" style="width:205px"
 						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
@@ -92,7 +92,7 @@
               <td style="vertical-align:middle">4</td>
               <td>
                   <asp:DropDownList runat="server" 
-						ID="DropDownList4" 
+						ID="DropDownList4" style="width:205px"
 						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
@@ -114,7 +114,7 @@
               <td style="vertical-align:middle">5</td>
               <td>
                   <asp:DropDownList runat="server" 
-						ID="DropDownList5" 
+						ID="DropDownList5" style="width:205px"
 						CssClass="form-control"></asp:DropDownList>
               </td>
               <td>
