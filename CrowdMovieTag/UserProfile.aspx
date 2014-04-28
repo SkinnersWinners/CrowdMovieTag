@@ -83,10 +83,10 @@
 									--%>
 									
 									<%-- Possibly better new way: --%>
-									<button type="button" class="btn btn-primary btn-xs btn-info">  
-										<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.TagApplication.MovieID %>">
+									<button type="button" class="btn btn-primary btn-xs btn-info"  
+										 onClick="javascript:location.href = 'MovieDetails.aspx?movieID=<%#: Item.Item2.TagApplication.MovieID %>';">
 											Movie Page
-										</a>
+										
 									</button>
 
 								</td>
@@ -136,11 +136,20 @@
 								<td><%#: Item.Item2.Movie.Title %></td>
 								<td><%#: Item.Item2.Score %></td>
 								<td>
-									<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
+									<!-- Link fix for Intenet Explorer? -->
+                                    <button type="button" class="btn btn-primary btn-xs btn-info"  
+										 onClick="javascript:location.href = 'MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>';">
+											Movie Page
+										
+									</button>
+                                    
+                                    <!-- OLD WAY
+                                    <a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
 										<button type="button" class="btn btn-primary btn-xs btn-info">  
 											Movie Page
 										</button>
 									</a>
+                                        -->
 								</td>
 							</tr>
 						</ItemTemplate>
@@ -189,11 +198,18 @@
 								<td><%#: Item.Item2.Year %></td>
 								<td><%#: (string)Item.Item1.Second %></td>
 								<td>
-									<a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
+									<!-- Link fix for Intenet Explorer? -->
+                                    <button type="button" class="btn btn-primary btn-xs btn-info"  
+										 onClick="javascript:location.href = 'MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>';">
+											Movie Page
+									
+                                    <!-- OLD WAY to link	
+									</button>
+                                    <a href="MovieDetails.aspx?movieID=<%#: Item.Item2.MovieID %>">
 										<button type="button" class="btn btn-primary btn-xs btn-info">  
 											Movie Page
 										</button>
-									</a>
+									</a>  -->
 								</td>
 							</tr>
 						</ItemTemplate>

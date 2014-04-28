@@ -67,7 +67,8 @@ namespace CrowdMovieTag.Logic
 
 		public List<MovieResultClass> SearchForMovies(string submitterID, List<String> tagList)
 		{
-			//var parameters = new object[] { new SsubmitterID, tagList[0] };
+          //  LoadStoredProcedures();
+            //var parameters = new object[] { new SsubmitterID, tagList[0] };
 			var searchParameters = new List<SqlParameter>();
 			searchParameters.Add(new SqlParameter("SubmitterID", submitterID));
 			for (int ii = 0; ii < 5; ++ii)
