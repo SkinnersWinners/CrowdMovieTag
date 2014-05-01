@@ -37,7 +37,7 @@
             <p>In addition to the profile points that you earn, you are POWER'ing the CrowdTag search engine by feeding our top-secret proprietary algorithm with information to make better movie recommendations.  As a result, the world is a happier place!</p>
                 <br />
                 <div width:100%>        
-                    <img style="margin-left:45%" runat="server" src="~/Images/SmileyFace.png" /> 
+                    <img style="margin-left:10%" runat="server" src="~/Images/Logo.png" /> 
                 </div>
         <br />
         <hr /> 
